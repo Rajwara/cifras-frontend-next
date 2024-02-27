@@ -134,7 +134,7 @@ export default function Sidebar({ className }: { className?: string }) {
                           {item?.icon && (
                             <span
                               className={cn(
-                                'me-2 inline-flex h-5 w-5 items-center justify-center rounded-md [&>svg]:h-[20px] [&>svg]:w-[20px]',
+                                'me-2 inline-flex h-8 w-8 items-center justify-center rounded-md [&>svg]:h-[80px] [&>svg]:w-[60px]',
                                 isActive
                                   ? 'text-primary'
                                   : 'text-gray-800 dark:text-gray-500 dark:group-hover:text-gray-700'
