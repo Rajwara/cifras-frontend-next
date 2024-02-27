@@ -5,13 +5,13 @@ import SimpleBar from '@/components/ui/simplebar';
 export const formParts = {
   summary: 'summary',
   media: 'media',
-  pricingInventory: 'pricingInventory',
-  productIdentifiers: 'productIdentifiers',
-  shipping: 'shipping',
-  seo: 'seo',
-  deliveryEvent: 'deliveryEvent',
-  variantOptions: 'variantOptions',
-  tagsAndCategory: 'tagsAndCategory',
+  // pricingInventory: 'pricingInventory',
+  // productIdentifiers: 'productIdentifiers',
+  // shipping: 'shipping',
+  // seo: 'seo',
+  // deliveryEvent: 'deliveryEvent',
+  // variantOptions: 'variantOptions',
+  // tagsAndCategory: 'tagsAndCategory',
 };
 
 export const menuItems = [
@@ -23,26 +23,26 @@ export const menuItems = [
     label: 'Images & Gallery',
     value: formParts.media,
   },
-  {
-    label: 'Pricing & Inventory',
-    value: formParts.pricingInventory,
-  },
-  {
-    label: 'Product Identifiers & Custom Fields',
-    value: formParts.productIdentifiers,
-  },
-  {
-    label: 'Shipping',
-    value: formParts.shipping,
-  },
-  {
-    label: 'SEO',
-    value: formParts.seo,
-  },
-  {
-    label: 'Variant Options',
-    value: formParts.variantOptions,
-  },
+  // {
+  //   label: 'Pricing & Inventory',
+  //   value: formParts.pricingInventory,
+  // },
+  // {
+  //   label: 'Product Identifiers & Custom Fields',
+  //   value: formParts.productIdentifiers,
+  // },
+  // {
+  //   label: 'Shipping',
+  //   value: formParts.shipping,
+  // },
+  // {
+  //   label: 'SEO',
+  //   value: formParts.seo,
+  // },
+  // {
+  //   label: 'Variant Options',
+  //   value: formParts.variantOptions,
+  // },
 ];
 
 interface FormNavProps {

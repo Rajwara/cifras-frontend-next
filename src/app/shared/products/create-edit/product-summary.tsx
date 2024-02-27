@@ -32,49 +32,30 @@ export default function ProductSummary({ className }: { className?: string }) {
       className={cn(className)}
     >
       <Input
-        label="Title"
-        placeholder="Product title"
-        {...register('title')}
-        error={errors.title?.message as string}
+        label="Item Name"
+        placeholder="Item Name"
+        {...register('itemname')}
+        error={errors.itemname?.message as string}
       />
       <Input
-        label="SKU"
-        placeholder="Product sku"
-        {...register('sku')}
-        error={errors.sku?.message as string}
+        label="Vendor"
+        placeholder="Vendor"
+        {...register('vendor')}
+        error={errors.vendor?.message as string}
       />
-
-      <Controller
-        name="type"
-        control={control}
-        render={({ field: { onChange, value } }) => (
-          <Select
-            dropdownClassName="!z-0"
-            options={typeOption}
-            value={value}
-            onChange={onChange}
-            label="Product Type"
-            error={errors?.type?.message as string}
-            getOptionValue={(option) => option.value}
-          />
-        )}
+        <Input
+        label="Unit Price"
+        placeholder="0.00"
+        {...register('unitprice')}
+        error={errors.unitprice?.message as string}
       />
-
-      <Controller
-        name="categories"
-        control={control}
-        render={({ field: { onChange, value } }) => (
-          <Select
-            options={categoryOption}
-            value={value}
-            onChange={onChange}
-            label="Categories"
-            error={errors?.categories?.message as string}
-            getOptionValue={(option) => option.value}
-            inPortal={false}
-          />
-        )}
+         <Input
+        label=" Unit of Measure"
+        placeholder="0.00"
+        {...register('unitofMeasure')}
+        error={errors.unitofMeasure?.message as string}
       />
+   
 
       <Controller
         control={control}

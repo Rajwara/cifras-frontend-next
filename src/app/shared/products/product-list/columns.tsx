@@ -155,17 +155,17 @@ export const getColumns = ({
   },
   {
     title: <HeaderCell title="Product" />,
-    dataIndex: 'product',
-    key: 'product',
+    dataIndex: 'itemname',
+    key: 'itemname',
     width: 300,
     hidden: 'customer',
     render: (_: string, row: ProductType) => (
       <AvatarCard
         src={row.image}
-        name={row.name}
-        description={row.category}
+        name={row.itemname}
+        description={row.vendor}
         avatarProps={{
-          name: row.name,
+          name: row.itemname,
           size: 'lg',
           className: 'rounded-lg',
         }}
@@ -173,53 +173,71 @@ export const getColumns = ({
     ),
   },
   {
-    title: <HeaderCell title="SKU" />,
-    dataIndex: 'sku',
-    key: 'sku',
+    title: <HeaderCell title="Vendor" />,
+    dataIndex: 'vendor',
+    key: 'vendor',
     width: 150,
-    render: (sku: string) => <Text className="text-sm">SKU-{sku}</Text>,
+    render: (vendor: string) => <Text className="text-sm">SKU-{vendor}</Text>,
   },
+  // {
+  //   title: (
+  //     <HeaderCell
+  //       title=""
+  //       sortable
+  //       ascending={
+  //         sortConfig?.direction === 'asc' && sortConfig?.key === 'stock'
+  //       }
+  //     />
+  //   ),
+  //   onHeaderCell: () => onHeaderCellClick('stock'),
+  //   dataIndex: 'stock',
+  //   key: 'stock',
+  //   width: 200,
+  //   render: (stock: number) => getStockStatus(stock),
+  // },
   {
     title: (
       <HeaderCell
-        title="Stock"
+        title="Unit Price"
         sortable
         ascending={
-          sortConfig?.direction === 'asc' && sortConfig?.key === 'stock'
+          sortConfig?.direction === 'asc' && sortConfig?.key === 'unitprice'
         }
       />
     ),
-    onHeaderCell: () => onHeaderCellClick('stock'),
-    dataIndex: 'stock',
-    key: 'stock',
-    width: 200,
-    render: (stock: number) => getStockStatus(stock),
-  },
-  {
-    title: (
-      <HeaderCell
-        title="Price"
-        sortable
-        ascending={
-          sortConfig?.direction === 'asc' && sortConfig?.key === 'price'
-        }
-      />
-    ),
-    onHeaderCell: () => onHeaderCellClick('price'),
-    dataIndex: 'price',
-    key: 'price',
+    onHeaderCell: () => onHeaderCellClick('unitprice'),
+    dataIndex: 'unitprice',
+    key: 'unitprice',
     width: 150,
     render: (value: string) => (
       <Text className="font-medium text-gray-700">${value}</Text>
     ),
   },
   {
-    title: <HeaderCell title="Rating" />,
-    dataIndex: 'rating',
-    key: 'rating',
-    width: 200,
-    render: (rating: number[]) => getRating(rating),
+    title: (
+      <HeaderCell
+        title="Unit of Measure"
+        sortable
+        ascending={
+          sortConfig?.direction === 'asc' && sortConfig?.key === 'unitofMeasure'
+        }
+      />
+    ),
+    onHeaderCell: () => onHeaderCellClick('unitofMeasure'),
+    dataIndex: 'unitofMeasure',
+    key: 'unitofMeasure',
+    width: 150,
+    render: (value: string) => (
+      <Text className="font-medium text-gray-700">${value}</Text>
+    ),
   },
+  // {
+  //   title: <HeaderCell title="Rating" />,
+  //   dataIndex: 'rating',
+  //   key: 'rating',
+  //   width: 200,
+  //   render: (rating: number[]) => getRating(rating),
+  // },
   {
     title: <HeaderCell title="Status" />,
     dataIndex: 'status',

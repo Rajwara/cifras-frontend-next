@@ -31,13 +31,13 @@ import { LAYOUT_OPTIONS } from '@/config/enums';
 const MAP_STEP_TO_COMPONENT = {
   [formParts.summary]: ProductSummary,
   [formParts.media]: ProductMedia,
-  [formParts.pricingInventory]: PricingInventory,
-  [formParts.productIdentifiers]: ProductIdentifiers,
-  [formParts.shipping]: ShippingInfo,
-  [formParts.seo]: ProductSeo,
-  [formParts.deliveryEvent]: DeliveryEvent,
-  [formParts.variantOptions]: ProductVariants,
-  [formParts.tagsAndCategory]: ProductTaxonomies,
+  // [formParts.pricingInventory]: PricingInventory,
+  // [formParts.productIdentifiers]: ProductIdentifiers,
+  // [formParts.shipping]: ShippingInfo,
+  // [formParts.seo]: ProductSeo,
+  // [formParts.deliveryEvent]: DeliveryEvent,
+  // [formParts.variantOptions]: ProductVariants,
+  // [formParts.tagsAndCategory]: ProductTaxonomies,
 };
 
 interface IndexProps {
@@ -74,7 +74,7 @@ export default function CreateEditProduct({
     <div className="@container">
       <FormNav
         className={cn(
-          layout === LAYOUT_OPTIONS.BERYLLIUM && 'z-[999] 2xl:top-[72px]'
+          // layout === LAYOUT_OPTIONS.BERYLLIUM && 'z-[999] 2xl:top-[72px]'
         )}
       />
       <FormProvider {...methods}>

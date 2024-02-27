@@ -62,23 +62,14 @@ export default function ProductsTable({ data = [] }: { data: any[] }) {
         data,
         sortConfig,
         checkedItems: selectedRowKeys,
-        onHeaderCellClick,
         onDeleteItem,
+        onHeaderCellClick,
         onChecked: handleRowSelect,
         handleSelectAll,
       }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [
-      selectedRowKeys,
-      onHeaderCellClick,
-      sortConfig.key,
-      sortConfig.direction,
-      onDeleteItem,
-      handleRowSelect,
-      handleSelectAll,
-    ]
+    [selectedRowKeys, onHeaderCellClick, sortConfig.key, sortConfig.direction, onDeleteItem, handleRowSelect, handleSelectAll]
   );
-
+  
   const { visibleColumns, checkedColumns, setCheckedColumns } =
     useColumn(columns);
 
