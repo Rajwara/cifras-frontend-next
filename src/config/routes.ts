@@ -1,4 +1,22 @@
 export const routes = {
+
+
+  facturaelectroncia: {
+    electronic: '/electronicbiling',
+    // products: '/ecommerce/products',
+    // createProduct: '/ecommerce/products/create',
+    // productDetails: (slug: string) => `/ecommerce/products/${slug}`,
+    // ediProduct: (slug: string) => `/ecommerce/products/${slug}/edit`,
+ 
+    electronicbiling : '/electronicbiling', 
+    
+    
+  },
+
+
+
+
+
   eproduct:{
     products: '/products',
     createProduct: '/products/create',
@@ -55,6 +73,10 @@ export const routes = {
   clients: '/clients',
   client: {
     dashboard: '/client',
+  },
+  quotes: '/quotes',
+  quote: {
+    dashboard: '/quotes',
   },
 
 
