@@ -75,10 +75,11 @@ export const messages = {
   unitpriceRequired:"Unit Price is Required",
   unitofMeasureRequired:"Unit of Measure Price is Required",
   vendorRequired:"Vendor is Required",
-
-
-
-
-
+  nameRequired:"Enter your name",
+  aliasRequired:"Please enter Alias",
+  phoneNumberRequired:"Enter Phone Number",
+  rucRequired:"Enter the RUC",
+  dvRequired:"Enter the DV",
+  addressRequired:"Enter ther address",
 
 };

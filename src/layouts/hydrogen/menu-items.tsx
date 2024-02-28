@@ -5,6 +5,16 @@ import facturael from '../../../public/sidebaricons/facturaelectronciaIcon.svg'
 import Dashboard from '../../../public/sidebaricons/dashboardIcon.svg'
 import Invoice from '../../../public/sidebaricons/invoicesIcon.svg'
 import Product from '../../../public/sidebaricons/productsIcon.svg'
+import Quotes from '../../../public/sidebaricons/quotesIcon.svg';
+import Clients from '../../../public/sidebaricons/clientsIcon.svg';
+import Orders from '../../../public/sidebaricons/orderIcon.svg';
+import Inventory from '../../../public/sidebaricons/inventoryIcon.svg';
+import Supplier from '../../../public/sidebaricons/suppliersIcon.svg'
+import Vendor from '../../../public/sidebaricons/vendorIcon.svg'
+import Report from '../../../public/sidebaricons/reportsIcon.svg'
+import PurchaseOrderIcon from '../../../public/sidebaricons/purchaseOrderIcon.svg'
+
+
 
 import {
 
@@ -84,27 +94,27 @@ export const menuItems = [
 
 
   {
-    name: 'Product',
+    name: 'Clients',
     href: '#',  // Use '#' or any other placeholder for the parent link
-    icon: <Image src={Product} alt="Home" width={20} height={20} />,
+    icon: <Image src={Clients} alt="Home" width={20} height={20} />,
     
     dropdownItems: [
       {
-        name: 'Products',
-        href: routes.eproduct.products,
+        name: 'Clients',
+        href: routes.client.clients,
         badge: '',
       },
       {
-        name: 'Product Details',
-        href: routes.eproduct.productDetails(DUMMY_ID),
+        name: 'Client Details',
+        href: routes.client.clientDetails(DUMMY_ID),
       },
       {
-        name: 'Create Product',
-        href: routes.eproduct.createProduct,
+        name: 'Create Client',
+        href: routes.client.createClient,
       },
       {
-        name: 'Edit Product',
-        href: routes.eproduct.ediProduct(DUMMY_ID),
+        name: 'Edit Client',
+        href: routes.client.ediClient(DUMMY_ID),
       },
     ],
     
@@ -138,12 +148,91 @@ export const menuItems = [
 
 
 
+  {
+    name: 'Product',
+    href: '#',  // Use '#' or any other placeholder for the parent link
+    icon: <Image src={Product} alt="Home" width={20} height={20} />,
+    
+    dropdownItems: [
+      {
+        name: 'Products',
+        href: routes.eproduct.products,
+        badge: '',
+      },
+      {
+        name: 'Product Details',
+        href: routes.eproduct.productDetails(DUMMY_ID),
+      },
+      {
+        name: 'Create Product',
+        href: routes.eproduct.createProduct,
+      },
+      {
+        name: 'Edit Product',
+        href: routes.eproduct.ediProduct(DUMMY_ID),
+      },
+    ],
+    
+  },
+
+
+
+  {
+    name: 'Order Purchase',
+    href: '#',  // Use '#' or any other placeholder for the parent link
+    icon: <Image src={PurchaseOrderIcon} alt="Home" width={20} height={20} />,
+    
+    dropdownItems: [
+      {
+        name: 'Purchase Order',
+        href: routes.purchaseorders.purchaseorders,
+        badge: '',
+      },
+      {
+        name: 'Purchase Order Details',
+        href: routes.purchaseorders.purchaseOrderDetails(DUMMY_ID),
+      },
+      {
+        name: 'Create Purchase Order',
+        href: routes.purchaseorders.createPurchaseOrder,
+      },
+      {
+        name: 'Edit Purchase Order',
+        href: routes.purchaseorders.ediPurchaseOrder(DUMMY_ID),
+      },
+    ],
+    
+  },
 
 
 
 
-
-
+  {
+    name: 'Inventory',
+    href: '#',  // Use '#' or any other placeholder for the parent link
+    icon: <Image src={Inventory} alt="Home" width={20} height={20} />,
+    
+    dropdownItems: [
+      {
+        name: 'Inventory',
+        href: routes.inventory.inventory,
+        badge: '',
+      },
+      {
+        name: 'Inventory Details',
+        href: routes.inventory.inventoryDetails(DUMMY_ID),
+      },
+      {
+        name: 'Create Inventory',
+        href: routes.inventory.createInventory,
+      },
+      {
+        name: 'Edit Inventory',
+        href: routes.inventory.ediInventory(DUMMY_ID),
+      },
+    ],
+    
+  },
 
 
 
@@ -230,73 +319,36 @@ export const menuItems = [
   // label end
 
 
-
-
-  {
-    name: 'Suppliers',
-    href: '#',
-    icon: <PiHeadsetDuotone  />,
-    dropdownItems: [
-      {
-        name: 'Suppliers',
-        href: routes.suppliers.suppliers,
-      },
-      {
-        name: 'Purchase Orders',
-        href: routes.suppliers.purchaseorders,
-      },
-    
-    ],
-  },
- 
-
-  {
-    name: 'Reports',
-    href: routes.reports,
-    icon: <PiChartBarDuotone />,
-    badge: '',
-  },
-
-  
-  {
-    name: 'Inventory',
-    href: routes.inventory,
-    icon: <PiChartBarDuotone />,
-    badge: '',
-  },
-
-
-  {
-    name: 'Clients',
-    href: routes.clients,
-    icon: <PiChartBarDuotone />,
-    badge: '',
-  },
-
-
-
   {
     name: 'Quotes',
-    href: routes.quotes,
-    icon: <PiShoppingCartDuotone />,
+    href: '#',  // Use '#' or any other placeholder for the parent link
+    icon: <Image src={Quotes} alt="Home" width={20} height={20} />,
+    
+    dropdownItems: [
+      {
+        name: 'Quotes',
+        href: routes.quote.quotes,
+        badge: '',
+      },
+      {
+        name: 'Quotes Details',
+        href: routes.quote.quoteDetails(DUMMY_ID),
+      },
+      {
+        name: 'Create Quotes',
+        href: routes.quote.createQuote,
+      },
+      {
+        name: 'Edit Quotes',
+        href: routes.quote.editQuote(DUMMY_ID),
+      },
+    ],
+    
   },
-
-
-
-
-
-
-
-
-
-
-
-
-
   {
     name: 'Order',
     href: '#',  // Use '#' or any other placeholder for the parent link
-    icon: <PiShoppingCartDuotone />,
+    icon: <Image src={Orders} alt="Home" width={20} height={20} />,
     dropdownItems: [
       {
         name: 'Orders',
@@ -316,6 +368,78 @@ export const menuItems = [
       },
     ]
   },
+  {
+    name: 'Suppliers',
+    href: '#',
+    icon: <Image src={Supplier} alt="Home" width={20} height={20} />,
+    dropdownItems: [
+      {
+        name: 'Suppliers',
+        href: routes.supplier.supplier,
+      },
+      {
+        name: 'Supplier Details',
+        href: routes.supplier.supplierDetails(DUMMY_ID),
+      },
+      {
+        name: 'Create Supplier',
+        href: routes.supplier.createSupplier,
+      },
+      {
+        name: 'Edit Supplier',
+        href: routes.supplier.editSupplier(DUMMY_ID),
+      },
+    ],
+  },
+  {
+    name: 'Vendor',
+    href: '#',
+    icon: <Image src={Vendor} alt="Home" width={20} height={20} />,
+    
+    dropdownItems: [
+      {
+        name: 'Vendors',
+        href: routes.vendor.vendor,
+      },
+      {
+        name: 'Vendor Details',
+        href: routes.vendor.vendorDetails(DUMMY_ID),
+      },
+      {
+        name: 'Create Vendor',
+        href: routes.vendor.createVendor,
+      },
+      {
+        name: 'Edit Vendor',
+        href: routes.vendor.editVendor(DUMMY_ID),
+      },
+    ],
+  },
+ 
+
+  {
+    name: 'Reports',
+    href: routes.reports,
+    icon: <Image src={Report} alt="Home" width={20} height={20} />,
+    
+    badge: '',
+  },
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
  
 
   {
@@ -345,10 +469,10 @@ export const menuItems = [
         name: 'Company Data',
         href: routes.option.companydata,
       },
-      {
-        name: 'Vendor ',
-        href: routes.option.vendor,
-      },
+      // {
+      //   name: 'Vendor ',
+      //   href: routes.option.vendor,
+      // },
      
     ],
   },

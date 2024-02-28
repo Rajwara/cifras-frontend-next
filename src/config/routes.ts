@@ -15,7 +15,27 @@ export const routes = {
 
 
 
+  client:{
+    clients: '/clients',
+    createClient: '/clients/create',
+    clientDetails: (slug: string) => `/clients/${slug}`,
+    ediClient: (slug: string) => `/clients/${slug}/edit`,
+  },
 
+  inventory:{
+    inventory: '/inventory',
+    createInventory: '/inventory/create',
+    inventoryDetails: (slug: string) => `/inventory/${slug}`,
+    ediInventory: (slug: string) => `/inventory/${slug}/edit`,
+  },
+
+
+  purchaseorders:{
+    purchaseorders: '/purchaseorders',
+    createPurchaseOrder: '/purchaseorders/create',
+    purchaseOrderDetails: (slug: string) => `/purchaseorders/${slug}`,
+    ediPurchaseOrder: (slug: string) => `/purchaseorders/${slug}/edit`,
+  },
 
   eproduct:{
     products: '/products',
@@ -32,8 +52,25 @@ export const routes = {
   },
 
 
+  quote:{
+    quotes: '/quotes',
+    createQuote: '/quotes/create',
+    quoteDetails: (slug: string) => `/quotes/${slug}`,
+    editQuote: (slug: string) => `/quotes/${slug}/edit`,
+  },
 
-
+  supplier:{
+    supplier: '/supplier',
+      createSupplier: '/supplier/create',
+      supplierDetails: (slug: string) => `/supplier/${slug}`,
+      editSupplier: (slug: string) => `/supplier/${slug}/edit`,
+  },
+  vendor:{
+    vendor: '/vendor',
+      createVendor: '/vendor/create',
+      vendorDetails: (slug: string) => `/vendor/${slug}`,
+      editVendor: (slug: string) => `/vendor/${slug}/edit`,
+  },
 
 
 
@@ -64,22 +101,9 @@ export const routes = {
 
 
 
-  inventory: '/inventory',
-  invent: {
-    dashboard: '/invent',
-  },
-
-
-  clients: '/clients',
-  client: {
-    dashboard: '/client',
-  },
-  quotes: '/quotes',
-  quote: {
-    dashboard: '/quotes',
-  },
-
-
+  
+ 
+  
   option: {
     dashboard: '/option',
     // products: '/ecommerce/products',
@@ -97,17 +121,7 @@ export const routes = {
 
 
 
-  suppliers: {
-    dashboard: '/suppliers',
-    // products: '/ecommerce/products',
-    // createProduct: '/ecommerce/products/create',
-    // productDetails: (slug: string) => `/ecommerce/products/${slug}`,
-    // ediProduct: (slug: string) => `/ecommerce/products/${slug}/edit`,
- 
-    suppliers : '/suppliers/suppliers',
-    purchaseorders : '/suppliers/purchaseorders'
-    
-  },
+
   searchAndFilter: {
     realEstate: '/search/real-estate',
     nft: '/search/nft',
