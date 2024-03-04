@@ -7,6 +7,9 @@ import ProductsTable from '@/app/shared/suppliers/supplier-list/table';
 import { supplierData } from '@/data/supplier-data';
 import { metaObject } from '@/config/site.config';
 import ExportButton from '@/app/shared/export-button';
+import NumberOfSupplier from '@/app/shared/suppliers/supplier-cards/numberofsuppliers';
+import TotalRevenue from '@/app/shared/suppliers/supplier-cards/totalrevenue';
+
 
 export const metadata = {
   ...metaObject('Suppliers'),
@@ -33,6 +36,13 @@ export default function SuppliersPage() {
   return (
     <>
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb}>
+
+      <div className='middle lg:w-[80%] xl:w-[60%] flex flex-col lg:flex-row gap-6 justify-center'>
+      <TotalRevenue/>
+      <NumberOfSupplier/>
+    </div>
+
+
         <div className="mt-4 flex items-center gap-3 @lg:mt-0">
           <ExportButton
             data={supplierData}
