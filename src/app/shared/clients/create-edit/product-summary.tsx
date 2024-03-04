@@ -73,12 +73,12 @@ export default function ProductSummary({   type,
 
       <Controller
         control={control}
-        name="description"
+        name="Address"
         render={({ field: { onChange, value } }) => (
           <QuillEditor
             value={value}
             onChange={onChange}
-            label="Description"
+            label="Address"
             className="col-span-full [&_.ql-editor]:min-h-[100px]"
             labelClassName="font-medium text-gray-700 dark:text-gray-600 mb-1.5"
           />
