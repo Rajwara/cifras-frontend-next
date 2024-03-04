@@ -36,6 +36,20 @@ export default function ProductSummary({ className }: { className?: string }) {
         placeholder="Item Name"
         {...register('itemname')}
         error={errors.itemname?.message as string}
+        className="col-span-full"
+      />
+         <Controller
+        control={control}
+        name="description"
+        render={({ field: { onChange, value } }) => (
+          <QuillEditor
+            value={value}
+            onChange={onChange}
+            label="Description"
+            className="col-span-full [&_.ql-editor]:min-h-[100px]"
+            labelClassName="font-medium text-gray-700 dark:text-gray-600 mb-1.5"
+          />
+        )}
       />
       <Input
         label="Vendor"
@@ -55,21 +69,34 @@ export default function ProductSummary({ className }: { className?: string }) {
         {...register('unitofMeasure')}
         error={errors.unitofMeasure?.message as string}
       />
-   
-
-      <Controller
-        control={control}
-        name="description"
-        render={({ field: { onChange, value } }) => (
-          <QuillEditor
-            value={value}
-            onChange={onChange}
-            label="Description"
-            className="col-span-full [&_.ql-editor]:min-h-[100px]"
-            labelClassName="font-medium text-gray-700 dark:text-gray-600 mb-1.5"
-          />
-        )}
+      <Input
+        label="Vendor"
+        placeholder="Vendor"
+        {...register('vendor')}
+        error={errors.vendor?.message as string}
+        className="col-span-full"
       />
+       <Input
+        label="On Hand Qty"
+        placeholder="00"
+        {...register('onhandqty')}
+        error={errors.onhandqty?.message as string}
+      />
+       <Input
+        label="Incoming Qty"
+        placeholder="00"
+        {...register('incomingqty')}
+        error={errors.incomingqty?.message as string}
+      />
+       <Input
+        label="Reserved Qty"
+        placeholder="00"
+        {...register('reservedqty')}
+        error={errors.reservedqty?.message as string}
+        className="col-span-full"
+      />
+
+   
     </FormGroup>
   );
 }

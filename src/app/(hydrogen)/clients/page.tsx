@@ -4,7 +4,7 @@ import { routes } from '@/config/routes';
 import { Button } from 'rizzui';
 import PageHeader from '@/app/shared/page-header';
 import ClientsTable from '@/app/shared/clients/client-list/table';
-import { productsData } from '@/data/products-data';
+import { clientData } from '@/data/clients-data';
 import { metaObject } from '@/config/site.config';
 import ExportButton from '@/app/shared/export-button';
 
@@ -35,7 +35,7 @@ export default function ProductsPage() {
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb}>
         <div className="mt-4 flex items-center gap-3 @lg:mt-0">
           <ExportButton
-            data={productsData}
+            data={clientData}
             fileName="product_data"
             header="ID,Name,Category,Clients Thumbnail,SKU,Stock,Price,Status,Rating"
           />
@@ -51,7 +51,7 @@ export default function ProductsPage() {
         </div>
       </PageHeader>
 
-      <ClientsTable data={productsData} />
+      <ClientsTable data={clientData} />
     </>
   );
 }

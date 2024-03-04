@@ -14,7 +14,7 @@ import { routes } from '@/config/routes';
 import EyeIcon from '@/components/icons/eye';
 import PencilIcon from '@/components/icons/pencil';
 import AvatarCard from '@/components/ui/avatar-card';
-import { ProductType } from '@/data/products-data';
+import { ClientType } from '@/data/clients-data';
 import { PiStarFill } from 'react-icons/pi';
 import DeletePopover from '@/app/shared/delete-popover';
 
@@ -154,60 +154,30 @@ export const getColumns = ({
     ),
   },
   {
-    title: <HeaderCell title="ClientsTable" />,
-    dataIndex: 'itemname',
-    key: 'itemname',
+    title: <HeaderCell title="Client Name" />,
+    dataIndex: 'name',
+    key: 'name',
     width: 300,
     hidden: 'customer',
-    render: (_: string, row: ProductType) => (
-      <AvatarCard
-        src={row.image}
-        name={row.itemname}
-        description={row.vendor}
-        avatarProps={{
-          name: row.itemname,
-          size: 'lg',
-          className: 'rounded-lg',
-        }}
-      />
-    ),
+    render: (name: string) => <Text className="text-sm">{name}</Text>,
   },
   {
-    title: <HeaderCell title="Vendor" />,
-    dataIndex: 'vendor',
-    key: 'vendor',
+    title: <HeaderCell title="Alias" />,
+    dataIndex: 'alias',
+    key: 'alias',
     width: 150,
-    render: (vendor: string) => <Text className="text-sm">SKU-{vendor}</Text>,
+    render: (alias: string) => <Text className="text-sm">{alias}</Text>,
   },
-  // {
-  //   title: (
-  //     <HeaderCell
-  //       title=""
-  //       sortable
-  //       ascending={
-  //         sortConfig?.direction === 'asc' && sortConfig?.key === 'stock'
-  //       }
-  //     />
-  //   ),
-  //   onHeaderCell: () => onHeaderCellClick('stock'),
-  //   dataIndex: 'stock',
-  //   key: 'stock',
-  //   width: 200,
-  //   render: (stock: number) => getStockStatus(stock),
-  // },
+ 
   {
     title: (
       <HeaderCell
-        title="Unit Price"
+        title="Phone Number"
         sortable
-        ascending={
-          sortConfig?.direction === 'asc' && sortConfig?.key === 'unitprice'
-        }
       />
     ),
-    onHeaderCell: () => onHeaderCellClick('unitprice'),
-    dataIndex: 'unitprice',
-    key: 'unitprice',
+    dataIndex: 'phoneNumber',
+    key: 'phoneNumber',
     width: 150,
     render: (value: string) => (
       <Text className="font-medium text-gray-700">${value}</Text>
@@ -216,28 +186,18 @@ export const getColumns = ({
   {
     title: (
       <HeaderCell
-        title="Unit of Measure"
+        title="Description"
         sortable
-        ascending={
-          sortConfig?.direction === 'asc' && sortConfig?.key === 'unitofMeasure'
-        }
       />
     ),
-    onHeaderCell: () => onHeaderCellClick('unitofMeasure'),
-    dataIndex: 'unitofMeasure',
-    key: 'unitofMeasure',
+    dataIndex: 'description',
+    key: 'description',
     width: 150,
     render: (value: string) => (
       <Text className="font-medium text-gray-700">${value}</Text>
     ),
   },
-  // {
-  //   title: <HeaderCell title="Rating" />,
-  //   dataIndex: 'rating',
-  //   key: 'rating',
-  //   width: 200,
-  //   render: (rating: number[]) => getRating(rating),
-  // },
+ 
   {
     title: <HeaderCell title="Status" />,
     dataIndex: 'status',
@@ -251,7 +211,7 @@ export const getColumns = ({
     dataIndex: 'action',
     key: 'action',
     width: 120,
-    render: (_: string, row: ProductType) => (
+    render: (_: string, row: ClientType) => (
       <div className="flex items-center justify-end gap-3 pe-4">
         <Tooltip
           size="sm"

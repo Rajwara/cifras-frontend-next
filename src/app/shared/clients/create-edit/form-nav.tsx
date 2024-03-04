@@ -19,10 +19,10 @@ export const menuItems = [
     label: 'Summary',
     value: formParts.summary,
   },
-  {
-    label: 'Images & Gallery',
-    value: formParts.media,
-  },
+  // {
+  //   label: 'Images & Gallery',
+  //   value: formParts.media,
+  // },
   // {
   //   label: 'Pricing & Inventory',
   //   value: formParts.pricingInventory,

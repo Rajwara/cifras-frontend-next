@@ -14,13 +14,13 @@ import { routes } from '@/config/routes';
 import EyeIcon from '@/components/icons/eye';
 import PencilIcon from '@/components/icons/pencil';
 import AvatarCard from '@/components/ui/avatar-card';
-import { ProductType } from '@/data/products-data';
+import { PurchaseOrderType } from '@/data/purchaseorder-data';
 import { PiStarFill } from 'react-icons/pi';
 import DeletePopover from '@/app/shared/delete-popover';
 
 // get status badge
 function getStatusBadge(status: string) {
-  switch (status.toLowerCase()) {
+  switch (status?.toLowerCase()) {
     case 'pending':
       return (
         <div className="flex items-center">
@@ -155,17 +155,17 @@ export const getColumns = ({
   },
   {
     title: <HeaderCell title="Purchase Order" />,
-    dataIndex: 'itemname',
-    key: 'itemname',
+    dataIndex: 'name',
+    key: 'name',
     width: 300,
     hidden: 'customer',
-    render: (_: string, row: ProductType) => (
+    render: (_: string, row: PurchaseOrderType) => (
       <AvatarCard
         src={row.image}
-        name={row.itemname}
-        description={row.vendor}
+        name={row.name}
+        description={row.Vendor}
         avatarProps={{
-          name: row.itemname,
+          name: row.name,
           size: 'lg',
           className: 'rounded-lg',
         }}
@@ -174,27 +174,28 @@ export const getColumns = ({
   },
   {
     title: <HeaderCell title="Vendor" />,
-    dataIndex: 'vendor',
-    key: 'vendor',
+    dataIndex: 'Vendor',
+    key: 'Vendor',
     width: 150,
-    render: (vendor: string) => <Text className="text-sm">SKU-{vendor}</Text>,
+    render: (vendor: string) => <Text className="text-sm">{vendor}</Text>,
   },
-  // {
-  //   title: (
-  //     <HeaderCell
-  //       title=""
-  //       sortable
-  //       ascending={
-  //         sortConfig?.direction === 'asc' && sortConfig?.key === 'stock'
-  //       }
-  //     />
-  //   ),
-  //   onHeaderCell: () => onHeaderCellClick('stock'),
-  //   dataIndex: 'stock',
-  //   key: 'stock',
-  //   width: 200,
-  //   render: (stock: number) => getStockStatus(stock),
-  // },
+
+  {
+    title: (
+      <HeaderCell
+        title="Stock"
+        sortable
+        ascending={
+          sortConfig?.direction === 'asc' && sortConfig?.key === 'availablestock'
+        }
+      />
+    ),
+    onHeaderCell: () => onHeaderCellClick('availablestock'),
+    dataIndex: 'availablestock',
+    key: 'availablestock',
+    width: 200,
+    render: (availablestock: number) => getStockStatus(availablestock),
+  },
   {
     title: (
       <HeaderCell
@@ -219,17 +220,31 @@ export const getColumns = ({
         title="Unit of Measure"
         sortable
         ascending={
-          sortConfig?.direction === 'asc' && sortConfig?.key === 'unitofMeasure'
+          sortConfig?.direction === 'asc' && sortConfig?.key === 'unitofmeasure'
         }
       />
     ),
-    onHeaderCell: () => onHeaderCellClick('unitofMeasure'),
-    dataIndex: 'unitofMeasure',
-    key: 'unitofMeasure',
+    onHeaderCell: () => onHeaderCellClick('unitofmeasure'),
+    dataIndex: 'unitofmeasure',
+    key: 'unitofmeasure',
     width: 150,
     render: (value: string) => (
       <Text className="font-medium text-gray-700">${value}</Text>
     ),
+  },
+  {
+    title: <HeaderCell title="Date of Purchasing" />,
+    dataIndex: 'dateofpurchasing',
+    key: 'dateofpurchasing',
+    width: 150,
+    render: (dateofpurchasing: string) => <Text className="text-sm">{dateofpurchasing}</Text>,
+  },
+  {
+    title: <HeaderCell title="Description" />,
+    dataIndex: 'description',
+    key: 'description',
+    width: 150,
+    render: (description: string) => <Text className="text-sm">{description}</Text>,
   },
   // {
   //   title: <HeaderCell title="Rating" />,
@@ -251,7 +266,7 @@ export const getColumns = ({
     dataIndex: 'action',
     key: 'action',
     width: 120,
-    render: (_: string, row: ProductType) => (
+    render: (_: string, row: PurchaseOrderType) => (
       <div className="flex items-center justify-end gap-3 pe-4">
         <Tooltip
           size="sm"

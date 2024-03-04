@@ -18,7 +18,7 @@ const pageHeader = {
       name: 'E-Commerce',
     },
     {
-      href: routes.purchaseorder.purchaseorder,
+      href: routes.purchaseorders.purchaseorders,
       name: 'Purchase Order',
     },
     {
@@ -32,7 +32,7 @@ export default function CreatePurchaseOrderPage() {
     <>
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb}>
         <Link
-          href={routes.purchaseorder.createPurchaseOrder}
+          href={routes.purchaseorders.createPurchaseOrder}
           className="mt-4 w-full @lg:mt-0 @lg:w-auto"
         >
           <Button as="span" className="w-full @lg:w-auto">

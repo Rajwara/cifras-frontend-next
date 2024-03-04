@@ -122,7 +122,7 @@ export default function ProductsTable({ data = [] }: { data: any[] }) {
           >
             <Button size="sm" className="dark:bg-gray-300 dark:text-gray-800">
               Download {selectedRowKeys.length}{' '}
-              {selectedRowKeys.length > 1 ? 'Products' : 'Product'}
+              {selectedRowKeys.length > 1 ? 'Purchase Orders' : 'Purchase Order'}
             </Button>
           </TableFooter>
         }

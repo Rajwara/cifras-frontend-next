@@ -22,15 +22,15 @@ import ProductVariants from '@/app/shared/clients/create-edit/product-variants';
 import ProductTaxonomies from '@/app/shared/clients/create-edit/product-tags';
 import FormFooter from '@/components/form-footer';
 import {
-  CreateProductInput,
-  productFormSchema,
-} from '@/utils/validators/create-product.schema';
+  CreateClientInput,
+  clientFormSchema,
+} from '@/utils/validators/create-client.schema';
 import { useLayout } from '@/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/config/enums';
 
 const MAP_STEP_TO_COMPONENT = {
   [formParts.summary]: ClientSummary,
-  [formParts.media]: ClientMedia,
+  // [formParts.media]: ClientMedia,
   // [formParts.pricingInventory]: PricingInventory,
   // [formParts.productIdentifiers]: ProductIdentifiers,
   // [formParts.shipping]: ShippingInfo,
@@ -43,22 +43,22 @@ const MAP_STEP_TO_COMPONENT = {
 interface IndexProps {
   slug?: string;
   className?: string;
-  product?: CreateProductInput;
+  client?: CreateClientInput;
 }
 
 export default function CreateEditProduct({
   slug,
-  product,
+  client,
   className,
 }: IndexProps) {
   const { layout } = useLayout();
   const [isLoading, setLoading] = useState(false);
-  const methods = useForm<CreateProductInput>({
-    resolver: zodResolver(productFormSchema),
-    defaultValues: defaultValues(product),
+  const methods = useForm<CreateClientInput>({
+    resolver: zodResolver(clientFormSchema),
+    defaultValues: defaultValues(client),
   });
 
-  const onSubmit: SubmitHandler<CreateProductInput> = (data) => {
+  const onSubmit: SubmitHandler<CreateClientInput> = (data) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);

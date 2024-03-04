@@ -9,6 +9,8 @@ import {
 import dynamic from 'next/dynamic';
 import SelectLoader from '@/components/loader/select-loader';
 import QuillLoader from '@/components/loader/quill-loader';
+import { DatePicker } from '@/components/ui/datepicker';
+
 const Select = dynamic(() => import('rizzui').then((mod) => mod.Select), {
   ssr: false,
   loading: () => <SelectLoader />,
@@ -32,44 +34,67 @@ export default function ProductSummary({ className }: { className?: string }) {
       className={cn(className)}
     >
       <Input
-        label="Item Name"
-        placeholder="Item Name"
-        {...register('itemname')}
-        error={errors.itemname?.message as string}
+        label="Quote Name"
+        placeholder="Q - 59"
+        {...register('name')}
+        error={errors.name?.message as string}
       />
-      <Input
-        label="Vendor"
-        placeholder="Vendor"
-        {...register('vendor')}
-        error={errors.vendor?.message as string}
-      />
-        <Input
-        label="Unit Price"
-        placeholder="0.00"
-        {...register('unitprice')}
-        error={errors.unitprice?.message as string}
-      />
-         <Input
-        label=" Unit of Measure"
-        placeholder="0.00"
-        {...register('unitofMeasure')}
-        error={errors.unitofMeasure?.message as string}
-      />
-   
-
-      <Controller
-        control={control}
-        name="description"
-        render={({ field: { onChange, value } }) => (
-          <QuillEditor
-            value={value}
-            onChange={onChange}
-            label="Description"
-            className="col-span-full [&_.ql-editor]:min-h-[100px]"
-            labelClassName="font-medium text-gray-700 dark:text-gray-600 mb-1.5"
+           <Controller
+            name="quoteDate"
+            control={control}
+            render={({ field: { value, onChange, onBlur } }) => (
+              <DatePicker
+                inputProps={{ label: 'Quote Date' }}
+                placeholderText="Select Date"
+                dateFormat="dd/MM/yyyy"
+                onChange={onChange}
+                onBlur={onBlur}
+                wrapperClassName="w-full"
+                //@ts-ignore
+                selected={value}
+              />
+            )}
           />
-        )}
+           <Controller
+            name="notificationDate"
+            control={control}
+            render={({ field: { value, onChange, onBlur } }) => (
+              <DatePicker
+                inputProps={{ label: 'Notification Date' }}
+                placeholderText="Select Date"
+                dateFormat="dd/MM/yyyy"
+                onChange={onChange}
+                onBlur={onBlur}
+                wrapperClassName="w-full"
+                //@ts-ignore
+                selected={value}
+              />
+            )}
+          />
+           <Controller
+            name="expirationDate"
+            control={control}
+            render={({ field: { value, onChange, onBlur } }) => (
+              <DatePicker
+                inputProps={{ label: 'Expiration Date' }}
+                placeholderText="Select Date"
+                dateFormat="dd/MM/yyyy"
+                onChange={onChange}
+                onBlur={onBlur}
+                wrapperClassName="w-full"
+                //@ts-ignore
+                selected={value}
+              />
+            )}
+          />
+      <Input
+        label="Client"
+        placeholder="Client"
+        {...register('client')}
+        error={errors.client?.message as string}
+        className="col-span-full"
       />
+       
     </FormGroup>
   );
 }

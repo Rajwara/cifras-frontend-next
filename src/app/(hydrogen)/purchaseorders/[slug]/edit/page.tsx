@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { PiPlusBold } from 'react-icons/pi';
-import { productData } from '@/app/shared/purchaseorders/create-edit/form-utils';
+import { purchaseorderData } from '@/app/shared/purchaseorders/create-edit/form-utils';
 import CreateEditPurchaseOrders from '@/app/shared/purchaseorders/create-edit';
 import PageHeader from '@/app/shared/page-header';
 import { metaObject } from '@/config/site.config';
@@ -32,7 +32,7 @@ const pageHeader = {
       name: 'E-Commerce',
     },
     {
-      href: routes.purchaseorder.purchaseorder,
+      href: routes.purchaseorders.purchaseorders,
       name: 'Purchase Orders',
     },
     {
@@ -50,7 +50,7 @@ export default function EditPurchaseOrdersPage({
     <>
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb}>
         <Link
-          href={routes.purchaseorder.purchaseorder}
+          href={routes.purchaseorders.createPurchaseOrder}
           className="mt-4 w-full @lg:mt-0 @lg:w-auto"
         >
           <Button as="span" className="w-full @lg:w-auto">
@@ -60,7 +60,7 @@ export default function EditPurchaseOrdersPage({
         </Link>
       </PageHeader>
 
-      <CreateEditPurchaseOrders slug={params.slug} product={productData} />
+      <CreateEditPurchaseOrders slug={params.slug} product={purchaseorderData} />
     </>
   );
 }

@@ -7,7 +7,7 @@ interface ProductMediaProps {
   className?: string;
 }
 
-export default function ProductMedia({ className }: ProductMediaProps) {
+export default function PurchaseOrderMedia({ className }: ProductMediaProps) {
   const { getValues, setValue } = useFormContext();
 
   return (

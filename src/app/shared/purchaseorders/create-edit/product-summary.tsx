@@ -18,7 +18,7 @@ const QuillEditor = dynamic(() => import('@/components/ui/quill-editor'), {
   loading: () => <QuillLoader className="col-span-full h-[143px]" />,
 });
 
-export default function ProductSummary({ className }: { className?: string }) {
+export default function PurchasOrderSummary({ className }: { className?: string }) {
   const {
     register,
     control,
@@ -32,32 +32,13 @@ export default function ProductSummary({ className }: { className?: string }) {
       className={cn(className)}
     >
       <Input
-        label="Item Name"
+        label="Purchase Order Name"
         placeholder="Item Name"
-        {...register('itemname')}
-        error={errors.itemname?.message as string}
+        {...register('name')}
+        error={errors.name?.message as string}
+        className="col-span-full "
       />
-      <Input
-        label="Vendor"
-        placeholder="Vendor"
-        {...register('vendor')}
-        error={errors.vendor?.message as string}
-      />
-        <Input
-        label="Unit Price"
-        placeholder="0.00"
-        {...register('unitprice')}
-        error={errors.unitprice?.message as string}
-      />
-         <Input
-        label=" Unit of Measure"
-        placeholder="0.00"
-        {...register('unitofMeasure')}
-        error={errors.unitofMeasure?.message as string}
-      />
-   
-
-      <Controller
+       <Controller
         control={control}
         name="description"
         render={({ field: { onChange, value } }) => (
@@ -70,6 +51,40 @@ export default function ProductSummary({ className }: { className?: string }) {
           />
         )}
       />
+      
+        <Input
+        label="Unit Price"
+        placeholder="0.00"
+        {...register('unitprice')}
+        error={errors.unitprice?.message as string}
+      />
+         <Input
+        label=" Unit of Measure"
+        placeholder="0.00"
+        {...register('unitofMeasure')}
+        error={errors.unitofMeasure?.message as string}
+      />
+   <Input
+        label="Available Stock"
+        placeholder="items left"
+        {...register('availableStock')}
+        error={errors.availableStock?.message as string}
+      />
+      <Input
+        label="Date of Purchasing"
+        placeholder="1 Jan, 2014"
+        {...register('dateofPurchasing')}
+        error={errors.dateofPurchasing?.message as string}
+      />
+      <Input
+        label="Vendor"
+        placeholder="Vendor"
+        {...register('vendor')}
+        error={errors.vendor?.message as string}
+        className="col-span-full "
+      />
+
+     
     </FormGroup>
   );
 }

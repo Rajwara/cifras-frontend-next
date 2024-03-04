@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { PiPlusBold } from 'react-icons/pi';
-import { productData } from '@/app/shared/clients/create-edit/form-utils';
+import { clientData } from '@/app/shared/clients/create-edit/form-utils';
 import CreateEditClient from '@/app/shared/clients/create-edit';
 import PageHeader from '@/app/shared/page-header';
 import { metaObject } from '@/config/site.config';
@@ -60,7 +60,7 @@ export default function EditProductPage({
         </Link>
       </PageHeader>
 
-      <CreateEditClient slug={params.slug} product={productData} />
+      <CreateEditClient slug={params.slug} client={clientData} />
     </>
   );
 }

@@ -21,7 +21,7 @@ const filterState = {
   status: '',
 };
 
-export default function ProductsTable({ data = [] }: { data: any[] }) {
+export default function ClientTable({ data = [] }: { data: any[] }) {
   const [pageSize, setPageSize] = useState(10);
 
   const onHeaderCellClick = (value: string) => ({

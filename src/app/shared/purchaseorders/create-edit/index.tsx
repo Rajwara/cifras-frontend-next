@@ -22,15 +22,15 @@ import PurchaseOrderVariants from '@/app/shared/purchaseorders/create-edit/produ
 import PurchaseOrderTaxonomies from '@/app/shared/purchaseorders/create-edit/product-tags';
 import FormFooter from '@/components/form-footer';
 import {
-  CreateProductInput,
-  productFormSchema,
-} from '@/utils/validators/create-product.schema';
+  CreatePurchaseOrderInput,
+  purchaseorderFormSchema,
+} from '@/utils/validators/create-purchaseorder.schema';
 import { useLayout } from '@/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/config/enums';
 
 const MAP_STEP_TO_COMPONENT = {
-  [formParts.summary]: ProductSummary,
-  [formParts.media]: ProductMedia,
+  [formParts.summary]: PurchaseOrderSummary,
+  [formParts.media]: PurchaseOrderMedia,
   // [formParts.pricingInventory]: PricingInventory,
   // [formParts.productIdentifiers]: ProductIdentifiers,
   // [formParts.shipping]: ShippingInfo,
@@ -43,7 +43,7 @@ const MAP_STEP_TO_COMPONENT = {
 interface IndexProps {
   slug?: string;
   className?: string;
-  product?: CreateProductInput;
+  product?: CreatePurchaseOrderInput;
 }
 
 export default function CreateEditProduct({
@@ -53,12 +53,12 @@ export default function CreateEditProduct({
 }: IndexProps) {
   const { layout } = useLayout();
   const [isLoading, setLoading] = useState(false);
-  const methods = useForm<CreateProductInput>({
-    resolver: zodResolver(productFormSchema),
+  const methods = useForm<CreatePurchaseOrderInput>({
+    resolver: zodResolver(purchaseorderFormSchema),
     defaultValues: defaultValues(product),
   });
 
-  const onSubmit: SubmitHandler<CreateProductInput> = (data) => {
+  const onSubmit: SubmitHandler<CreatePurchaseOrderInput> = (data) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -98,7 +98,7 @@ export default function CreateEditProduct({
 
           <FormFooter
             isLoading={isLoading}
-            submitBtnText={slug ? 'Update Product' : 'Create Product'}
+            submitBtnText={slug ? 'Update Parchase Order' : 'Create Parchase Order'}
           />
         </form>
       </FormProvider>

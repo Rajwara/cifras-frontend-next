@@ -93,6 +93,7 @@ export default function ProductSummary({   type,
         {...register('address')}
         error={errors.address?.message as string}
         textareaClassName="h-20 "
+        className="col-span-full "
       />
     
     </FormGroup>

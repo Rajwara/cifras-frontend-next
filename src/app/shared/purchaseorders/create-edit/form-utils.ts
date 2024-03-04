@@ -1,4 +1,4 @@
-import { CreateProductInput } from '@/utils/validators/create-product.schema';
+import { CreatePurchaseOrderInput } from '@/utils/validators/create-purchaseorder.schema';
 import isEmpty from 'lodash/isEmpty';
 
 export const customFields = [
@@ -20,25 +20,27 @@ export const productVariants = [
   },
 ];
 
-export function defaultValues(product?: CreateProductInput) {
+export function defaultValues(purchaseorder?: CreatePurchaseOrderInput) {
   return {
-    itemname: product?.itemname ?? '',
-    vendor: product?.vendor ?? '',
-    description: product?.description ?? '',
-    unitprice: product?.unitprice ?? undefined,
-    unitofMeasure: product?.unitofMeasure ?? undefined,
-    productImages: product?.productImages ?? undefined,
-   
+    name: purchaseorder?.name ?? '',
+    vendor: purchaseorder?.Vendor ?? '',
+    description: purchaseorder?.description ?? '',
+    unitprice: purchaseorder?.unitprice ?? '',
+    unitofMeasure: purchaseorder?.unitofmeasure ?? '',
+    availablestock: purchaseorder?.availablestock??'',
+    dateofpurchasing: purchaseorder?.dateofpurchasing??'',
   };
 }
 
-export const productData = {
-  itemname: 'Apple',
+export const purchaseorderData = {
+  name: 'Apple',
   description: 'Fresh Express Iceberg Garden Salad Blend',
   vendor: 'Grocery',
   unitprice: 10,
   unitofMeasure: 20,
   productImages: undefined,  
+  availablestock: 2,
+  dateofpurchasing: "10 jan, 2024",
 };
 
 

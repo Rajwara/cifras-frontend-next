@@ -9,6 +9,7 @@ import {
 import dynamic from 'next/dynamic';
 import SelectLoader from '@/components/loader/select-loader';
 import QuillLoader from '@/components/loader/quill-loader';
+import { PhoneNumber } from '@/components/ui/phone-input';
 const Select = dynamic(() => import('rizzui').then((mod) => mod.Select), {
   ssr: false,
   loading: () => <SelectLoader />,
@@ -18,12 +19,24 @@ const QuillEditor = dynamic(() => import('@/components/ui/quill-editor'), {
   loading: () => <QuillLoader className="col-span-full h-[143px]" />,
 });
 
-export default function ProductSummary({ className }: { className?: string }) {
+interface AddressInfoProps {
+  type: string;
+  title?: string;
+  className?: string;
+}
+
+
+export default function ProductSummary({   type,
+  title,
+  className,
+}: AddressInfoProps) {
   const {
     register,
     control,
     formState: { errors },
   } = useFormContext();
+
+  
 
   return (
     <FormGroup
@@ -32,30 +45,31 @@ export default function ProductSummary({ className }: { className?: string }) {
       className={cn(className)}
     >
       <Input
-        label="Item Name"
-        placeholder="Item Name"
-        {...register('itemname')}
-        error={errors.itemname?.message as string}
+        label="Name"
+        placeholder="Name"
+        {...register('name')}
+        error={errors.name?.message as string}
       />
       <Input
-        label="Vendor"
-        placeholder="Vendor"
-        {...register('vendor')}
-        error={errors.vendor?.message as string}
+        label="Alias"
+        placeholder="Alias"
+        {...register('alias')}
+        error={errors.alias?.message as string}
       />
-        <Input
-        label="Unit Price"
-        placeholder="0.00"
-        {...register('unitprice')}
-        error={errors.unitprice?.message as string}
+    <Controller
+        name={`${type}.phoneNumber`}
+        control={control}
+        render={({ field: { value, onChange } }) => (
+          <PhoneNumber
+            label="Phone Number"
+            country="us"
+            value={value}
+            onChange={onChange}
+            // @ts-ignore
+            error={errors?.[type]?.phoneNumber?.message as string}
+          />
+        )}
       />
-         <Input
-        label=" Unit of Measure"
-        placeholder="0.00"
-        {...register('unitofMeasure')}
-        error={errors.unitofMeasure?.message as string}
-      />
-   
 
       <Controller
         control={control}

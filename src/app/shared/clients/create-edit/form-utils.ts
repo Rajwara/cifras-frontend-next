@@ -1,4 +1,4 @@
-import { CreateProductInput } from '@/utils/validators/create-product.schema';
+import { CreateClientInput } from '@/utils/validators/create-client.schema';
 import isEmpty from 'lodash/isEmpty';
 
 export const customFields = [
@@ -20,25 +20,21 @@ export const productVariants = [
   },
 ];
 
-export function defaultValues(product?: CreateProductInput) {
+export function defaultValues(client?: CreateClientInput) {
   return {
-    itemname: product?.itemname ?? '',
-    vendor: product?.vendor ?? '',
-    description: product?.description ?? '',
-    unitprice: product?.unitprice ?? undefined,
-    unitofMeasure: product?.unitofMeasure ?? undefined,
-    productImages: product?.productImages ?? undefined,
+    name: client?.name ?? '',
+    alias: client?.alias ?? '',
+    description: client?.description ?? '',
+    phoneNumber: client?.phoneNumber ?? "",
    
   };
 }
 
-export const productData = {
-  itemname: 'Apple',
+export const clientData = {
+  name: 'Apple',
   description: 'Fresh Express Iceberg Garden Salad Blend',
-  vendor: 'Grocery',
-  unitprice: 10,
-  unitofMeasure: 20,
-  productImages: undefined,  
+  alias: 'Grocery',
+  phoneNumber: +103333333333, 
 };
 
 

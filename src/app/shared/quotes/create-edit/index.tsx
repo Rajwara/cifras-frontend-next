@@ -30,7 +30,7 @@ import { LAYOUT_OPTIONS } from '@/config/enums';
 
 const MAP_STEP_TO_COMPONENT = {
   [formParts.summary]: ProductSummary,
-  [formParts.media]: ProductMedia,
+  // [formParts.media]: ProductMedia,
   // [formParts.pricingInventory]: PricingInventory,
   // [formParts.productIdentifiers]: ProductIdentifiers,
   // [formParts.shipping]: ShippingInfo,
