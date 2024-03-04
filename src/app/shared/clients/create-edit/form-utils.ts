@@ -31,9 +31,9 @@ export function defaultValues(client?: CreateClientInput) {
 }
 
 export const clientData = {
-  name: 'Apple',
+  name: 'Semon',
   description: 'Fresh Express Iceberg Garden Salad Blend',
-  alias: 'Grocery',
+  alias: 'Vendor',
   phoneNumber: +103333333333, 
 };
 
