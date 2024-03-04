@@ -7,6 +7,8 @@ import PurchaseOrderTable from '@/app/shared/purchaseorders/purchaseorders-list/
 import { purchaseorderData } from '@/data/purchaseorder-data';
 import { metaObject } from '@/config/site.config';
 import ExportButton from '@/app/shared/export-button';
+import NumberOfPurchaseorders from '@/app/shared/purchaseorders/purchaseorder-cards/numberofpurchaseorders';
+import TotalRevenue from '@/app/shared/invoice/invoice-cards/totalrevenue';
 
 export const metadata = {
   ...metaObject('Purchase Order'),
@@ -33,6 +35,11 @@ export default function PurchaseOrderPage() {
   return (
     <>
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb}>
+
+      <div className='middle lg:w-[80%] xl:w-[60%] flex flex-col lg:flex-row gap-6 justify-center'>
+        <TotalRevenue/>
+        <NumberOfPurchaseorders/>
+      </div>  
         <div className="mt-4 flex items-center gap-3 @lg:mt-0">
           <ExportButton
             data={purchaseorderData}
