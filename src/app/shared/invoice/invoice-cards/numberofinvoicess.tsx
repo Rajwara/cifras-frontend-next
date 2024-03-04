@@ -17,10 +17,10 @@ const numberofinvoicess = () => {
         </div>
         <div className=''>
           <h6 className='font-medium font-lexend text-[#000000] text-lg leading-9'>
-            No. of Clients
+            No. of Invoices
           </h6>
           <h6 className='font-semibold font-lexend  text-[#04B076] text-xl leading-9'>
-            1,400
+            2,400
           </h6>
         </div>
       </div>
