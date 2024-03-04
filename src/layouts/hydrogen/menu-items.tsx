@@ -217,10 +217,10 @@ export const menuItems = [
         href: routes.inventory.inventory,
         badge: '',
       },
-      {
-        name: 'Inventory Details',
-        href: routes.inventory.inventoryDetails(DUMMY_ID),
-      },
+      // {
+      //   name: 'Inventory Details',
+      //   href: routes.inventory.inventoryDetails(DUMMY_ID),
+      // },
       {
         name: 'Create Inventory',
         href: routes.inventory.createInventory,
