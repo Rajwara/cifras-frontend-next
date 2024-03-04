@@ -2,13 +2,9 @@ export const routes = {
 
 
   facturaelectroncia: {
-    electronic: '/electronicbiling',
-    // products: '/ecommerce/products',
-    // createProduct: '/ecommerce/products/create',
-    // productDetails: (slug: string) => `/ecommerce/products/${slug}`,
-    // ediProduct: (slug: string) => `/ecommerce/products/${slug}/edit`,
+  
  
-    electronicbiling : '/electronicbiling', 
+    // electronicbiling : '/electronicbiling', 
     
     
   },

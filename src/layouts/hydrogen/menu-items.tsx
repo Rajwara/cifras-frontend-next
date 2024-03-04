@@ -86,10 +86,38 @@ export const menuItems = [
     dropdownItems: [
       {
         name: 'Electronic Billing',
-        href: routes.facturaelectroncia.electronicbiling,
+        href: routes.invoice.details(DUMMY_ID),
       },
      
     ],
+  },
+
+
+  {
+    name: 'Product',
+    href: '#',  // Use '#' or any other placeholder for the parent link
+    icon: <Image src={Product} alt="Home" width={20} height={20} />,
+    
+    dropdownItems: [
+      {
+        name: 'Products',
+        href: routes.eproduct.products,
+        badge: '',
+      },
+      {
+        name: 'Product Details',
+        href: routes.eproduct.productDetails(DUMMY_ID),
+      },
+      {
+        name: 'Create Product',
+        href: routes.eproduct.createProduct,
+      },
+      {
+        name: 'Edit Product',
+        href: routes.eproduct.ediProduct(DUMMY_ID),
+      },
+    ],
+    
   },
 
 
@@ -131,10 +159,7 @@ export const menuItems = [
         name: 'List',
         href: routes.invoice.home,
       },
-      {
-        name: 'Details',
-        href: routes.invoice.details(DUMMY_ID),
-      },
+     
       {
         name: 'Create',
         href: routes.invoice.create,
@@ -148,32 +173,6 @@ export const menuItems = [
 
 
 
-  {
-    name: 'Product',
-    href: '#',  // Use '#' or any other placeholder for the parent link
-    icon: <Image src={Product} alt="Home" width={20} height={20} />,
-    
-    dropdownItems: [
-      {
-        name: 'Products',
-        href: routes.eproduct.products,
-        badge: '',
-      },
-      {
-        name: 'Product Details',
-        href: routes.eproduct.productDetails(DUMMY_ID),
-      },
-      {
-        name: 'Create Product',
-        href: routes.eproduct.createProduct,
-      },
-      {
-        name: 'Edit Product',
-        href: routes.eproduct.ediProduct(DUMMY_ID),
-      },
-    ],
-    
-  },
 
 
 
