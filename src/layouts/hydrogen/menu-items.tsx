@@ -187,10 +187,10 @@ export const menuItems = [
         href: routes.purchaseorders.purchaseorders,
         badge: '',
       },
-      {
-        name: 'Purchase Order Details',
-        href: routes.purchaseorders.purchaseOrderDetails(DUMMY_ID),
-      },
+      // {
+      //   name: 'Purchase Order Details',
+      //   href: routes.purchaseorders.purchaseOrderDetails(DUMMY_ID),
+      // },
       {
         name: 'Create Purchase Order',
         href: routes.purchaseorders.createPurchaseOrder,
