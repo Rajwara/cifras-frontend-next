@@ -7,6 +7,8 @@ import InventoryTable from '@/app/shared/inventory/inventory-list/table';
 import { productsData } from '@/data/products-data';
 import { metaObject } from '@/config/site.config';
 import ExportButton from '@/app/shared/export-button';
+import NumberOfInventory from '@/app/shared/inventory/inventory-cards/numberofinventory';
+import TotalRevenue from '@/app/shared/inventory/inventory-cards/totalrevenue';
 
 export const metadata = {
   ...metaObject('Inventory'),
@@ -33,6 +35,13 @@ export default function InventoryPage() {
   return (
     <>
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb}>
+
+      <div className='my-2 middle lg:w-[80%] xl:w-[60%] flex flex-col lg:flex-row gap-6 justify-center'>
+      <TotalRevenue/>
+      <NumberOfInventory/>
+    </div>
+
+
         <div className="mt-4 flex items-center gap-3 @lg:mt-0">
           <ExportButton
             data={productsData}
