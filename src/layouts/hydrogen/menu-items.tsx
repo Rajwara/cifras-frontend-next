@@ -376,10 +376,10 @@ export const menuItems = [
         name: 'Suppliers',
         href: routes.supplier.supplier,
       },
-      {
-        name: 'Supplier Details',
-        href: routes.supplier.supplierDetails(DUMMY_ID),
-      },
+      // {
+      //   name: 'Supplier Details',
+      //   href: routes.supplier.supplierDetails(DUMMY_ID),
+      // },
       {
         name: 'Create Supplier',
         href: routes.supplier.createSupplier,
@@ -400,10 +400,10 @@ export const menuItems = [
         name: 'Vendors',
         href: routes.vendor.vendor,
       },
-      {
-        name: 'Vendor Details',
-        href: routes.vendor.vendorDetails(DUMMY_ID),
-      },
+      // {
+      //   name: 'Vendor Details',
+      //   href: routes.vendor.vendorDetails(DUMMY_ID),
+      // },
       {
         name: 'Create Vendor',
         href: routes.vendor.createVendor,
