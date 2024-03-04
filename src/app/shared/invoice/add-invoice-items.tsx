@@ -185,19 +185,21 @@ export function AddInvoiceItems({ watch, register, control, errors }: any) {
             </div>
           );
         })}
-
+        <div>
+        <Button
+                    onClick={() =>
+                      append({ item: '', description: '', quantity: 1, price: '' })
+                    }
+                    variant="flat"
+                    className="-mt-2 mb-7 w-full @4xl:mb-0 @4xl:mt-0 @4xl:w-full"
+                  >
+                    <PiPlusBold className="me-1.5 h-4 w-4" /> Add Item
+                  </Button>
+        </div>
         <div className="flex w-full flex-col items-start justify-between @4xl:flex-row @4xl:pt-6">
-          <Button
-            onClick={() =>
-              append({ item: '', description: '', quantity: 1, price: '' })
-            }
-            variant="flat"
-            className="-mt-2 mb-7 w-full @4xl:mb-0 @4xl:mt-0 @4xl:w-auto"
-          >
-            <PiPlusBold className="me-1.5 h-4 w-4" /> Add Item
-          </Button>
+       
 
-          <div className="grid w-full gap-2 @4xl:w-auto">
+          <div className="grid w-full gap-2 @4xl:w-full">
             <div className="grid grid-cols-3 gap-3 @lg:gap-4">
               <Input
                 type="number"

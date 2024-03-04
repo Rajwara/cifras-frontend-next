@@ -7,6 +7,8 @@ import { PiPlusBold } from 'react-icons/pi';
 import { invoiceData } from '@/data/invoice-data';
 import ExportButton from '@/app/shared/export-button';
 import { metaObject } from '@/config/site.config';
+import NumberOfInvoicess from '@/app/shared/invoice/invoice-cards/numberofinvoicess';
+import TotalRevenue from '@/app/shared/invoice/invoice-cards/totalrevenue';
 
 export const metadata = {
   ...metaObject('Invoices'),
@@ -33,6 +35,12 @@ export default function InvoiceListPage() {
   return (
     <>
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb}>
+
+      <div className='my-2 middle lg:w-[80%] xl:w-[60%] flex flex-col lg:flex-row gap-6 justify-center'>
+      <TotalRevenue/>
+      <NumberOfInvoicess/>
+    </div>
+
         <div className="mt-4 flex items-center gap-3 @lg:mt-0">
           <ExportButton
             data={invoiceData}
