@@ -132,10 +132,10 @@ export const menuItems = [
         href: routes.client.clients,
         badge: '',
       },
-      {
-        name: 'Client Details',
-        href: routes.client.clientDetails(DUMMY_ID),
-      },
+      // {
+      //   name: 'Client Details',
+      //   href: routes.client.clientDetails(DUMMY_ID),
+      // },
       {
         name: 'Create Client',
         href: routes.client.createClient,
