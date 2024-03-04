@@ -186,7 +186,7 @@ export const getColumns = ({
   {
     title: (
       <HeaderCell
-        title="Description"
+        title="Address"
         sortable
       />
     ),
