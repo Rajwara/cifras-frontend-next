@@ -13,6 +13,8 @@ import Supplier from '../../../public/sidebaricons/suppliersIcon.svg'
 import Vendor from '../../../public/sidebaricons/vendorIcon.svg'
 import Report from '../../../public/sidebaricons/reportsIcon.svg'
 import PurchaseOrderIcon from '../../../public/sidebaricons/purchaseOrderIcon.svg'
+import CompanyDataIcon from '../../../public/sidebaricons/CompanyDataIcon.svg'
+
 
 
 
@@ -73,7 +75,7 @@ export const menuItems = [
 
   {
     name: 'Dashboard',
-    href: routes.eCommerce.dashboard,
+    href: '/',
     icon: <Image src={Dashboard} alt="Home" width={20} height={20} /> ,
   },
 
@@ -424,57 +426,46 @@ export const menuItems = [
     badge: '',
   },
 
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
- 
-
   {
     name: 'Option',
-    href: '#',
-    icon: <PiShoppingCartDuotone />,
-    dropdownItems: [
-      // {
-      //   name: 'Products',
-      //   href: routes.eCommerce.products,
-      //   badge: '',
-      // },
-      // {
-      //   name: 'Product Details',
-      //   href: routes.eCommerce.productDetails(DUMMY_ID),
-      // },
-      // {
-      //   name: 'Create Product',
-      //   href: routes.eCommerce.createProduct,
-      // },
-      // {
-      //   name: 'Edit Product',
-      //   href: routes.eCommerce.ediProduct(DUMMY_ID),
-      // },
-      
-      {
-        name: 'Company Data',
-        href: routes.option.companydata,
-      },
-      // {
-      //   name: 'Vendor ',
-      //   href: routes.option.vendor,
-      // },
-     
-    ],
+    href: routes.option.companydata,
+    icon: <Image src={CompanyDataIcon} alt="Home" width={20} height={20} />,
+    
+    badge: '',
   },
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+ 
+
+  // {
+  //   name: 'Option',
+  //   href: '#',
+  //   icon: <PiShoppingCartDuotone />,
+  //   dropdownItems: [
+  
+      
+  //     {
+  //       name: 'Company Data',
+  //       href: routes.option.companydata,
+  //     },
+    
+     
+  //   ],
+  // },
 
 
 
