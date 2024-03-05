@@ -10,7 +10,7 @@ const Reports = () => {
           <Report />
         </p>
       </div>
-      <div className='p-4 sm:ml-[62px] bg-white'>
+      <div className=' sm:ml-[62px] bg-white'>
         <div className='  mt-10'>
           <div className='grid grid-cols-1 -mt-10 mb-4 '>
             <div className=' rounded'>
