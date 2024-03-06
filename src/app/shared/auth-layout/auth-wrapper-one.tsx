@@ -9,6 +9,7 @@ import { PiAppleLogoFill, PiArrowLeftBold } from 'react-icons/pi';
 import { FcGoogle } from 'react-icons/fc';
 import OrSeparation from '@/app/shared/auth-layout/or-separation';
 import toast from 'react-hot-toast';
+import Logo from 'public/logo.svg'
 
 export default function AuthWrapperOne({
   children,
@@ -63,14 +64,14 @@ export default function AuthWrapperOne({
             <div className="mb-7 px-6 pt-3 text-center md:pt-0 lg:px-0 lg:text-start xl:mb-8 2xl:mb-10">
               <Link
                 href={'/'}
-                className="mb-6 inline-flex max-w-[168px] xl:mb-8"
+                className="mb-10  xl:mb-8"
               >
-                <Image src={logoImg} alt="Isomorphic" />
-                <Image
+                <Image  src={Logo} alt="cifrasims" />
+                {/* <Image
                   src={logoImgText}
                   alt="Isomorphic"
                   className="ps-2.5 dark:invert"
-                />
+                /> */}
               </Link>
               <Title
                 as="h2"
