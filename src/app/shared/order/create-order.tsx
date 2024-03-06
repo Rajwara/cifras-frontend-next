@@ -31,6 +31,8 @@ import {
   CreateOrderInput,
   orderFormSchema,
 } from '@/utils/validators/create-order.schema';
+import DetialandHistoryTab from "../detailsandhistorytabs/detailsandhistorytabs";
+
 
 // main order form component for create and update order
 export default function CreateOrder({
@@ -85,6 +87,7 @@ export default function CreateOrder({
   });
 
   return (
+    <div>
     <FormProvider {...methods}>
       <form
         // @ts-ignore
@@ -114,5 +117,9 @@ export default function CreateOrder({
         </div>
       </form>
     </FormProvider>
+    <div className='mt-10'>
+          <DetialandHistoryTab />
+      </div>
+    </div>
   );
 }

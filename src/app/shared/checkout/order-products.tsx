@@ -26,7 +26,7 @@ export default function OrderProducts({
   addItemToCart: (item: CartItem, quantity: number) => void;
   removeItemFromCart: (id: number) => void;
 }) {
-  if ( !items.length) {
+  if ( !items?.length) {
     return (
       <div className="pb-3">
         <Empty />

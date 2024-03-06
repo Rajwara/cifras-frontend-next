@@ -1,3 +1,4 @@
+'use client';
 import React from "react";
 import Report from "./report";
 import Reportgallery from "./reportgallery";

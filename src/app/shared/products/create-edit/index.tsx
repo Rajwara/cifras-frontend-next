@@ -27,6 +27,7 @@ import {
 } from '@/utils/validators/create-product.schema';
 import { useLayout } from '@/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/config/enums';
+import DetialandHistoryTab from "../../detailsandhistorytabs/detailsandhistorytabs";
 
 const MAP_STEP_TO_COMPONENT = {
   [formParts.summary]: ProductSummary,
@@ -102,6 +103,9 @@ export default function CreateEditProduct({
           />
         </form>
       </FormProvider>
+      <div className='mt-10'>
+          <DetialandHistoryTab />
+      </div>
     </div>
   );
 }

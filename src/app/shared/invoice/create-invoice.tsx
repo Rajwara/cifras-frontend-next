@@ -18,6 +18,8 @@ import {
   InvoiceFormInput,
   invoiceFormSchema,
 } from '@/utils/validators/create-invoice.schema';
+import DetialandHistoryTab from "../detailsandhistorytabs/detailsandhistorytabs";
+
 
 const invoiceItems = [
   { item: '', description: '', quantity: 1, price: undefined },
@@ -65,6 +67,7 @@ export default function CreateInvoice({
     : invoiceItems;
 
   return (
+    <div>
     <Form<InvoiceFormInput>
       validationSchema={invoiceFormSchema}
       resetValues={reset}
@@ -235,5 +238,9 @@ export default function CreateInvoice({
         </>
       )}
     </Form>
+    <div className='mt-10'>
+          <DetialandHistoryTab />
+      </div>
+    </div>
   );
 }
