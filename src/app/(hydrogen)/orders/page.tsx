@@ -9,6 +9,7 @@ import { metaObject } from '@/config/site.config';
 import ExportButton from '@/app/shared/export-button';
 import NumberOfOrder from '@/app/shared/order/order-cards/numberoforder';
 import TotalRevenue from '@/app/shared/order/order-cards/totalrevenue';
+import OrderCards from '@/app/shared/order/order-cards/ordercards';
 
 export const metadata = {
   ...metaObject('Orders'),
@@ -35,11 +36,11 @@ export default function OrdersPage() {
   return (
     <>
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb}>
-
+{/* 
       <div className='middle lg:w-[80%] xl:w-[60%] flex flex-col lg:flex-row gap-6 justify-center'>
       <TotalRevenue/>
       <NumberOfOrder/>
-    </div>
+    </div> */}
 
         <div className="mt-4 flex items-center gap-3 @lg:mt-0">
           <ExportButton
@@ -58,6 +59,9 @@ export default function OrdersPage() {
           </Link>
         </div>
       </PageHeader>
+      <div className='mb-5'>
+     <OrderCards/>
+     </div>
 
       <OrdersTable data={orderData} />
     </>

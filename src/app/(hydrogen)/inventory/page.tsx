@@ -9,7 +9,7 @@ import { metaObject } from '@/config/site.config';
 import ExportButton from '@/app/shared/export-button';
 import NumberOfInventory from '@/app/shared/inventory/inventory-cards/numberofinventory';
 import TotalRevenue from '@/app/shared/inventory/inventory-cards/totalrevenue';
-
+import InventoryCards from '@/app/shared/inventory/inventory-cards/inventorycards';
 export const metadata = {
   ...metaObject('Inventory'),
 };
@@ -36,10 +36,10 @@ export default function InventoryPage() {
     <>
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb}>
 
-      <div className='my-2 middle lg:w-[80%] xl:w-[60%] flex flex-col lg:flex-row gap-6 justify-center'>
+      {/* <div className='my-2 middle lg:w-[80%] xl:w-[60%] flex flex-col lg:flex-row gap-6 justify-center'>
       <TotalRevenue/>
       <NumberOfInventory/>
-    </div>
+    </div> */}
 
 
         <div className="mt-4 flex items-center gap-3 @lg:mt-0">
@@ -59,6 +59,9 @@ export default function InventoryPage() {
           </Link>
         </div>
       </PageHeader>
+      <div className='mb-5'>
+     <InventoryCards/>
+     </div>
 
       <InventoryTable data={productsData} />
     </>

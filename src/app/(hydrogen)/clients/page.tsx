@@ -9,6 +9,8 @@ import { metaObject } from '@/config/site.config';
 import ExportButton from '@/app/shared/export-button';
 import NumberOfClients from '@/app/shared/clients/client-cards/numberofclients';
 import TotalRevenue from '@/app/shared/clients/client-cards/totalrevenue';
+import ClientCards from '@/app/shared/clients/client-cards/clientcards';
+
 export const metadata = {
   ...metaObject('Clients'),
 };
@@ -34,10 +36,10 @@ export default function ProductsPage() {
   return (
     <>
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb}>
-      <div className='middle lg:w-[80%] xl:w-[60%] flex flex-col lg:flex-row gap-6 justify-center'>
+      {/* <div className='middle lg:w-[80%] xl:w-[60%] flex flex-col lg:flex-row gap-6 justify-center'>
       <TotalRevenue/>
       <NumberOfClients/>
-    </div>
+    </div> */}
         <div className="mt-4 flex items-center gap-3 @lg:mt-0">
           <ExportButton
             data={clientData}
@@ -55,6 +57,9 @@ export default function ProductsPage() {
           </Link>
         </div>
       </PageHeader>
+     <div className='mb-5'>
+     <ClientCards/>
+     </div>
 
       <ClientsTable data={clientData} />
     </>

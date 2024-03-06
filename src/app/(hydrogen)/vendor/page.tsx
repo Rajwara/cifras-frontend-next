@@ -9,6 +9,7 @@ import { metaObject } from '@/config/site.config';
 import ExportButton from '@/app/shared/export-button';
 import NumberOfVendors from '@/app/shared/vendors/vendor-cards/numberofvendors';
 import TotalRevenue from '@/app/shared/vendors/vendor-cards/totalrevenue';
+import VendorCards from '@/app/shared/vendors/vendor-cards/vendorcards';
 
 
 export const metadata = {
@@ -36,10 +37,10 @@ export default function VendorPage() {
   return (
     <>
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb}>
-      <div className='middle lg:w-[80%] xl:w-[60%] flex flex-col lg:flex-row gap-6 justify-center'>
+      {/* <div className='middle lg:w-[80%] xl:w-[60%] flex flex-col lg:flex-row gap-6 justify-center'>
       <TotalRevenue/>
       <NumberOfVendors/>
-    </div>
+    </div> */}
 
         <div className="mt-4 flex items-center gap-3 @lg:mt-0">
           <ExportButton
@@ -58,6 +59,9 @@ export default function VendorPage() {
           </Link>
         </div>
       </PageHeader>
+      <div className='mb-5'>
+<VendorCards/>
+      </div>
 
       <VendorTable data={vendorData} />
     </>

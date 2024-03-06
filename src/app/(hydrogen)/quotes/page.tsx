@@ -7,7 +7,7 @@ import QuoteTable from '@/app/shared/quotes/quote-list/table';
 import { productsData } from '@/data/products-data';
 import { metaObject } from '@/config/site.config';
 import ExportButton from '@/app/shared/export-button';
-
+import QuoteCards from '@/app/shared/quotes/quote-cards/quotecards'
 export const metadata = {
   ...metaObject('Quotes'),
 };
@@ -50,6 +50,9 @@ export default function QuotesPage() {
           </Link>
         </div>
       </PageHeader>
+      <div className='mb-5'>
+     <QuoteCards/>
+     </div>
 
       <QuoteTable data={productsData} />
     </>
