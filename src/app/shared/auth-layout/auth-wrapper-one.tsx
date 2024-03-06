@@ -33,7 +33,7 @@ export default function AuthWrapperOne({
   function handleSignIn() {
     toast.error(
       <Text>
-        This is only demo purpose, click on the{' '}
+        Not linked yet{' '}
         <Text as="b" className="font-semibold text-gray-900">
           Sign In
         </Text>{' '}

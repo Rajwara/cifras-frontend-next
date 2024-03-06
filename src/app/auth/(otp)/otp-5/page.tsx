@@ -3,7 +3,7 @@ import { Text } from 'rizzui';
 import OtpForm from '@/app/auth/(otp)/otp-5/otp-form';
 import AuthWrapperFive from '@/app/shared/auth-layout/auth-wrapper-five';
 import WaveLongShape from '@/components/shape/wave-long';
-
+import SideImg from 'public/dashboardImg.svg'
 export default function OtpPage() {
   return (
     <AuthWrapperFive
@@ -24,7 +24,7 @@ export default function OtpPage() {
         <div className="relative mx-auto aspect-[1/1.015] w-[540px] xl:w-[600px] 2xl:w-[636px]">
           <Image
             src={
-              'https://isomorphic-furyroad.s3.amazonaws.com/public/auth/sign-in-thumb5.png'
+              SideImg
             }
             alt="Sign Up Thumbnail"
             fill

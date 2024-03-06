@@ -2,6 +2,7 @@ import ForgetPasswordForm from './forget-password-form';
 import UnderlineShape from '@/components/shape/underline';
 import Image from 'next/image';
 import AuthWrapperOne from '@/app/shared/auth-layout/auth-wrapper-one';
+import Sideimg from 'public/dashboardImg.svg'
 
 export default function SignIn() {
   return (
@@ -22,7 +23,7 @@ export default function SignIn() {
         <div className="relative mx-auto aspect-[4/3.37] w-[500px] xl:w-[620px] 2xl:w-[820px]">
           <Image
             src={
-              'https://isomorphic-furyroad.s3.amazonaws.com/public/auth/sign-up.webp'
+              Sideimg
             }
             alt="Sign Up Thumbnail"
             fill

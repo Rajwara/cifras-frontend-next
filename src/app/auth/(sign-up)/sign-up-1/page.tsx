@@ -3,7 +3,7 @@ import UnderlineShape from '@/components/shape/underline';
 import SignUpForm from './sign-up-form';
 import AuthWrapperOne from '@/app/shared/auth-layout/auth-wrapper-one';
 import { metaObject } from '@/config/site.config';
-
+import sideImg from 'public/dashboardImg.svg'
 export const metadata = {
   ...metaObject('Sign Up 1'),
 };
@@ -29,7 +29,7 @@ export default function SignUp() {
         <div className="relative mx-auto aspect-[4/3.37] w-[500px] xl:w-[620px] 2xl:w-[820px]">
           <Image
             src={
-              'https://isomorphic-furyroad.s3.amazonaws.com/public/auth/sign-up.webp'
+              sideImg
             }
             alt="Sign Up Thumbnail"
             fill

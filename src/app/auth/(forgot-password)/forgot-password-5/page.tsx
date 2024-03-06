@@ -2,7 +2,7 @@ import Image from 'next/image';
 import ForgetPasswordForm from './forgot-password-form';
 import AuthWrapperFive from '@/app/shared/auth-layout/auth-wrapper-five';
 import WaveShape from '@/components/shape/wave';
-
+import SideImg from 'public/dashboardImg.svg'
 export default function ForgotPassword() {
   return (
     <AuthWrapperFive
@@ -20,7 +20,7 @@ export default function ForgotPassword() {
         <div className="relative mx-auto aspect-[1/1.015] w-[540px] xl:w-[600px] 2xl:w-[636px]">
           <Image
             src={
-              'https://isomorphic-furyroad.s3.amazonaws.com/public/auth/sign-in-thumb5.webp'
+              SideImg
             }
             alt="Sign Up Thumbnail"
             fill

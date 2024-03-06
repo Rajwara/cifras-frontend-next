@@ -147,7 +147,7 @@ function AuthFooter() {
   return (
     <footer className="flex flex-col-reverse items-center justify-between px-4 py-5 lg:flex-row lg:px-16 lg:py-6 2xl:px-24 2xl:py-10">
       <div className="text-center leading-relaxed text-gray-500 lg:text-start">
-        © Copyright 2023. Theme by{' '}
+        © Copyright 2024. Theme by Cifraims{' '}
         <Link
           href="https://redq.io/"
           className="font-medium transition-colors hover:text-primary"

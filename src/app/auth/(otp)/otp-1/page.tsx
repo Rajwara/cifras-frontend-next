@@ -3,6 +3,7 @@ import OtpForm from './otp-form';
 import AuthWrapperOne from '@/app/shared/auth-layout/auth-wrapper-one';
 import UnderlineShape from '@/components/shape/underline';
 import Image from 'next/image';
+import SideImg from "public/dashboardImg.svg"
 
 export default function OtpPage() {
   return (
@@ -23,7 +24,7 @@ export default function OtpPage() {
         <div className="relative mx-auto aspect-[4/3.37] w-[500px] xl:w-[620px] 2xl:w-[820px]">
           <Image
             src={
-              'https://isomorphic-furyroad.s3.amazonaws.com/public/auth/sign-up.webp'
+              SideImg
             }
             alt="Sign Up Thumbnail"
             fill
