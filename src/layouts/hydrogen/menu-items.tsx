@@ -418,16 +418,16 @@ export const menuItems = [
   },
  
 
-  {
-    name: 'Reports',
-    href: routes.reports,
-    icon: <Image src={Report} alt="Home" width={20} height={20} />,
+  // {
+  //   name: 'Reports',
+  //   href: routes.reports,
+  //   icon: <Image src={Report} alt="Home" width={20} height={20} />,
     
-    badge: '',
-  },
+  //   badge: '',
+  // },
 
   {
-    name: 'Reports & Permissions',
+    name: 'Reports ',
     href: routes.reportPermissions,
     icon: <Image src={Report} alt="Home" width={20} height={20} />,
     
