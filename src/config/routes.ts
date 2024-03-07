@@ -95,9 +95,12 @@ export const routes = {
     dashboard: '/repo',
   },
 
+  reportPermissions: '/report-permissions',
+  rolesPermiss: {
+    dashboard: '/report',
+  },
 
 
-  
  
   
   option: {

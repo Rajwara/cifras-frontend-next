@@ -427,6 +427,17 @@ export const menuItems = [
   },
 
   {
+    name: 'Reports & Permissions',
+    href: routes.reportPermissions,
+    icon: <Image src={Report} alt="Home" width={20} height={20} />,
+    
+    badge: '',
+  },
+
+
+
+
+  {
     name: 'Option',
     href: routes.option.companydata,
     icon: <Image src={CompanyDataIcon} alt="Home" width={20} height={20} />,
@@ -541,6 +552,7 @@ export const menuItems = [
   //   ],
   // },
  
+
   
   // {
   //   name: 'Logistics',
