@@ -13,6 +13,16 @@ import QuillLoader from '@/components/loader/quill-loader';
 import { DatePicker } from '@/components/ui/datepicker';
 import { IoClose } from "react-icons/io5";
 
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { routes } from '@/config/routes';
+import usePrice from '@/hooks/use-price';
+import OrderProducts from '../../checkout/order-products';
+import { Button, Title, Text } from 'rizzui';
+import { toCurrency } from '@/utils/to-currency';
+import { useCart } from '@/store/quick-cart/cart.context';
+
+
 
 const Select = dynamic(() => import('rizzui').then((mod) => mod.Select), {
   ssr: false,
@@ -23,49 +33,98 @@ const QuillEditor = dynamic(() => import('@/components/ui/quill-editor'), {
   loading: () => <QuillLoader className="col-span-full h-[143px]" />,
 });
 
-const Quotesidebar = ({ onClose }:any) => {
+ const Quotesidebar =({
+  isLoading,
+  className,
+}: {
+  className?: string;
+  isLoading?: boolean;
+}) => {
+  const params = useParams();
+  const { items, total, addItemToCart, removeItemFromCart, clearItemFromCart } =
+    useCart();
+  const { price: subtotal } = usePrice(
+    items && {
+      amount: total,
+    }
+  );
+  const { price: totalPrice } = usePrice({
+    amount: total,
+  });
   return (
     // side bar start
-    <div className='sidebar border border-[#ebebeb] rounded'>
-      <div className='quotesidebar flex flex-col gap-4 px-6 pt-[100px] pb-[130px]    bg-white'>
-        <h2 className='font-lexend font-semibold text-[#634AF9] text-lg leading-9'>
-          Quote Summary
-        </h2>
-        <div className='flex gap-2 items-center'>
-          <img src="/quote/sidebarlines.svg" alt='' className='w-6 h-6' />
-          <p className='text-[#404040] text-base font-inter font-medium leading-7'>
-            Lines: <span className='text-[#C0C0C0] text-sm'> 00</span>
-          </p>
+    <div
+    className={cn(
+      'sticky top-24 mt-16  @5xl:col-span-4 w-full  @6xl:col-span-3 ',
+      className
+    )}
+  >
+    <Title as="h4" className="mb-3 font-semibold">
+      Your Qoute
+    </Title>
+    <div className="rounded-lg  border border-[#ebebeb] p-4 @xs:p-6 @5xl:rounded-none @5xl:border-none @5xl:px-0">
+      <div className="flex justify-between rounded-tl-lg rounded-tr-lg border-b border-muted pb-4 @xs:pb-6">
+        Qoute items
+        <Link href={routes.eCommerce.cart}>
+          <Button
+            as="span"
+            variant="text"
+            className="h-auto w-auto p-0 text-primary underline hover:text-gray-1000"
+          >
+            Edit Cart
+          </Button>
+        </Link>
+      </div>
+      <div className="pt-4 @xl:pt-6">
+        <OrderProducts
+          addItemToCart={addItemToCart}
+          removeItemFromCart={removeItemFromCart}
+          clearItemFromCart={clearItemFromCart}
+          items={items}
+          className="mb-5 border-b border-muted pb-5"
+        />
+        <div className="mb-4 flex items-center justify-between last:mb-0">
+          Subtotal
+          <Text as="span" className="font-medium text-gray-900">
+            {subtotal}
+          </Text>
         </div>
-        <div className='flex gap-2 items-center'>
-          <img src="/quote/sidebarsubtotal.svg" alt='' className='w-6 h-6' />
-          <p className='text-[#404040] text-base font-inter font-medium leading-7'>
-            SubTotal: <span className='text-[#C0C0C0] text-sm'> 0.00</span>
-          </p>
+        <div className="mb-4 flex items-center justify-between last:mb-0">
+          Tax
+          <Text as="span" className="font-medium text-gray-900">
+            {toCurrency(0)}
+          </Text>
         </div>
-        <div className='flex gap-2 items-center'>
-          <img src="/quote/sidebarcommision.svg" alt='' className='w-6 h-6' />
-          <p className='text-[#404040] text-base font-inter font-medium leading-7'>
-            Commision: <span className='text-[#C0C0C0] text-sm'> 0.00</span>
-          </p>
+        <div className="mb-4 flex items-center justify-between last:mb-0">
+          Shipping
+          <Text as="span" className="font-medium text-gray-900">
+            {toCurrency(0)}
+          </Text>
         </div>
-        <div className='flex gap-2 items-center'>
-          <img src="/quote/sidebardiscount.svg" alt='' className='w-6 h-6' />
-          <p className='text-[#404040] text-base font-inter font-medium leading-7'>
-            Discount %: <span className='text-[#C0C0C0] text-sm'> 0.00</span>
-          </p>
+        <div className="flex items-center justify-between border-t border-muted py-4 text-base font-bold text-gray-1000">
+          Total
+          <Text>{totalPrice}</Text>
         </div>
-        <div className='flex gap-2 items-center '>
-          <img src="/quote/sidebartotal.svg" alt='' className='w-6 h-6' />
-          <p className='text-[#404040]  text-base font-inter font-medium leading-7'>
-            Total $: <span className='text-[#C0C0C0] text-sm'> 0.00</span>
-          </p>
-        </div>
-        <button onClick={onClose} className='close-btn absolute top-[50px] '>
-          <IoClose className='w-8 h-8 text-[#634AF9]' />
-        </button>
+
+        {items && items?.length ? (
+          <Button
+            type="submit"
+            isLoading={isLoading}
+            className="mt-3 w-full text-base @md:h-12"
+          >
+            {params?.id ? 'Update Qoute' : 'Place Qoute'}
+          </Button>
+        ) : (
+          <Link href={routes.eCommerce.shop}>
+            <Button
+              as="span"
+              className="mt-3 w-full text-base @md:h-12"
+            >{`Back to Store`}</Button>
+          </Link>
+        )}
       </div>
     </div>
+  </div>
     // side end start
   );
 };
@@ -85,7 +144,7 @@ export default function ProductSummary({ className }: { className?: string }) {
 
   return (
     <div className='flex flex-col md:flex-row gap-10 w-full md:items-center'>
-      <div className='form md:w-[80%]'>
+      <div className='form md:w-[70%]'>
     <FormGroup
       title="Summary"
       description="Edit your quotes description and necessary information from here"
@@ -155,15 +214,16 @@ export default function ProductSummary({ className }: { className?: string }) {
        
     </FormGroup>
     </div>
-    <div className='sidebar relative right-0 left-0 lg:w-[25%] xl:w-[17%]'>
+    <div className='sidebar relative right-0 left-0 lg:w-[25%] xl:w-[30%]'>
     <div className={`  flex justify-end`}>
-        {isSideComponentVisible ? (
+      <Quotesidebar />
+        {/* {isSideComponentVisible ? (
           <button onClick={toggleSideComponent}>
             <img src="/quote/quotesideiconbuttonfor.svg" alt='sideicon' className='w-[130px] h-[189px]' />
           </button>
         ) : (
           <Quotesidebar onClose={toggleSideComponent} />
-        )}
+        )} */}
       </div>
     </div>
     </div>
