@@ -53,7 +53,11 @@ function DropdownMenu() {
         <Button
           className="h-auto w-full justify-start p-0 font-medium text-gray-700 outline-none focus-within:text-gray-600 hover:text-gray-900 focus-visible:ring-0"
           variant="text"
-          onClick={() => signOut()}
+          onClick={() => {
+            signOut({
+              callbackUrl: 'http://localhost:3000/',
+            });
+          }}
         >
           Sign Out
         </Button>
