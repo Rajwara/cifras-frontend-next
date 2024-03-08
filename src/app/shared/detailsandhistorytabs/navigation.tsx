@@ -99,91 +99,81 @@ export default function ProfileSettingsNav({ className }: { className?: string }
     switch (activeItem) {
       case 'myDetails':
         return (
-          <div className="mt-5 w-full">
-            <FormProvider {...methods}>
-              <FormGroup
-                title="Summary"
-                description="Edit your detail description and necessary information from here"
-                className={cn(className)}
+          <div className="mt-5 ">
+          <FormProvider {...methods}>
+    <FormGroup
+      title="Summary"
+      description="Edit your detail description and necessary information from here"
+      className={cn(className)}
+    >
+    
+        <Input
+          label="Item"
+          placeholder="Item"
+          {...methods.register('item')}
+          className=" w-full"
+        />
+        <Input
+          label="Quantity"
+          type="number"
+          min={1}
+          name={name}
+          value={value}
+          placeholder="1"
+          onChange={(e) => handleOnChange(Number(e.target.value))}
+          className=" w-full"
+          suffix={
+            <>
+              <ActionIcon
+                title="Decrement"
+                size="sm"
+                variant="outline"
+                className="scale-90 shadow-sm"
+                onClick={handleDecrement}
               >
-                <div className='flex flex-wrap gap-8 w-full'>
-                  <div className='flex flex-wrap gap-8 w-full'>
-                    <Input
-                      label="Item"
-                      placeholder="item"
-                      {...methods.register('item')}
-                      className="col-span-full w-[31%]"
-                    />
-                    <Input
-                      label="Quantity"
-                      type="number"
-                      min={1}
-                      name={name}
-                      value={value}
-                      placeholder="1"
-                      onChange={(e) => handleOnChange(Number(e.target.value))}
-                      className="col-span-full w-[31%]"
-                      suffix={
-                        <>
-                          <ActionIcon
-                            title="Decrement"
-                            size="sm"
-                            variant="outline"
-                            className="scale-90 shadow-sm"
-                            onClick={handleDecrement}
-                          >
-                            <PiMinusBold className="h-3.5 w-3.5" strokeWidth={2} />
-                          </ActionIcon>
-                          <ActionIcon
-                            title="Increment"
-                            size="sm"
-                            variant="outline"
-                            className="scale-90 shadow-sm"
-                            onClick={handleIncrement}
-                          >
-                            <PiPlusBold className="h-3.5 w-3.5" strokeWidth={2} />
-                          </ActionIcon>
-                        </>
-                      }
-                      suffixClassName="flex gap-1 items-center -me-2"
-                      error={error}
-                    />
-                      <Input
-                      label="Price"
-                      placeholder="$ 0.00"
-                      {...methods.register('price')}
-                      // error={methods.errors.price?.message}
-                      className="col-span-full w-[31%]"
-                    />
-                  </div>
-                  {/* <div className='flex flex-wrap gap-8 w-full'>
-                </div> */}
-                  <div className='flex flex-wrap gap-8 w-full'>
-                  <Input
-                      label="Commission"
-                      placeholder="$ 0.00"
-                      {...methods.register('commission')}
-                      // error={methods.errors.item?.message}
-                      className="col-span-full w-[31%]"
-                    />
-                    <Input
-                      label="Rate"
-                      placeholder="% 0.00"
-                      {...methods.register('rate')}
-                      // error={methods.errors.item?.message}
-                      className="col-span-full w-[31%]"
-                    />
-                    <Input
-                      label="Discount"
-                      placeholder="$ 0.00"
-                      {...methods.register('discount')}
-                      // error={methods.errors.item?.message}
-                      className="col-span-full w-[31%]"
-                    />
-                  </div>
-                </div>
-              </FormGroup>
-            </FormProvider>
+                <PiMinusBold className="h-3.5 w-3.5" strokeWidth={2} />
+              </ActionIcon>
+              <ActionIcon
+                title="Increment"
+                size="sm"
+                variant="outline"
+                className="scale-90 shadow-sm"
+                onClick={handleIncrement}
+              >
+                <PiPlusBold className="h-3.5 w-3.5" strokeWidth={2} />
+              </ActionIcon>
+            </>
+          }
+          suffixClassName="flex gap-1 items-center -me-2"
+          error={error}
+        />
+        <Input
+          label="Price"
+          placeholder="$ 0.00"
+          {...methods.register('price')}
+          className="w-full"
+        />
+        <Input
+          label="Commission"
+          placeholder="$ 0.00"
+          {...methods.register('commission')}
+          className="w-full"
+        />
+        <Input
+          label="Rate"
+          placeholder="% 0.00"
+          {...methods.register('rate')}
+          className="w-full"
+        />
+        <Input
+          label="Discount"
+          placeholder="$ 0.00"
+          {...methods.register('discount')}
+          className="w-full"
+        />
+   
+    </FormGroup>
+  </FormProvider>
           </div>
         );
       case 'history':
