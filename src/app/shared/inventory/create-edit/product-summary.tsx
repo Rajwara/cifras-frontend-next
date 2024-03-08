@@ -32,10 +32,10 @@ export default function ProductSummary({ className }: { className?: string }) {
       className={cn(className)}
     >
       <Input
-        label="Item Number"
-        placeholder="Item Number"
-        {...register('itemNumber')}
-        error={errors.itemNumber?.message as string}
+        label="Item Name"
+        placeholder="Item Name"
+        {...register('itemname')}
+        error={errors.itemname?.message as string}
         className="col-span-full"
       />
          <Controller
@@ -52,10 +52,10 @@ export default function ProductSummary({ className }: { className?: string }) {
         )}
       />
       <Input
-        label="Supplier Name"
-        placeholder="Supplier Name"
-        {...register('supplierName')}
-        error={errors.supplierName?.message as string}
+        label="Vendor"
+        placeholder="Vendor"
+        {...register('vendor')}
+        error={errors.vendor?.message as string}
       />
         <Input
         label="Unit Price"
@@ -69,13 +69,13 @@ export default function ProductSummary({ className }: { className?: string }) {
         {...register('unitofMeasure')}
         error={errors.unitofMeasure?.message as string}
       />
-      {/* <Input
+      <Input
         label="Vendor"
         placeholder="Vendor"
         {...register('vendor')}
         error={errors.vendor?.message as string}
         className="col-span-full"
-      /> */}
+      />
        <Input
         label="On Hand Qty"
         placeholder="00"
@@ -93,7 +93,7 @@ export default function ProductSummary({ className }: { className?: string }) {
         placeholder="00"
         {...register('reservedqty')}
         error={errors.reservedqty?.message as string}
-        // className="col-span-full"
+        className="col-span-full"
       />
 
    
