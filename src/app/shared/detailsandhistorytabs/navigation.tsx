@@ -284,6 +284,7 @@ export default function ProfileSettingsNav({ className }: { className?: string }
       </div>
       <div className="content">
         {renderContent({})}
+        
       </div>
     </>
   );
