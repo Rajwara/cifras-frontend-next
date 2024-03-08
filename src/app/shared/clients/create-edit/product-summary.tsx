@@ -50,11 +50,30 @@ export default function ProductSummary({   type,
         {...register('name')}
         error={errors.name?.message as string}
       />
+        <Input
+        label="Email"
+        placeholder="Email"
+        {...register('email')}
+        error={errors.email?.message as string}
+      />
       <Input
         label="Alias"
         placeholder="Alias"
         {...register('alias')}
         error={errors.alias?.message as string}
+      />
+       
+         <Input
+        label="RUC"
+        placeholder="RUC"
+        {...register('ruc')}
+        error={errors.ruc?.message as string}
+      />
+         <Input
+        label="DV"
+        placeholder="Dv"
+        {...register('dv')}
+        error={errors.dv?.message as string}
       />
     <Controller
         name={`${type}.phoneNumber`}
@@ -71,7 +90,7 @@ export default function ProductSummary({   type,
         )}
       />
 
-      <Controller
+      {/* <Controller
         control={control}
         name="Address"
         render={({ field: { onChange, value } }) => (
@@ -83,7 +102,7 @@ export default function ProductSummary({   type,
             labelClassName="font-medium text-gray-700 dark:text-gray-600 mb-1.5"
           />
         )}
-      />
+      /> */}
     </FormGroup>
   );
 }

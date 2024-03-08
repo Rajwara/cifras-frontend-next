@@ -9,6 +9,9 @@ import {
 import dynamic from 'next/dynamic';
 import SelectLoader from '@/components/loader/select-loader';
 import QuillLoader from '@/components/loader/quill-loader';
+import { DatePicker } from '@/components/ui/datepicker';
+import { Textarea } from 'rizzui';
+
 const Select = dynamic(() => import('rizzui').then((mod) => mod.Select), {
   ssr: false,
   loading: () => <SelectLoader />,
@@ -32,13 +35,13 @@ export default function PurchasOrderSummary({ className }: { className?: string 
       className={cn(className)}
     >
       <Input
-        label="Purchase Order Name"
-        placeholder="Item Name"
-        {...register('name')}
-        error={errors.name?.message as string}
+        label="Purchase Order Number"
+        placeholder="Purchase Order Number"
+        {...register('poNumber')}
+        error={errors.poNumber?.message as string}
         className="col-span-full "
       />
-       <Controller
+       {/* <Controller
         control={control}
         name="description"
         render={({ field: { onChange, value } }) => (
@@ -50,39 +53,71 @@ export default function PurchasOrderSummary({ className }: { className?: string 
             labelClassName="font-medium text-gray-700 dark:text-gray-600 mb-1.5"
           />
         )}
-      />
+      /> */}
+       <Controller
+            name="Purchase Order Date"
+            control={control}
+            render={({ field: { value, onChange, onBlur } }) => (
+              <DatePicker
+                inputProps={{ label: 'Purchase Order Date' }}
+                placeholderText="Select Date"
+                dateFormat="dd/MM/yyyy"
+                onChange={onChange}
+                onBlur={onBlur}
+                wrapperClassName="w-full"
+                //@ts-ignore
+                selected={value}
+              />
+            )}
+          />
       
         <Input
-        label="Unit Price"
-        placeholder="0.00"
-        {...register('unitprice')}
-        error={errors.unitprice?.message as string}
+        label="Status"
+        placeholder="Status"
+        {...register('status')}
+        error={errors.status?.message as string}
       />
          <Input
-        label=" Unit of Measure"
+        label="Sub Total"
         placeholder="0.00"
-        {...register('unitofMeasure')}
-        error={errors.unitofMeasure?.message as string}
+        {...register('subTotal')}
+        error={errors.subTotal?.message as string}
       />
    <Input
-        label="Available Stock"
-        placeholder="items left"
-        {...register('availableStock')}
-        error={errors.availableStock?.message as string}
+        label="Tax"
+        placeholder="Tax"
+        {...register('tax')}
+        error={errors.tax?.message as string}
       />
-      <Input
+      {/* <Input
         label="Date of Purchasing"
         placeholder="1 Jan, 2014"
         {...register('dateofPurchasing')}
         error={errors.dateofPurchasing?.message as string}
-      />
+      /> */}
       <Input
-        label="Vendor"
-        placeholder="Vendor"
-        {...register('vendor')}
-        error={errors.vendor?.message as string}
+        label="Shipping"
+        placeholder="Shipping"
+        {...register('shipping')}
+        error={errors.shipping?.message as string}
+        // className="col-span-full "
+      />
+       <Input
+        label="Total"
+        placeholder="0.00"
+        {...register('total')}
+        error={errors.total?.message as string}
+        // className="col-span-full "
+      />
+       <Textarea
+        label="Notes (optional)"
+        placeholder="Notes about your Purchase Odrer, e.g. special notes for delivery."
+        {...register('note')}
+        error={errors.note?.message as string}
+        textareaClassName="h-20"
         className="col-span-full "
       />
+
 
      
     </FormGroup>

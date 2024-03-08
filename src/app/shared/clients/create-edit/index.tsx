@@ -32,7 +32,7 @@ import DetialandHistoryTab from "../../detailsandhistorytabs/detailsandhistoryta
 
 const MAP_STEP_TO_COMPONENT = {
   [formParts.summary]: ClientSummary,
-  // [formParts.media]: ClientMedia,
+  [formParts.media]: ClientMedia,
   // [formParts.pricingInventory]: PricingInventory,
   // [formParts.productIdentifiers]: ProductIdentifiers,
   // [formParts.shipping]: ShippingInfo,

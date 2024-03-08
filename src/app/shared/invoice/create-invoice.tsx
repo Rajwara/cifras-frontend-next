@@ -66,6 +66,7 @@ export default function CreateInvoice({
       }))
     : invoiceItems;
 
+    
   return (
     <div>
     <Form<InvoiceFormInput>
@@ -110,8 +111,8 @@ export default function CreateInvoice({
                   )}
                 />
                 <Textarea
-                  label="Address"
-                  placeholder="Enter your address"
+                  label="Messages"
+                  placeholder="Enter your messages"
                   {...register('fromAddress')}
                   error={errors.fromAddress?.message}
                   textareaClassName="h-20"
@@ -143,8 +144,8 @@ export default function CreateInvoice({
                   )}
                 />
                 <Textarea
-                  label="Address"
-                  placeholder="Enter your address"
+                  label="Messages"
+                  placeholder="Enter your messages"
                   {...register('toAddress')}
                   error={errors.toAddress?.message}
                   textareaClassName="h-20"

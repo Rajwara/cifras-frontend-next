@@ -4,7 +4,7 @@ import SimpleBar from '@/components/ui/simplebar';
 
 export const formParts = {
   summary: 'summary',
-  media: 'media',
+  // media: 'media',
   // pricingInventory: 'pricingInventory',
   // productIdentifiers: 'productIdentifiers',
   // shipping: 'shipping',
@@ -19,10 +19,10 @@ export const menuItems = [
     label: 'Summary',
     value: formParts.summary,
   },
-  {
-    label: 'Images & Gallery',
-    value: formParts.media,
-  },
+  // {
+  //   label: 'Images & Gallery',
+  //   value: formParts.media,
+  // },
   // {
   //   label: 'Pricing & Inventory',
   //   value: formParts.pricingInventory,

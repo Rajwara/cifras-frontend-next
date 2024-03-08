@@ -21,6 +21,8 @@ import OrderProducts from '../../checkout/order-products';
 import { Button, Title, Text } from 'rizzui';
 import { toCurrency } from '@/utils/to-currency';
 import { useCart } from '@/store/quick-cart/cart.context';
+import { Textarea } from 'rizzui';
+
 
 
 
@@ -151,10 +153,10 @@ export default function ProductSummary({ className }: { className?: string }) {
       className={cn(className)}
     >
       <Input
-        label="Quote Name"
+        label="Quote Number"
         placeholder="Q - 59"
-        {...register('name')}
-        error={errors.name?.message as string}
+        {...register('number')}
+        error={errors.number?.message as string}
       />
            <Controller
             name="quoteDate"
@@ -204,14 +206,14 @@ export default function ProductSummary({ className }: { className?: string }) {
               />
             )}
           />
-      <Input
-        label="Client"
-        placeholder="Client"
-        {...register('client')}
-        error={errors.client?.message as string}
-        className="col-span-full"
+  <Textarea
+        label="Notes"
+        placeholder="Enter your notes"
+        {...register('notes')}
+        error={errors.notes?.message as string}
+        textareaClassName="h-20 "
+        className="col-span-full "
       />
-       
     </FormGroup>
     </div>
     <div className='sidebar relative right-0 left-0 lg:w-[25%] xl:w-[30%]'>

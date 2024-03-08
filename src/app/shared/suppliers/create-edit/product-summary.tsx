@@ -87,7 +87,7 @@ export default function ProductSummary({   type,
       />
  
 
- <Textarea
+ {/* <Textarea
         label="Address"
         placeholder="Enter your address"
         {...register('address')}
@@ -95,7 +95,7 @@ export default function ProductSummary({   type,
         textareaClassName="h-20 "
         className="col-span-full "
       />
-    
+     */}
     </FormGroup>
   );
 }
