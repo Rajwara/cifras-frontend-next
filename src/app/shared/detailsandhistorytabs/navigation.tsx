@@ -1,27 +1,13 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { Button, Text, Input, ActionIcon } from 'rizzui';
+import { useState } from 'react';
+import { Button, Text } from 'rizzui';
 import cn from '@/utils/class-names';
 import { useScrollableSlider } from '@/hooks/use-scrollable-slider';
 import { PiCaretLeftBold, PiCaretRightBold } from 'react-icons/pi';
 import { useLayout } from '@/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/config/enums';
 import { useBerylliumSidebars } from '@/layouts/beryllium/beryllium-utils';
-import { Controller, useFormContext, FormProvider, useForm, useFieldArray } from 'react-hook-form';
-import FormGroup from '@/app/shared/form-group';
-
-import {
-  categoryOption,
-  typeOption,
-} from '@/app/shared/ecommerce/product/create-edit/form-utils';
-import dynamic from 'next/dynamic';
-import SelectLoader from '@/components/loader/select-loader';
-import QuillLoader from '@/components/loader/quill-loader';
-
-import { calculateTotalPrice } from '@/utils/calculate-total-price';
-import { PiMinusBold, PiPlusBold, PiTrashBold } from 'react-icons/pi';
-import { FormBlockWrapper } from '@/app/shared/invoice/form-utils';
 
 const menuItems = [
   {
@@ -34,18 +20,7 @@ const menuItems = [
   },
 ];
 
-const Select = dynamic(() => import('rizzui').then((mod) => mod.Select), {
-  ssr: false,
-  loading: () => <SelectLoader />,
-});
-const QuillEditor = dynamic(() => import('@/components/ui/quill-editor'), {
-  ssr: false,
-  loading: () => <QuillLoader className="col-span-full h-[143px]" />,
-});
-
-export default function ProfileSettingsNav({ className }: { className?: string }) {
-  const methods = useForm(); // Get useForm hook
-
+export default function ProfileSettingsNav() {
   const [activeItem, setActiveItem] = useState('myDetails'); // Default active item
   const { layout } = useLayout();
   const {
@@ -57,164 +32,170 @@ export default function ProfileSettingsNav({ className }: { className?: string }
   } = useScrollableSlider();
   const { expandedLeft } = useBerylliumSidebars();
 
-  const handleChange = (value: number) => {
-    console.log('Quantity changed:', value);
-  };
-
-  const renderContent = ({
-    name = 'quantity',
-    error,
-    onChange,
-    defaultValue,
-  }: {
-    name: string;
-    error?: string;
-    onChange?: (value: number) => void;
-    defaultValue?: number;
-  }) => {
-    const [value, setValue] = useState(defaultValue ?? 1);
-  
-    function handleIncrement() {
-      let newValue = value + 1;
-      setValue(newValue);
-      onChange && onChange(newValue);
-    }
-  
-    function handleDecrement() {
-      let newValue = value > 1 ? value - 1 : 1;
-      setValue(newValue);
-      onChange && onChange(newValue);
-    }
-  
-    function handleOnChange(inputValue: number) {
-      setValue(Number(inputValue));
-      onChange && onChange(inputValue);
-    }
-  
-    useEffect(() => {
-      setValue(defaultValue ?? 1);
-      onChange && onChange(defaultValue ?? 1);
-    }, []);
-  
+  const renderContent = () => {
     switch (activeItem) {
       case 'myDetails':
-        return (
-          <div className="mt-5 w-full">
-            <FormProvider {...methods}>
-              <FormGroup
-                title="Summary"
-                description="Edit your detail description and necessary information from here"
-                className={cn(className)}
-              >
-                <div className='flex flex-wrap gap-8 w-full'>
-                  <div className='flex flex-wrap gap-8 w-full'>
-                    <Input
-                      label="Item"
-                      placeholder="item"
-                      {...methods.register('item')}
-                      className="col-span-full w-[31%]"
-                    />
-                    <Input
-                      label="Quantity"
-                      type="number"
-                      min={1}
-                      name={name}
-                      value={value}
-                      placeholder="1"
-                      onChange={(e) => handleOnChange(Number(e.target.value))}
-                      className="col-span-full w-[31%]"
-                      suffix={
-                        <>
-                          <ActionIcon
-                            title="Decrement"
-                            size="sm"
-                            variant="outline"
-                            className="scale-90 shadow-sm"
-                            onClick={handleDecrement}
-                          >
-                            <PiMinusBold className="h-3.5 w-3.5" strokeWidth={2} />
-                          </ActionIcon>
-                          <ActionIcon
-                            title="Increment"
-                            size="sm"
-                            variant="outline"
-                            className="scale-90 shadow-sm"
-                            onClick={handleIncrement}
-                          >
-                            <PiPlusBold className="h-3.5 w-3.5" strokeWidth={2} />
-                          </ActionIcon>
-                        </>
-                      }
-                      suffixClassName="flex gap-1 items-center -me-2"
-                      error={error}
-                    />
-                      <Input
-                      label="Price"
-                      placeholder="$ 0.00"
-                      {...methods.register('price')}
-                      // error={methods.errors.price?.message}
-                      className="col-span-full w-[31%]"
-                    />
-                  </div>
-                  {/* <div className='flex flex-wrap gap-8 w-full'>
-                </div> */}
-                  <div className='flex flex-wrap gap-8 w-full'>
-                  <Input
-                      label="Commission"
-                      placeholder="$ 0.00"
-                      {...methods.register('commission')}
-                      // error={methods.errors.item?.message}
-                      className="col-span-full w-[31%]"
-                    />
-                    <Input
-                      label="Rate"
-                      placeholder="% 0.00"
-                      {...methods.register('rate')}
-                      // error={methods.errors.item?.message}
-                      className="col-span-full w-[31%]"
-                    />
-                    <Input
-                      label="Discount"
-                      placeholder="$ 0.00"
-                      {...methods.register('discount')}
-                      // error={methods.errors.item?.message}
-                      className="col-span-full w-[31%]"
-                    />
-                  </div>
-                </div>
-              </FormGroup>
-            </FormProvider>
-          </div>
-        );
+        return <div className='mt-5'>
+            <form className='grid grid-cols-1 '>
+    <div className='flex flex-row flex-wrap justify-between'>
+      <div className='left rounded-full border border-[#04B076] px-4 py-3 text-[#04B076] font-normal font-inter '>
+        <span className='rounded-r-lg border h-3 w-3 px-2 mr-2 border-[#04B076]'></span>
+        <span className='font-bold text-sm leading-5'># 1</span>
+      </div>
+      <div className='right mt-4 md:mt-0'>
+        <button className='text-[#04b076] font-inter rounded-full px-4 py-2 font-semibold text-sm leading-7 border border-[#04B076] bg-[#B9F9CF]'>
+          Total $ 0.00
+        </button>
+      </div>
+    </div>
+    <div className='form'>
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mt-6'>
+        <div className='w-full '>
+          <label
+            htmlFor='item'
+            className='block mb-2 text-sm font-normal text-[#404040] font-inter leading-7'
+          >
+            Item
+          </label>
+          <input
+            type='text'
+            name='item'
+            id='small-input'
+            placeholder='item'
+            className='text-sm border border-[#EBEBEB] text-[#c0c0c0] sm:text-sm  rounded-md leading-5 font-normal font-inter  block w-full p-2.5'
+          />
+        </div>
+        <div className='w-full '>
+          <label
+            htmlFor='Quantity'
+            className='block mb-2 text-sm font-normal text-[#404040] font-inter leading-7'
+          >
+            Quantity
+          </label>
+          <input
+            type='count'
+            name='quantity'
+            id='small-input'
+            placeholder='0'
+            className='border text-sm border-[#EBEBEB] text-[#c0c0c0] sm:text-sm  rounded-md leading-5 font-normal font-inter  block w-full p-2.5'
+          />
+        </div>
+        <div className='w-full '>
+          <label
+            htmlFor='price'
+            className='block mb-2 text-sm font-normal text-[#404040] font-inter leading-7'
+          >
+            Price
+          </label>
+          <input
+            type='number'
+            name='price'
+            id='small-input'
+            placeholder='$ 0.00'
+            className='border text-sm border-[#EBEBEB] text-[#c0c0c0] sm:text-sm  rounded-md leading-5 font-normal font-inter  block w-full p-2.5'
+          />
+        </div>
+      </div>
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mt-6'>
+        <div className='w-full '>
+          <label
+            htmlFor='commission'
+            className='block mb-2 text-sm font-normal text-[#404040] font-inter leading-7'
+          >
+            Commission
+          </label>
+          <input
+            type='number'
+            name='commission'
+            id='small-input'
+            placeholder='$ 0.00'
+            className='border text-sm border-[#EBEBEB] text-[#c0c0c0] sm:text-sm  rounded-md leading-5 font-normal font-inter  block w-full p-2.5'
+          />
+        </div>
+        <div className='w-full '>
+          <label
+            htmlFor='rate'
+            className='block mb-2 text-sm font-normal text-[#404040] font-inter leading-7'
+          >
+            Rate
+          </label>
+          <input
+            type='number'
+            name='rate'
+            id='small-input'
+            placeholder='% 0.00'
+            className='border text-sm border-[#EBEBEB] text-[#c0c0c0] sm:text-sm  rounded-md leading-5 font-normal font-inter  block w-full p-2.5'
+          />
+        </div>
+        <div className='w-full '>
+          <label
+            htmlFor='discount'
+            className='block mb-2 text-sm font-normal text-[#404040] font-inter leading-7'
+          >
+            Discount
+          </label>
+          <input
+            type='number'
+            name='discount'
+            id='small-input'
+            placeholder='$ 0.00'
+            className='border text-sm border-[#EBEBEB] text-[#c0c0c0] sm:text-sm  rounded-md leading-5 font-normal font-inter  block w-full p-2.5'
+          />
+        </div>
+      </div>
+      <div className='flex flex-row flex-wrap justify-between mt-6'>
+        <div className=' w-[32.5%]'>
+          <label
+            htmlFor='rate'
+            className='block mb-2 text-sm font-normal text-[#404040] font-inter leading-7'
+          >
+            Rate
+          </label>
+          <input
+            type='number'
+            name='rate'
+            id='small-input'
+            placeholder='% 0.00'
+            className='border text-sm border-[#EBEBEB] text-[#c0c0c0] sm:text-sm  rounded-md leading-5 font-normal font-inter  block w-full p-2.5'
+          />
+        </div>
+        <div className=' '>
+          <button className='flex py-[10px] px-[16px]  text-[#FF3D00] text-sm rounded items-center gap-2'>
+            <img src="/quote/quotedeleteiconforform.svg" className='w-3.5 h-3.5  ' alt='' />
+            Remove
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+        </div>;
       case 'history':
-        return (
-          <div className='mt-5 relative overflow-x-auto'>
-            <table className='w-full text-sm text-left rtl:text-right text-#404040]'>
-              <thead className='text-sm font-bold font-inter leading-7 text-gray-700 uppercase bg-[#F4F4F4] '>
-                <tr>
-                  <th scope='col' className='px-6 py-3'>
-                    User
-                  </th>
-                  <th scope='col' className='px-6 text-[12px] py-3'>
-                    Type
-                  </th>
-                  <th scope='col' className='px-6 py-3'>
-                    Date
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className='bg-white border-b border-[#EBEBEB] font-inter font-normal text-[#404040] leading-7'>
-                  <th scope='row' className='px-6 py-4 '>
-                    Jamal Saied
-                  </th>
-                  <td className='px-6 py-4 uppercase '>INSERT</td>
-                  <td className='px-6 py-4'>2024-01-01</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        );
+        return <div className='mt-5  relative overflow-x-auto'>
+        <table className='w-full text-sm text-left rtl:text-right text-#404040]'>
+          <thead className='text-sm font-bold font-inter leading-7 text-gray-700 uppercase bg-[#F4F4F4] '>
+            <tr>
+              <th scope='col' className='px-6 py-3'>
+                User
+              </th>
+              <th scope='col' className='px-6 text-[12px] py-3'>
+                Type
+              </th>
+              <th scope='col' className='px-6 py-3'>
+                Date
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr className='bg-white border-b border-[#EBEBEB] font-inter font-normal text-[#404040] leading-7'>
+              <th scope='row' className='px-6 py-4 '>
+                Jamal Saied
+              </th>
+              <td className='px-6 py-4  uppercase '>INSERT</td>
+              <td className='px-6 py-4'>2024-01-01</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>;
       default:
         return null;
     }
@@ -228,8 +209,8 @@ export default function ProfileSettingsNav({ className }: { className?: string }
           layout === LAYOUT_OPTIONS.LITHIUM
             ? 'top-[66px] sm:top-[70px] md:top-[73px] '
             : layout === LAYOUT_OPTIONS.BERYLLIUM
-            ? 'top-[62px] sm:top-[72px] 2xl:top-[72px]'
-            : 'top-[62px] md:top-[71px]',
+              ? 'top-[62px] sm:top-[72px] 2xl:top-[72px]'
+              : 'top-[62px] md:top-[71px]',
           layout === LAYOUT_OPTIONS.BERYLLIUM &&
             expandedLeft &&
             'xl:-ms-1 xl:px-0 3xl:-ms-2 3xl:ps-0 4xl:-ms-2'
@@ -283,10 +264,8 @@ export default function ProfileSettingsNav({ className }: { className?: string }
         </div>
       </div>
       <div className="content">
-        {renderContent({})}
-        
+        {renderContent()}
       </div>
     </>
   );
 }
-  
