@@ -22,9 +22,9 @@ import ProductVariants from '@/app/shared/quotes/create-edit/product-variants';
 import ProductTaxonomies from '@/app/shared/quotes/create-edit/product-tags';
 import FormFooter from '@/components/form-footer';
 import {
-  CreateProductInput,
-  productFormSchema,
-} from '@/utils/validators/create-product.schema';
+  CreateQuoteInput,
+  quoteFormSchema,
+} from '@/utils/validators/create-quote.schema';
 import { useLayout } from '@/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/config/enums';
 import DetialandHistoryTab from "../../detailsandhistorytabs/detailsandhistorytabs";
@@ -45,22 +45,22 @@ const MAP_STEP_TO_COMPONENT = {
 interface IndexProps {
   slug?: string;
   className?: string;
-  product?: CreateProductInput;
+  quote?: CreateQuoteInput;
 }
 
 export default function CreateEditProduct({
   slug,
-  product,
+  quote,
   className,
 }: IndexProps) {
   const { layout } = useLayout();
   const [isLoading, setLoading] = useState(false);
-  const methods = useForm<CreateProductInput>({
-    resolver: zodResolver(productFormSchema),
-    defaultValues: defaultValues(product),
+  const methods = useForm<CreateQuoteInput>({
+    resolver: zodResolver(quoteFormSchema),
+    defaultValues: defaultValues(quote),
   });
 
-  const onSubmit: SubmitHandler<CreateProductInput> = (data) => {
+  const onSubmit: SubmitHandler<CreateQuoteInput> = (data) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);

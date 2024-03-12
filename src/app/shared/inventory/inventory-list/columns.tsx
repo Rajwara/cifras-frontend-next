@@ -14,7 +14,7 @@ import { routes } from '@/config/routes';
 import EyeIcon from '@/components/icons/eye';
 import PencilIcon from '@/components/icons/pencil';
 import AvatarCard from '@/components/ui/avatar-card';
-import { ProductType } from '@/data/products-data';
+import { InventeryType } from '@/data/inventery-data';
 import { PiStarFill } from 'react-icons/pi';
 import DeletePopover from '@/app/shared/delete-popover';
 
@@ -159,7 +159,7 @@ export const getColumns = ({
     key: 'itemname',
     width: 300,
     hidden: 'customer',
-    render: (_: string, row: ProductType) => (
+    render: (_: string, row: InventeryType) => (
       <AvatarCard
         src={row.image}
         name={row.itemname}
@@ -231,6 +231,60 @@ export const getColumns = ({
       <Text className="font-medium text-gray-700">${value}</Text>
     ),
   },
+  {
+    title: (
+      <HeaderCell
+        title="On Hand Qty"
+        sortable
+        ascending={
+          sortConfig?.direction === 'asc' && sortConfig?.key === 'onhandqty'
+        }
+      />
+    ),
+    onHeaderCell: () => onHeaderCellClick('onhandqty'),
+    dataIndex: 'onhandqty',
+    key: 'onhandqty',
+    width: 150,
+    render: (value: string) => (
+      <Text className="font-medium text-gray-700">${value}</Text>
+    ),
+  },
+  {
+    title: (
+      <HeaderCell
+        title="Incoming Qty"
+        sortable
+        ascending={
+          sortConfig?.direction === 'asc' && sortConfig?.key === 'incomingqty'
+        }
+      />
+    ),
+    onHeaderCell: () => onHeaderCellClick('incomingqty'),
+    dataIndex: 'incomingqty',
+    key: 'incomingqty',
+    width: 150,
+    render: (value: string) => (
+      <Text className="font-medium text-gray-700">${value}</Text>
+    ),
+  },
+  {
+    title: (
+      <HeaderCell
+        title="Reserved Qty"
+        sortable
+        ascending={
+          sortConfig?.direction === 'asc' && sortConfig?.key === 'reservedqty'
+        }
+      />
+    ),
+    onHeaderCell: () => onHeaderCellClick('reservedqty'),
+    dataIndex: 'reservedqty',
+    key: 'reservedqty',
+    width: 150,
+    render: (value: string) => (
+      <Text className="font-medium text-gray-700">${value}</Text>
+    ),
+  },
   // {
   //   title: <HeaderCell title="Rating" />,
   //   dataIndex: 'rating',
@@ -238,20 +292,20 @@ export const getColumns = ({
   //   width: 200,
   //   render: (rating: number[]) => getRating(rating),
   // },
-  {
-    title: <HeaderCell title="Status" />,
-    dataIndex: 'status',
-    key: 'status',
-    width: 120,
-    render: (value: string) => getStatusBadge(value),
-  },
+  // {
+  //   title: <HeaderCell title="Status" />,
+  //   dataIndex: 'status',
+  //   key: 'status',
+  //   width: 120,
+  //   render: (value: string) => getStatusBadge(value),
+  // },
   {
     // Need to avoid this issue -> <td> elements in a large <table> do not have table headers.
     title: <HeaderCell title="Actions" className="opacity-0" />,
     dataIndex: 'action',
     key: 'action',
     width: 120,
-    render: (_: string, row: ProductType) => (
+    render: (_: string, row: InventeryType) => (
       <div className="flex items-center justify-end gap-3 pe-4">
         <Tooltip
           size="sm"

@@ -27,7 +27,7 @@ export function defaultValues(supplier?: CreateSupplierInput) {
     phoneNumber: supplier?.phoneNumber ?? '',
     ruc: supplier?.ruc ?? "",
     dv: supplier?.dv ?? "",
-    address: supplier?.address ?? "",
+    // address: supplier?.address ?? "",
    
   };
 }
@@ -38,7 +38,7 @@ export const supplierData = {
   phoneNumber: 'Grocery',
   ruc: "This is RUC",
   dv: "This is DV",
-  address: "This is addres",  
+  // address: "This is addres",  
 };
 
 

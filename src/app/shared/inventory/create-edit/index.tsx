@@ -22,9 +22,9 @@ import InventoryVariants from '@/app/shared/inventory/create-edit/product-varian
 import InventoryTaxonomies from '@/app/shared/inventory/create-edit/product-tags';
 import FormFooter from '@/components/form-footer';
 import {
-  CreateProductInput,
-  productFormSchema,
-} from '@/utils/validators/create-product.schema';
+  CreateInventeryInput,
+  inventeryFormSchema,
+} from '@/utils/validators/create-inventery.schema';
 import { useLayout } from '@/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/config/enums';
 import DetialandHistoryTab from "../../detailsandhistorytabs/detailsandhistorytabs";
@@ -45,7 +45,7 @@ const MAP_STEP_TO_COMPONENT = {
 interface IndexProps {
   slug?: string;
   className?: string;
-  product?: CreateProductInput;
+  product?: CreateInventeryInput;
 }
 
 export default function CreateEditProduct({
@@ -55,12 +55,12 @@ export default function CreateEditProduct({
 }: IndexProps) {
   const { layout } = useLayout();
   const [isLoading, setLoading] = useState(false);
-  const methods = useForm<CreateProductInput>({
-    resolver: zodResolver(productFormSchema),
+  const methods = useForm<CreateInventeryInput>({
+    resolver: zodResolver(inventeryFormSchema),
     defaultValues: defaultValues(product),
   });
 
-  const onSubmit: SubmitHandler<CreateProductInput> = (data) => {
+  const onSubmit: SubmitHandler<CreateInventeryInput> = (data) => {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);

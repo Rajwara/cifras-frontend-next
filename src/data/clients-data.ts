@@ -1,156 +1,229 @@
 export type ClientType = {
-    id: string;
-    name: string;
-    alias: string;
-    phoneNumber: string;
-    description: string;
-    status: string;
-  };
-  
-  export const clientData = [
-    {
-      id: '0o02051402',
-      name: 'Tasty Metal Shirt',
-     alias:"ABC",
-     phoneNumber:"03057725129",
-     description:"This is description page",
-     status: 'Draft',
-    },
-    {
-      id: '0o17477064',
-      name: 'Modern Cotton Gloves',
-      alias:"ABC",
-     phoneNumber:"03057725129",
-     description:"This is description page",
-     status: 'Pending',
-    },
-    {
-      id: '0o02374305',
-      name: 'Rustic Steel Computer',
-      alias:"ABC",
-     phoneNumber:"03057725129",
-     description:"This is description page",
-     status: 'Draft',
-    },
-    {
-      id: '0o02602714',
-      name: 'Licensed Concrete Cheese',
-      alias:"ABC",
-      phoneNumber:"03057725129",
-      description:"This is description page",
-      status: 'Pending',
-    },
-    {
-      id: '0o54011366',
-      name: 'Electronic Rubber Table',
-      alias:"ABC",
-     phoneNumber:"03057725129",
-     description:"This is description page",
-     status: 'Draft',
-    },
-    {
-      id: '0o24033230',
-      name: 'Gorgeous Bronze Gloves',
-      alias:"ABC",
-      phoneNumber:"03057725129",
-      description:"This is description page",
-      status: 'Publish',
-    },
-    {
-      id: '0o27342230',
-      name: 'Practical Steel Keyboard',
-      alias:"ABC",
-     phoneNumber:"03057725129",
-     description:"This is description page",
-     status: 'Publish',
-    },
-    {
-      id: '0o64235224',
-      name: 'Sleek Frozen Ball',
-      alias:"ABC",
-     phoneNumber:"03057725129",
-     description:"This is description page",
-     status: 'Pending',
-    },
-    {
-      id: '0o63671734',
-      name: 'Ergonomic Frozen Pants',
-      alias:"ABC",
-      phoneNumber:"03057725129",
-      description:"This is description page",
-      status: 'Pending',
-    },
-    {
-      id: '0o60206537',
-    name: 'Sleek Fresh Chair',
+  id: string;
+  name: string;
+  alias: string;
+  phoneNumber: string;
+  status: string;
+  email:string;
+  ruc:string;
+  dv:string;
+};
+
+export const clientData = [
+  {
+    id: '0o02051402',
+    name: 'Tasty Metal Shirt',
+   alias:"ABC",
+   phoneNumber:"03057725129",
+   email:"asadullah559921@gmail.com",
+   ruc:"This is Ruc",
+   dv:"This is Dv",
+   status: 'Draft',
+   image:
+   'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+  {
+    id: '0o17477064',
+    name: 'Modern Cotton Gloves',
+    alias:"ABC",
+   phoneNumber:"03057725129",
+   email:"asadullah559921@gmail.com",
+   ruc:"This is Ruc",
+   dv:"This is Dv",
+   status: 'Pending',
+   image:
+   'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+  {
+    id: '0o02374305',
+    name: 'Rustic Steel Computer',
+    alias:"ABC",
+   phoneNumber:"03057725129",
+   email:"asadullah559921@gmail.com",
+   ruc:"This is Ruc",
+   dv:"This is Dv",
+   status: 'Draft',
+   image:
+   'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+  {
+    id: '0o02602714',
+    name: 'Licensed Concrete Cheese',
     alias:"ABC",
     phoneNumber:"03057725129",
-    description:"This is description page",
+    email:"asadullah559921@gmail.com",
+   ruc:"This is Ruc",
+   dv:"This is Dv",
+    status: 'Pending',
+    image:
+    'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+  {
+    id: '0o54011366',
+    name: 'Electronic Rubber Table',
+    alias:"ABC",
+   phoneNumber:"03057725129",
+   email:"asadullah559921@gmail.com",
+   ruc:"This is Ruc",
+   dv:"This is Dv",
+   status: 'Draft',
+   image:
+   'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+  {
+    id: '0o24033230',
+    name: 'Gorgeous Bronze Gloves',
+    alias:"ABC",
+    phoneNumber:"03057725129",
+    email:"asadullah559921@gmail.com",
+   ruc:"This is Ruc",
+   dv:"This is Dv",
+    status: 'Publish',
+    image:
+    'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+  {
+    id: '0o27342230',
+    name: 'Practical Steel Keyboard',
+    alias:"ABC",
+   phoneNumber:"03057725129",
+   email:"asadullah559921@gmail.com",
+   ruc:"This is Ruc",
+   dv:"This is Dv",
+   status: 'Publish',
+   image:
+   'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+  {
+    id: '0o64235224',
+    name: 'Sleek Frozen Ball',
+    alias:"ABC",
+   phoneNumber:"03057725129",
+   email:"asadullah559921@gmail.com",
+   ruc:"This is Ruc",
+   dv:"This is Dv",
+   status: 'Pending',
+   image:
+   'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+  {
+    id: '0o63671734',
+    name: 'Ergonomic Frozen Pants',
+    alias:"ABC",
+    phoneNumber:"03057725129",
+    email:"asadullah559921@gmail.com",
+   ruc:"This is Ruc",
+   dv:"This is Dv",
+    status: 'Pending',
+    image:
+    'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+  {
+    id: '0o60206537',
+  name: 'Sleek Fresh Chair',
+  alias:"ABC",
+  phoneNumber:"03057725129",
+  email:"asadullah559921@gmail.com",
+   ruc:"This is Ruc",
+   dv:"This is Dv",
+  status: 'Draft',
+  image:
+  'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+  {
+    id: '0o53505174',
+    name: 'Awesome Granite Chicken',
+    alias:"ABC",
+   phoneNumber:"03057725129",
+   email:"asadullah559921@gmail.com",
+   ruc:"This is Ruc",
+   dv:"This is Dv",
+   status: 'Pending',
+   image:
+   'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+  {
+    id: '0o20360446',
+    name: 'Rustic Concrete Ball',
+    alias:"ABC",
+   phoneNumber:"03057725129",
+   email:"asadullah559921@gmail.com",
+   ruc:"This is Ruc",
+   dv:"This is Dv",
+   status: 'Publish',
+   image:
+   'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+  {
+    id: '0o05416424',
+    name: 'Electronic Concrete Computer',
+    alias:"ABC",
+    phoneNumber:"03057725129",
+    email:"asadullah559921@gmail.com",
+    ruc:"This is Ruc",
+    dv:"This is Dv",
     status: 'Draft',
-    },
-    {
-      id: '0o53505174',
-      name: 'Awesome Granite Chicken',
-      alias:"ABC",
-     phoneNumber:"03057725129",
-     description:"This is description page",
-     status: 'Pending',
-    },
-    {
-      id: '0o20360446',
-      name: 'Rustic Concrete Ball',
-      alias:"ABC",
-     phoneNumber:"03057725129",
-     description:"This is description page",
-     status: 'Publish',
-    },
-    {
-      id: '0o05416424',
-      name: 'Electronic Concrete Computer',
-      alias:"ABC",
-      phoneNumber:"03057725129",
-      description:"This is description page",
-      status: 'Draft',
-    },
-    {
-      id: '0o52110435',
-      name: 'Small Wooden Pizza',
-      alias:"ABC",
-      phoneNumber:"03057725129",
-      description:"This is description page",
-      status: 'Draft',
-    },
-    {
-      id: '0o40214300',
-      name: 'Tasty Bronze Salad',
-      alias:"ABC",
-     phoneNumber:"03057725129",
-     description:"This is description page",
-     status: 'Draft',
-    },
-    {
-      id: '0o02051402',
-      name: 'Tasty Metal Shirt',
-      alias:"ABC",
-      phoneNumber:"03057725129",
-      description:"This is description page",
-      status: 'Pending',
-    },
-    {
-      id: '0o17477064',
-      name: 'Modern Cotton Gloves',
-      alias:"ABC",
-      phoneNumber:"03057725129",
-      description:"This is description page",
-      status: 'Pending',
-    },
-    {
-      id: '0o02374305',
-      name: 'Rustic Steel Computer',
-      alias:"ABC",
-      phoneNumber:"03057725129",
-      description:"This is description page",
-      status: 'Publish',
-    },
-  ];
-  
+    image:
+    'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+  {
+    id: '0o52110435',
+    name: 'Small Wooden Pizza',
+    alias:"ABC",
+    phoneNumber:"03057725129",
+    email:"asadullah559921@gmail.com",
+   ruc:"This is Ruc",
+   dv:"This is Dv",
+    status: 'Draft',
+    image:
+    'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+  {
+    id: '0o40214300',
+    name: 'Tasty Bronze Salad',
+    alias:"ABC",
+   phoneNumber:"03057725129",
+   email:"asadullah559921@gmail.com",
+   ruc:"This is Ruc",
+   dv:"This is Dv",
+   status: 'Draft',
+   image:
+   'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+  {
+    id: '0o02051402',
+    name: 'Tasty Metal Shirt',
+    alias:"ABC",
+    phoneNumber:"03057725129",
+    email:"asadullah559921@gmail.com",
+    ruc:"This is Ruc",
+    dv:"This is Dv",
+    status: 'Pending',
+    image:
+    'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+  {
+    id: '0o17477064',
+    name: 'Modern Cotton Gloves',
+    alias:"ABC",
+    phoneNumber:"03057725129",
+    email:"asadullah559921@gmail.com",
+   ruc:"This is Ruc",
+   dv:"This is Dv",
+    status: 'Pending',
+    image:
+    'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+  {
+    id: '0o02374305',
+    name: 'Rustic Steel Computer',
+    alias:"ABC",
+    phoneNumber:"03057725129",
+    email:"asadullah559921@gmail.com",
+   ruc:"This is Ruc",
+   dv:"This is Dv",
+    status: 'Publish',
+    image:
+    'https://isomorphic-furyroad.s3.amazonaws.com/public/products/modern/7.webp',
+  },
+];

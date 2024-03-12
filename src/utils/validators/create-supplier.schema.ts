@@ -9,7 +9,7 @@ export const SupplierFormSchema = z.object({
   phoneNumber: z.string().min(1,{message: messages.phoneNumberRequired}),
   ruc: z.string().min(1,{message: messages.rucRequired}),
   dv: z.string().min(1,{message: messages.dvRequired}),
-  address: z.string().min(1,{message: messages.addressRequired}),
+  // address: z.string().min(1,{message: messages.addressRequired}),
   
 });
 

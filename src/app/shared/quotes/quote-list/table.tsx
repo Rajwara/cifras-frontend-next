@@ -6,9 +6,9 @@ import { useTable } from '@/hooks/use-table';
 import { useColumn } from '@/hooks/use-column';
 import { Button } from 'rizzui';
 import ControlledTable from '@/components/controlled-table';
-import { getColumns } from '@/app/shared/products/product-list/columns';
+import { getColumns } from '@/app/shared/quotes/quote-list/columns';
 const FilterElement = dynamic(
-  () => import('@/app/shared/products/product-list/filter-element'),
+  () => import('@/app/shared/quotes/quote-list/filter-element'),
   { ssr: false }
 );
 const TableFooter = dynamic(() => import('@/app/shared/table-footer'), {

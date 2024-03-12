@@ -26,7 +26,10 @@ export function defaultValues(client?: CreateClientInput) {
     alias: client?.alias ?? '',
     description: client?.description ?? '',
     phoneNumber: client?.phoneNumber ?? "",
-   
+    email: client?.email ?? "",
+    image: client?.image ?? undefined,
+    ruc: client?.ruc ?? "",
+    dv: client?.dv ?? "",
   };
 }
 
@@ -35,6 +38,10 @@ export const clientData = {
   description: 'Fresh Express Iceberg Garden Salad Blend',
   alias: 'Vendor',
   phoneNumber: +103333333333, 
+  image: undefined,
+  email:"asad55992!@gmail.com",
+  ruc:" This is Ruc",
+  dv:"This is Dv",
 };
 
 

@@ -206,6 +206,36 @@ export default function ProductSummary({ className }: { className?: string }) {
               />
             )}
           />
+            <Input
+        label="Tax Amount"
+        placeholder="0.00"
+        {...register('taxamount')}
+        error={errors.taxamount?.message as string}
+       
+      />
+       {/* <Controller
+                    name="status"
+                    control={control}
+                    render={({ field: { name, onChange, value } }) => (
+                      <Select
+                        dropdownClassName="!z-10"
+                        inPortal={false}
+                        options={statusOptions}
+                        value={value}
+                        onChange={onChange}
+                        name={name}
+                        label="Status"
+                        error={errors?.status?.message}
+                        getOptionValue={(option) => option.value}
+                        getOptionDisplayValue={(option) =>
+                          renderOptionDisplayValue(option.value as string)
+                        }
+                        displayValue={(selected: string) =>
+                          renderOptionDisplayValue(selected)
+                        }
+                      />
+                    )}
+                  /> */}
   <Textarea
         label="Notes"
         placeholder="Enter your notes"

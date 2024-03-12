@@ -13,6 +13,8 @@ const addressSchema = z.object({
   city: z.string().min(1, { message: messages.cityIsRequired }),
   zip: z.string().min(1, { message: messages.zipCodeRequired }),
   street: z.string().min(1, { message: messages.streetIsRequired }),
+  salesPerson:z.string().min(1, { message: messages.salesPersonRequired }),
+ 
 });
 
 // form zod validation schema
@@ -28,6 +30,7 @@ export const orderFormSchema = z.object({
       city: z.string().optional(),
       zip: z.string().optional(),
       street: z.string().optional(),
+      salesPerson: z.string().optional(),
     })
     .optional(),
   note: z.string().optional(),

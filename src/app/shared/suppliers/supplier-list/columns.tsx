@@ -196,22 +196,22 @@ export const getColumns = ({
       <Text className="font-medium text-gray-700">{value}</Text>
     ),
   },
-  {
-    title: <HeaderCell title="Address" sortable />,
-    dataIndex: 'address',
-    key: 'address',
-    width: 150,
-    render: (value: string) => (
-      <Text className="font-medium text-gray-700">{value}</Text>
-    ),
-  },
-  {
-    title: <HeaderCell title="Status" />,
-    dataIndex: 'status',
-    key: 'status',
-    width: 120,
-    render: (value: string) => getStatusBadge(value),
-  },
+  // {
+  //   title: <HeaderCell title="Address" sortable />,
+  //   dataIndex: 'address',
+  //   key: 'address',
+  //   width: 150,
+  //   render: (value: string) => (
+  //     <Text className="font-medium text-gray-700">{value}</Text>
+  //   ),
+  // },
+  // {
+  //   title: <HeaderCell title="Status" />,
+  //   dataIndex: 'status',
+  //   key: 'status',
+  //   width: 120,
+  //   render: (value: string) => getStatusBadge(value),
+  // },
   {
     // Need to avoid this issue -> <td> elements in a large <table> do not have table headers.
     title: <HeaderCell title="Actions" className="opacity-0" />,

@@ -14,9 +14,11 @@ import { routes } from '@/config/routes';
 import EyeIcon from '@/components/icons/eye';
 import PencilIcon from '@/components/icons/pencil';
 import AvatarCard from '@/components/ui/avatar-card';
-import { ProductType } from '@/data/products-data';
+import { quoteType } from '@/data/quotes-data';
 import { PiStarFill } from 'react-icons/pi';
 import DeletePopover from '@/app/shared/delete-popover';
+import DateCell from '@/components/ui/date-cell';
+
 
 // get status badge
 function getStatusBadge(status: string) {
@@ -154,30 +156,76 @@ export const getColumns = ({
     ),
   },
   {
-    title: <HeaderCell title="Product" />,
-    dataIndex: 'itemname',
-    key: 'itemname',
+    title: <HeaderCell title="Quote Number" />,
+    dataIndex: 'quoteNumber',
+    key: 'quoteNumber',
     width: 300,
     hidden: 'customer',
-    render: (_: string, row: ProductType) => (
-      <AvatarCard
-        src={row.image}
-        name={row.itemname}
-        description={row.vendor}
-        avatarProps={{
-          name: row.itemname,
-          size: 'lg',
-          className: 'rounded-lg',
-        }}
-      />
-    ),
+ render: (vendor: string) => <Text className="text-sm">SKU-{vendor}</Text>,
   },
   {
-    title: <HeaderCell title="Vendor" />,
-    dataIndex: 'vendor',
-    key: 'vendor',
-    width: 150,
-    render: (vendor: string) => <Text className="text-sm">SKU-{vendor}</Text>,
+    title: (
+      <HeaderCell
+        title="Quote Date"
+        sortable
+        ascending={
+          sortConfig?.direction === 'asc' && sortConfig?.key === 'quoteDate'
+        }
+      />
+    ),
+    onHeaderCell: () => onHeaderCellClick('quoteDate'),
+    dataIndex: 'quoteDate',
+    key: 'quoteDate',
+    width: 200,
+    render: (value: Date) => <DateCell date={value} />,
+  },
+  {
+    title: (
+      <HeaderCell
+        title="Notification Date"
+        sortable
+        ascending={
+          sortConfig?.direction === 'asc' && sortConfig?.key === 'notificationDate'
+        }
+      />
+    ),
+    onHeaderCell: () => onHeaderCellClick('notificationDate'),
+    dataIndex: 'notificationDate',
+    key: 'notificationDate',
+    width: 200,
+    render: (value: Date) => <DateCell date={value} />,
+  },
+  {
+    title: (
+      <HeaderCell
+        title="Expiration Date"
+        sortable
+        ascending={
+          sortConfig?.direction === 'asc' && sortConfig?.key === 'expirationDate'
+        }
+      />
+    ),
+    onHeaderCell: () => onHeaderCellClick('expirationDate'),
+    dataIndex: 'expirationDate',
+    key: 'expirationDate',
+    width: 200,
+    render: (value: Date) => <DateCell date={value} />,
+  },
+  {
+    title: <HeaderCell title="Tax Amount" />,
+    dataIndex: 'taxAmount',
+    key: 'taxAmount',
+    width: 300,
+    hidden: 'customer',
+ render: (vendor: string) => <Text className="text-sm">SKU-{vendor}</Text>,
+  },
+  {
+    title: <HeaderCell title="Notes" />,
+    dataIndex: 'notes',
+    key: 'notes',
+    width: 300,
+    hidden: 'customer',
+ render: (vendor: string) => <Text className="text-sm">SKU-{vendor}</Text>,
   },
   // {
   //   title: (
@@ -195,42 +243,7 @@ export const getColumns = ({
   //   width: 200,
   //   render: (stock: number) => getStockStatus(stock),
   // },
-  {
-    title: (
-      <HeaderCell
-        title="Unit Price"
-        sortable
-        ascending={
-          sortConfig?.direction === 'asc' && sortConfig?.key === 'unitprice'
-        }
-      />
-    ),
-    onHeaderCell: () => onHeaderCellClick('unitprice'),
-    dataIndex: 'unitprice',
-    key: 'unitprice',
-    width: 150,
-    render: (value: string) => (
-      <Text className="font-medium text-gray-700">${value}</Text>
-    ),
-  },
-  {
-    title: (
-      <HeaderCell
-        title="Unit of Measure"
-        sortable
-        ascending={
-          sortConfig?.direction === 'asc' && sortConfig?.key === 'unitofMeasure'
-        }
-      />
-    ),
-    onHeaderCell: () => onHeaderCellClick('unitofMeasure'),
-    dataIndex: 'unitofMeasure',
-    key: 'unitofMeasure',
-    width: 150,
-    render: (value: string) => (
-      <Text className="font-medium text-gray-700">${value}</Text>
-    ),
-  },
+ 
   // {
   //   title: <HeaderCell title="Rating" />,
   //   dataIndex: 'rating',
@@ -251,7 +264,7 @@ export const getColumns = ({
     dataIndex: 'action',
     key: 'action',
     width: 120,
-    render: (_: string, row: ProductType) => (
+    render: (_: string, row: quoteType) => (
       <div className="flex items-center justify-end gap-3 pe-4">
         <Tooltip
           size="sm"

@@ -69,13 +69,13 @@ export default function ProductSummary({ className }: { className?: string }) {
         {...register('unitofMeasure')}
         error={errors.unitofMeasure?.message as string}
       />
-      <Input
+      {/* <Input
         label="Vendor"
         placeholder="Vendor"
         {...register('vendor')}
         error={errors.vendor?.message as string}
         className="col-span-full"
-      />
+      /> */}
        <Input
         label="On Hand Qty"
         placeholder="00"
@@ -93,7 +93,7 @@ export default function ProductSummary({ className }: { className?: string }) {
         placeholder="00"
         {...register('reservedqty')}
         error={errors.reservedqty?.message as string}
-        className="col-span-full"
+        // className="col-span-full"
       />
 
    

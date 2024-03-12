@@ -2,16 +2,15 @@ import { z } from 'zod';
 import { messages } from '@/config/messages';
 import { fileSchema } from '@/utils/validators/common-rules';
 export const purchaseorderFormSchema = z.object({
-  name: z.string().min(1, { message: messages.nameRequired }),
-  description: z.string().optional(), 
-  unitprice: z.coerce.number().min(1, { message: messages.unitpriceRequired }),
-  unitofmeasure: z.coerce.number().min(1, { message: messages.unitofMeasureRequired }),
-  phoneNumber: z.coerce.number().min(1, { message: messages.phoneNumberRequired }),
+  ponumber: z.coerce.number().min(1, { message: messages.ponumberRequired }),
+  status: z.string().min(1, { message: messages.statusRequired }),
+  notes: z.string().optional(), 
+  subtotal: z.coerce.number().min(1, { message: messages.subtotalRequired }),
+  tax: z.coerce.number().min(1, { message: messages.taxRequired }),
+  total: z.coerce.number().min(1, { message: messages.totalRequired }),
   dateofpurchasing: z.coerce.number().min(1, { message: messages.dateofpurchasingRequired }),
-  availablestock: z.coerce.number().min(1, { message: messages.availablestockRequired }),
-  Vendor: z.coerce.number().min(1, { message: messages.vendorRequired }),
-  alias: z.string().min(1, { message: messages.aliasRequired }),
-  image: z.array(fileSchema).optional(),
+  shipping: z.string().min(1, { message: messages.shippingRequired }),
+  // image: z.array(fileSchema).optional(),
 
 
 });

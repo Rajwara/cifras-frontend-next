@@ -4,7 +4,7 @@ import { routes } from '@/config/routes';
 import { Button } from 'rizzui';
 import PageHeader from '@/app/shared/page-header';
 import QuoteTable from '@/app/shared/quotes/quote-list/table';
-import { productsData } from '@/data/products-data';
+import { quotesData } from '@/data/quotes-data';
 import { metaObject } from '@/config/site.config';
 import ExportButton from '@/app/shared/export-button';
 import QuoteCards from '@/app/shared/quotes/quote-cards/quotecards'
@@ -35,7 +35,7 @@ export default function QuotesPage() {
       <PageHeader title={pageHeader.title} breadcrumb={pageHeader.breadcrumb}>
         <div className="mt-4 flex items-center gap-3 @lg:mt-0">
           <ExportButton
-            data={productsData}
+            data={quotesData}
             fileName="product_data"
             header="ID,Name,Category,Product Thumbnail,SKU,Stock,Price,Status,Rating"
           />
@@ -54,7 +54,7 @@ export default function QuotesPage() {
      <QuoteCards/>
      </div>
 
-      <QuoteTable data={productsData} />
+      <QuoteTable data={quotesData} />
     </>
   );
 }

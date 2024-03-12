@@ -6,5 +6,10 @@ export const clientFormSchema = z.object({
   description: z.string().optional(),
   phoneNumber: z.coerce.number().min(1, { message: messages.phoneNumberRequired }),
   alias: z.string().min(1, { message: messages.aliasRequired }),
+  images: z.array(fileSchema).optional(),
+  email: z.string().min(1, { message: messages.emailRequired }),
+  ruc: z.string().min(1, { message: messages.rucRequired }),
+  dv: z.string().min(1, { message: messages.dvRequired }),
+
 });
 export type CreateClientInput = z.infer<typeof clientFormSchema>;

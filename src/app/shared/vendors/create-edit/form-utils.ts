@@ -27,7 +27,7 @@ export function defaultValues(vendor?: CreateVendorInput) {
     phoneNumber: vendor?.phoneNumber ?? '',
     ruc: vendor?.ruc ?? "",
     dv: vendor?.dv ?? "",
-    address: vendor?.address ?? "",
+    // address: vendor?.address ?? "",
    
   };
 }
@@ -38,7 +38,7 @@ export const vendorData = {
   phoneNumber: '03057725129',
   ruc: "This is RUC",
   dv: "This is DV",
-  address: "This is addres",  
+  // address: "This is addres",  
 };
 
 

@@ -159,8 +159,26 @@ export const getColumns = ({
     key: 'name',
     width: 300,
     hidden: 'customer',
-    render: (name: string) => <Text className="text-sm">{name}</Text>,
+    render: (_: string, row: ClientType) => (
+      <AvatarCard
+        src={row.image}
+        name={row.name}
+        avatarProps={{
+          name: row.name,
+          size: 'lg',
+          className: 'rounded-lg',
+        }}
+      />
+    ),
   },
+  // {
+  //   title: <HeaderCell title="Client Name" />,
+  //   dataIndex: 'name',
+  //   key: 'name',
+  //   width: 300,
+  //   hidden: 'customer',
+  //   render: (name: string) => <Text className="text-sm">{name}</Text>,
+  // },
   {
     title: <HeaderCell title="Alias" />,
     dataIndex: 'alias',
@@ -186,12 +204,40 @@ export const getColumns = ({
   {
     title: (
       <HeaderCell
-        title="Address"
+        title="Email"
         sortable
       />
     ),
-    dataIndex: 'description',
-    key: 'description',
+    dataIndex: 'email',
+    key: 'email',
+    width: 150,
+    render: (value: string) => (
+      <Text className="font-medium text-gray-700">${value}</Text>
+    ),
+  },
+  {
+    title: (
+      <HeaderCell
+        title="Ruc"
+        sortable
+      />
+    ),
+    dataIndex: 'ruc',
+    key:'ruc',
+    width: 150,
+    render: (value: string) => (
+      <Text className="font-medium text-gray-700">${value}</Text>
+    ),
+  },
+  {
+    title: (
+      <HeaderCell
+        title="DV"
+        sortable
+      />
+    ),
+    dataIndex: 'dv',
+    key: 'dv',
     width: 150,
     render: (value: string) => (
       <Text className="font-medium text-gray-700">${value}</Text>

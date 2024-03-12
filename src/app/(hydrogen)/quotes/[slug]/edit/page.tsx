@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { PiPlusBold } from 'react-icons/pi';
-import { productData } from '@/app/shared/quotes/create-edit/form-utils';
+import { quoteData } from '@/app/shared/quotes/create-edit/form-utils';
 import CreateEditQuote from '@/app/shared/quotes/create-edit';
 import PageHeader from '@/app/shared/page-header';
 import { metaObject } from '@/config/site.config';
@@ -60,7 +60,7 @@ export default function EditQuotePage({
         </Link>
       </PageHeader>
 
-      <CreateEditQuote slug={params.slug} product={productData} />
+      <CreateEditQuote slug={params.slug} product={quoteData} />
     </>
   );
 }

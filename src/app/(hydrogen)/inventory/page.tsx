@@ -4,7 +4,7 @@ import { routes } from '@/config/routes';
 import { Button } from 'rizzui';
 import PageHeader from '@/app/shared/page-header';
 import InventoryTable from '@/app/shared/inventory/inventory-list/table';
-import { productsData } from '@/data/products-data';
+import { inventeryData } from '@/data/inventery-data';
 import { metaObject } from '@/config/site.config';
 import ExportButton from '@/app/shared/export-button';
 import NumberOfInventory from '@/app/shared/inventory/inventory-cards/numberofinventory';
@@ -44,7 +44,7 @@ export default function InventoryPage() {
 
         <div className="mt-4 flex items-center gap-3 @lg:mt-0">
           <ExportButton
-            data={productsData}
+            data={inventeryData}
             fileName="invenotry_data"
             header="ID,Name,Category,Inventory Thumbnail,SKU,Stock,Price,Status,Rating"
           />
@@ -63,7 +63,7 @@ export default function InventoryPage() {
      <InventoryCards/>
      </div>
 
-      <InventoryTable data={productsData} />
+      <InventoryTable data={inventeryData} />
     </>
   );
 }

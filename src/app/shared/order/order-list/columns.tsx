@@ -76,62 +76,92 @@ export const getColumns = ({
       />
     ),
   },
+  // {
+  //   title: <HeaderCell title="Items" />,
+  //   dataIndex: 'items',
+  //   key: 'items',
+  //   width: 150,
+  //   render: (value: string) => (
+  //     <Text className="font-medium text-gray-700">{value}</Text>
+  //   ),
+  // },
+  // {
+  //   title: (
+  //     <HeaderCell
+  //       title="Price"
+  //       sortable
+  //       ascending={
+  //         sortConfig?.direction === 'asc' && sortConfig?.key === 'price'
+  //       }
+  //     />
+  //   ),
+  //   onHeaderCell: () => onHeaderCellClick('price'),
+  //   dataIndex: 'price',
+  //   key: 'price',
+  //   width: 150,
+  //   render: (value: string) => (
+  //     <Text className="font-medium text-gray-700">${value}</Text>
+  //   ),
+  // },
   {
-    title: <HeaderCell title="Items" />,
-    dataIndex: 'items',
-    key: 'items',
-    width: 150,
-    render: (value: string) => (
-      <Text className="font-medium text-gray-700">{value}</Text>
-    ),
+    title: <HeaderCell title="State" />,
+    dataIndex: 'state',
+    key: 'state',
+    width: 120,
+    render: (value: string) => <Text>#{value}</Text>,
+  },
+  {
+    title: <HeaderCell title="Sales Person" />,
+    dataIndex: 'salesPerson',
+    key: 'salesPerson',
+    width: 120,
+    render: (value: string) => <Text>#{value}</Text>,
   },
   {
     title: (
       <HeaderCell
-        title="Price"
+        title="Order Date"
         sortable
         ascending={
-          sortConfig?.direction === 'asc' && sortConfig?.key === 'price'
+          sortConfig?.direction === 'asc' && sortConfig?.key === 'orderDate'
         }
       />
     ),
-    onHeaderCell: () => onHeaderCellClick('price'),
-    dataIndex: 'price',
-    key: 'price',
-    width: 150,
-    render: (value: string) => (
-      <Text className="font-medium text-gray-700">${value}</Text>
-    ),
-  },
-  {
-    title: (
-      <HeaderCell
-        title="Created"
-        sortable
-        ascending={
-          sortConfig?.direction === 'asc' && sortConfig?.key === 'createdAt'
-        }
-      />
-    ),
-    onHeaderCell: () => onHeaderCellClick('createdAt'),
-    dataIndex: 'createdAt',
-    key: 'createdAt',
+    onHeaderCell: () => onHeaderCellClick('orderDate'),
+    dataIndex: 'orderDate',
+    key: 'orderDate',
     width: 200,
     render: (value: Date) => <DateCell date={value} />,
   },
   {
     title: (
       <HeaderCell
-        title="Modified"
+        title="Notification Date"
         sortable
         ascending={
-          sortConfig?.direction === 'asc' && sortConfig?.key === 'updatedAt'
+          sortConfig?.direction === 'asc' && sortConfig?.key === 'notificationDate'
         }
       />
     ),
-    onHeaderCell: () => onHeaderCellClick('updatedAt'),
-    dataIndex: 'updatedAt',
-    key: 'updatedAt',
+    onHeaderCell: () => onHeaderCellClick('notificationDate'),
+    dataIndex: 'notificationDate',
+    key: 'notificationDate',
+    width: 200,
+    render: (value: Date) => <DateCell date={value} />,
+  },
+  {
+    title: (
+      <HeaderCell
+        title="Expiration Date"
+        sortable
+        ascending={
+          sortConfig?.direction === 'asc' && sortConfig?.key === 'expirationDate'
+        }
+      />
+    ),
+    onHeaderCell: () => onHeaderCellClick('expirationDate'),
+    dataIndex: 'expirationDate',
+    key: 'expirationDate',
     width: 200,
     render: (value: Date) => <DateCell date={value} />,
   },

@@ -153,85 +153,33 @@ export const getColumns = ({
       </div>
     ),
   },
+  // {
+  //   title: <HeaderCell title="Purchase Order" />,
+  //   dataIndex: 'name',
+  //   key: 'name',
+  //   width: 300,
+  //   hidden: 'customer',
+  //   render: (_: string, row: PurchaseOrderType) => (
+  //     <AvatarCard
+  //       src={row.image}
+  //       name={row.name}
+  //       description={row.Vendor}
+  //       avatarProps={{
+  //         name: row.name,
+  //         size: 'lg',
+  //         className: 'rounded-lg',
+  //       }}
+  //     />
+  //   ),
+  // },
   {
     title: <HeaderCell title="Purchase Order" />,
-    dataIndex: 'name',
-    key: 'name',
-    width: 300,
-    hidden: 'customer',
-    render: (_: string, row: PurchaseOrderType) => (
-      <AvatarCard
-        src={row.image}
-        name={row.name}
-        description={row.Vendor}
-        avatarProps={{
-          name: row.name,
-          size: 'lg',
-          className: 'rounded-lg',
-        }}
-      />
-    ),
-  },
-  {
-    title: <HeaderCell title="Vendor" />,
-    dataIndex: 'Vendor',
-    key: 'Vendor',
+    dataIndex: 'ponumber',
+    key: 'ponumber',
     width: 150,
     render: (vendor: string) => <Text className="text-sm">{vendor}</Text>,
   },
 
-  {
-    title: (
-      <HeaderCell
-        title="Stock"
-        sortable
-        ascending={
-          sortConfig?.direction === 'asc' && sortConfig?.key === 'availablestock'
-        }
-      />
-    ),
-    onHeaderCell: () => onHeaderCellClick('availablestock'),
-    dataIndex: 'availablestock',
-    key: 'availablestock',
-    width: 200,
-    render: (availablestock: number) => getStockStatus(availablestock),
-  },
-  {
-    title: (
-      <HeaderCell
-        title="Unit Price"
-        sortable
-        ascending={
-          sortConfig?.direction === 'asc' && sortConfig?.key === 'unitprice'
-        }
-      />
-    ),
-    onHeaderCell: () => onHeaderCellClick('unitprice'),
-    dataIndex: 'unitprice',
-    key: 'unitprice',
-    width: 150,
-    render: (value: string) => (
-      <Text className="font-medium text-gray-700">${value}</Text>
-    ),
-  },
-  {
-    title: (
-      <HeaderCell
-        title="Unit of Measure"
-        sortable
-        ascending={
-          sortConfig?.direction === 'asc' && sortConfig?.key === 'unitofmeasure'
-        }
-      />
-    ),
-    onHeaderCell: () => onHeaderCellClick('unitofmeasure'),
-    dataIndex: 'unitofmeasure',
-    key: 'unitofmeasure',
-    width: 150,
-    render: (value: string) => (
-      <Text className="font-medium text-gray-700">${value}</Text>
-    ),
-  },
   {
     title: <HeaderCell title="Date of Purchasing" />,
     dataIndex: 'dateofpurchasing',
@@ -240,9 +188,86 @@ export const getColumns = ({
     render: (dateofpurchasing: string) => <Text className="text-sm">{dateofpurchasing}</Text>,
   },
   {
-    title: <HeaderCell title="Description" />,
-    dataIndex: 'description',
-    key: 'description',
+    title: <HeaderCell title="Sub Total" />,
+    dataIndex: 'subtotal',
+    key: 'subtotal',
+    width: 150,
+    render: (vendor: string) => <Text className="text-sm">{vendor}</Text>,
+  },
+  {
+    title: <HeaderCell title="Tax" />,
+    dataIndex: 'tax',
+    key: 'tax',
+    width: 150,
+    render: (vendor: string) => <Text className="text-sm">{vendor}</Text>,
+  },
+  {
+    title: <HeaderCell title="Shipping" />,
+    dataIndex: 'shipping',
+    key: 'shipping',
+    width: 150,
+    render: (vendor: string) => <Text className="text-sm">{vendor}</Text>,
+  },
+  {
+    title: <HeaderCell title="Total" />,
+    dataIndex: 'total',
+    key: 'total',
+    width: 150,
+    render: (vendor: string) => <Text className="text-sm">{vendor}</Text>,
+  },
+  {
+    title: (
+      <HeaderCell
+        title="Status"
+      />
+    ),
+    // onHeaderCell: () => onHeaderCellClick('availablestock'),
+    dataIndex: 'status',
+    key: 'status',
+    width: 200,
+    render: (status: string) => <Text className="text-sm">{status}</Text>,
+  },
+  // {
+  //   title: (
+  //     <HeaderCell
+  //       title="Unit Price"
+  //       sortable
+  //       ascending={
+  //         sortConfig?.direction === 'asc' && sortConfig?.key === 'unitprice'
+  //       }
+  //     />
+  //   ),
+  //   onHeaderCell: () => onHeaderCellClick('unitprice'),
+  //   dataIndex: 'unitprice',
+  //   key: 'unitprice',
+  //   width: 150,
+  //   render: (value: string) => (
+  //     <Text className="font-medium text-gray-700">${value}</Text>
+  //   ),
+  // },
+  // {
+  //   title: (
+  //     <HeaderCell
+  //       title="Unit of Measure"
+  //       sortable
+  //       ascending={
+  //         sortConfig?.direction === 'asc' && sortConfig?.key === 'unitofmeasure'
+  //       }
+  //     />
+  //   ),
+  //   onHeaderCell: () => onHeaderCellClick('unitofmeasure'),
+  //   dataIndex: 'unitofmeasure',
+  //   key: 'unitofmeasure',
+  //   width: 150,
+  //   render: (value: string) => (
+  //     <Text className="font-medium text-gray-700">${value}</Text>
+  //   ),
+  // },
+
+  {
+    title: <HeaderCell title="Notes" />,
+    dataIndex: 'notes',
+    key: 'notes',
     width: 150,
     render: (description: string) => <Text className="text-sm">{description}</Text>,
   },

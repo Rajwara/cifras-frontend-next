@@ -1,4 +1,4 @@
-import { CreateProductInput } from '@/utils/validators/create-product.schema';
+import { CreateInventeryInput } from '@/utils/validators/create-inventery.schema';
 import isEmpty from 'lodash/isEmpty';
 
 export const customFields = [
@@ -20,25 +20,31 @@ export const productVariants = [
   },
 ];
 
-export function defaultValues(product?: CreateProductInput) {
+export function defaultValues(inventery?: CreateInventeryInput) {
   return {
-    itemname: product?.itemname ?? '',
-    vendor: product?.vendor ?? '',
-    description: product?.description ?? '',
-    unitprice: product?.unitprice ?? undefined,
-    unitofMeasure: product?.unitofMeasure ?? undefined,
-    productImages: product?.productImages ?? undefined,
+    itemname: inventery?.itemname ?? '',
+    vendor: inventery?.vendor ?? '',
+    description: inventery?.description ?? '',
+    unitprice: inventery?.unitprice ?? undefined,
+    unitofMeasure: inventery?.unitofMeasure ?? undefined,
+    // productImages: inventery?.productImages ?? undefined,
+    onhandqty:  inventery?.onhandqty ?? '',
+    incomingqty:  inventery?.incomingqty ?? '',
+    reservedqty: inventery?.reservedqty ?? '',
    
   };
 }
 
-export const productData = {
+export const inventeryData = {
   itemname: 'Apple',
   description: 'Fresh Express Iceberg Garden Salad Blend',
   vendor: 'Grocery',
   unitprice: 10,
   unitofMeasure: 20,
-  productImages: undefined,  
+  // productImages: undefined,
+  onhandqty: "28909",
+  incomingqty:"898",
+  reservedqty :"8989",
 };
 
 

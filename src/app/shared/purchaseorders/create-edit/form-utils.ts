@@ -22,24 +22,24 @@ export const productVariants = [
 
 export function defaultValues(purchaseorder?: CreatePurchaseOrderInput) {
   return {
-    name: purchaseorder?.name ?? '',
-    vendor: purchaseorder?.Vendor ?? '',
-    description: purchaseorder?.description ?? '',
-    unitprice: purchaseorder?.unitprice ?? '',
-    unitofMeasure: purchaseorder?.unitofmeasure ?? '',
-    availablestock: purchaseorder?.availablestock??'',
+    ponumber: purchaseorder?.ponumber ?? '',
+    total: purchaseorder?.total ?? '',
+    notes: purchaseorder?.notes ?? '',
+    subtotal: purchaseorder?.subtotal ?? '',
+    tax: purchaseorder?.tax ?? '',
+    shipping: purchaseorder?.shipping??'',
     dateofpurchasing: purchaseorder?.dateofpurchasing??'',
   };
 }
 
 export const purchaseorderData = {
-  name: 'Apple',
-  description: 'Fresh Express Iceberg Garden Salad Blend',
-  vendor: 'Grocery',
-  unitprice: 10,
-  unitofMeasure: 20,
-  productImages: undefined,  
-  availablestock: 2,
+  ponumber: '8789889',
+  total: '78987',
+  notes: 'This is notes',
+  subtotal: 10,
+  tax: 20,
+  // productImages: undefined,  
+  shipping: "this is shipping",
   dateofpurchasing: "10 jan, 2024",
 };
 

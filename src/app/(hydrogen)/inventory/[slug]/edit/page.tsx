@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { PiPlusBold } from 'react-icons/pi';
-import { productData } from '@/app/shared/inventory/create-edit/form-utils';
+import { inventeryData } from '@/app/shared/inventory/create-edit/form-utils';
 import CreateEditInventory from '@/app/shared/inventory/create-edit';
 import PageHeader from '@/app/shared/page-header';
 import { metaObject } from '@/config/site.config';
@@ -60,7 +60,7 @@ export default function EditProductPage({
         </Link>
       </PageHeader>
 
-      <CreateEditInventory slug={params.slug} product={productData} />
+      <CreateEditInventory slug={params.slug} product={inventeryData} />
     </>
   );
 }
