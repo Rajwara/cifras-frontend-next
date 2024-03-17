@@ -7,6 +7,13 @@ import { useColumn } from '@/hooks/use-column';
 import { Button } from 'rizzui';
 import ControlledTable from '@/components/controlled-table';
 import { getColumns } from '@/app/shared/clients/client-list/columns';
+import { ApolloClient } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
+
+const client = new ApolloClient({
+  url:'https://api.cifrasims.com/graphql/'
+})
+
 const FilterElement = dynamic(
   () => import('@/app/shared/clients/client-list/filter-element'),
   { ssr: false }
@@ -26,7 +33,7 @@ export default function ClientTable({ data = [] }: { data: any[] }) {
 
   const onHeaderCellClick = (value: string) => ({
     onClick: () => {
-      handleSort(value);
+       handleSort(value);
     },
   });
 
@@ -75,6 +82,7 @@ export default function ClientTable({ data = [] }: { data: any[] }) {
 
   return (
     <>
+    <ApolloProvider client={client}>
       <ControlledTable
         variant="modern"
         isLoading={isLoading}
@@ -128,6 +136,7 @@ export default function ClientTable({ data = [] }: { data: any[] }) {
         }
         className="overflow-hidden rounded-md border border-muted text-sm shadow-sm [&_.rc-table-placeholder_.rc-table-expanded-row-fixed>div]:h-60 [&_.rc-table-placeholder_.rc-table-expanded-row-fixed>div]:justify-center [&_.rc-table-row:last-child_td.rc-table-cell]:border-b-0 [&_thead.rc-table-thead]:border-t-0"
       />
+      </ApolloProvider>
     </>
   );
 }

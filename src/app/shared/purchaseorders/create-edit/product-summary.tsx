@@ -118,7 +118,29 @@ export default function PurchasOrderSummary({ className }: { className?: string 
         className="col-span-full "
       />
 
-
+      {/* <Controller
+                    name="status"
+                    control={control}
+                    render={({ field: { name, onChange, value } }) => (
+                      <Select
+                        dropdownClassName="!z-10"
+                        inPortal={false}
+                        options={statusOptions}
+                        value={value}
+                        onChange={onChange}
+                        name={name}
+                        label="Status"
+                        // error={errors?.status?.message}
+                        getOptionValue={(option) => option.value}
+                        getOptionDisplayValue={(option) =>
+                          renderOptionDisplayValue(option.value as string)
+                        }
+                        displayValue={(selected: string) =>
+                          renderOptionDisplayValue(selected)
+                        }
+                      />
+                    )}
+                  /> */}
      
     </FormGroup>
   );

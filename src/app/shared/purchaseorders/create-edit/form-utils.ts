@@ -1,5 +1,8 @@
+
 import { CreatePurchaseOrderInput } from '@/utils/validators/create-purchaseorder.schema';
 import isEmpty from 'lodash/isEmpty';
+import { Title, Text, Badge } from 'rizzui';
+import cn from '@/utils/class-names';
 
 export const customFields = [
   {
@@ -19,6 +22,68 @@ export const productVariants = [
     value: '',
   },
 ];
+// invoice status options
+// export const statusOptions = [
+//   {
+//     value: 'Paid',
+//     label: 'Paid',
+//   },
+//   {
+//     value: 'pending',
+//     label: 'Pending',
+//   },
+//   {
+//     value: 'overdue',
+//     label: 'Overdue',
+//   },
+//   {
+//     value: 'draft',
+//     label: 'Draft',
+//   },
+// ];
+
+// export function renderOptionDisplayValue(value: string) {
+//   switch (value.toLowerCase()) {
+//     case 'pending':
+//       return (
+      
+//         <div className="flex items-center">
+//           <Badge color="warning" renderAsDot />
+//           <Text className="ms-2 font-medium capitalize text-orange-dark">
+//             {value}
+//           </Text>
+//         </div>
+        
+//       );
+//     case 'paid':
+//       return (
+//         <div className="flex items-center">
+//           <Badge color="success" renderAsDot />
+//           <Text className="ms-2 font-medium capitalize text-green-dark">
+//             {value}
+//           </Text>
+//         </div>
+//       );
+//     case 'overdue':
+//       return (
+//         <div className="flex items-center">
+//           <Badge color="danger" renderAsDot />
+//           <Text className="ms-2 font-medium capitalize text-red-dark">
+//             {value}
+//           </Text>
+//         </div>
+//       );
+//     default:
+//       return (
+//         <div className="flex items-center">
+//           <Badge renderAsDot className="bg-gray-400" />
+//           <Text className="ms-2 font-medium capitalize text-gray-600">
+//             {value}
+//           </Text>
+//         </div>
+//       );
+//   }
+// }
 
 export function defaultValues(purchaseorder?: CreatePurchaseOrderInput) {
   return {

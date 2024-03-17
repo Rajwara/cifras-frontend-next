@@ -1,3 +1,4 @@
+
 export type ClientType = {
   id: string;
   name: string;
@@ -8,6 +9,8 @@ export type ClientType = {
   ruc:string;
   dv:string;
 };
+
+
 
 export const clientData = [
   {
