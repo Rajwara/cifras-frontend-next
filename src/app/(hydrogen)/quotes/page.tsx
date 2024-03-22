@@ -1,3 +1,5 @@
+
+
 import Link from 'next/link';
 import { PiPlusBold } from 'react-icons/pi';
 import { routes } from '@/config/routes';
@@ -58,3 +60,5 @@ export default function QuotesPage() {
     </>
   );
 }
+
+
