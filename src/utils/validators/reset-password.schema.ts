@@ -9,7 +9,7 @@ import {
 // form zod validation schema
 export const resetPasswordSchema = z
   .object({
-    email: validateEmail,
+    // email: validateEmail,
     password: validatePassword,
     confirmPassword: validateConfirmPassword,
   })
