@@ -9,16 +9,13 @@ import { ThemeProvider } from '@/app/shared/theme-provider';
 import { siteConfig } from '@/config/site.config';
 import { inter, lexendDeca } from '@/app/fonts';
 import cn from '@/utils/class-names';
-import { ApolloProvider } from '@apollo/client';
-
-import apolloClient from 'src/graphQl/apolloClient';
-import { GraphQLProvider } from 'src/graphQl/graphQlContext';
+import GraphQlProvider from 'src/graphQl/graphQlProvider';
 const NextProgress = dynamic(() => import('@/components/next-progress'), {
   ssr: false,
 });
 // styles
 import '@/app/globals.css';
-
+import { useQuery, gql } from '@apollo/client';
 export const metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
@@ -43,17 +40,17 @@ export default async function RootLayout({
         suppressHydrationWarning
         className={cn(inter.variable, lexendDeca.variable, 'font-inter')}
       >
-        <ApolloProvider client={apolloClient}>
-          {/* <AuthProvider session={session}> */}
-          {/* <ThemeProvider> */}
-          <NextProgress />
-          {children}
-          <Toaster />
-          <GlobalDrawer />
-          <GlobalModal />
-          {/* </ThemeProvider> */}
-          {/* </AuthProvider> */}
-        </ApolloProvider>
+        <GraphQlProvider>
+          <AuthProvider session={session}>
+            <ThemeProvider>
+              <NextProgress />
+              {children}
+              <Toaster />
+              <GlobalDrawer />
+              <GlobalModal />
+            </ThemeProvider>
+          </AuthProvider>
+        </GraphQlProvider>
       </body>
     </html>
   );
