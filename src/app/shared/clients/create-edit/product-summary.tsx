@@ -10,6 +10,8 @@ import dynamic from 'next/dynamic';
 import SelectLoader from '@/components/loader/select-loader';
 import QuillLoader from '@/components/loader/quill-loader';
 import { PhoneNumber } from '@/components/ui/phone-input';
+// import UploadZone from '@/components/ui/file-upload/upload-zone';
+
 const Select = dynamic(() => import('rizzui').then((mod) => mod.Select), {
   ssr: false,
   loading: () => <SelectLoader />,
@@ -36,7 +38,7 @@ export default function ProductSummary({   type,
     formState: { errors },
   } = useFormContext();
 
-  
+  // const { getValues, setValue } = useFormContext();
 
   return (
     <FormGroup
@@ -60,7 +62,7 @@ export default function ProductSummary({   type,
         label="Alias"
         placeholder="Alias"
         {...register('alias')}
-        error={errors.alias?.message as string}
+        // error={errors.alias?.message as string}
       />
        
          <Input
@@ -76,7 +78,7 @@ export default function ProductSummary({   type,
         error={errors.dv?.message as string}
       />
     <Controller
-        name={`${type}.phoneNumber`}
+        name="phone"
         control={control}
         render={({ field: { value, onChange } }) => (
           <PhoneNumber
@@ -89,7 +91,94 @@ export default function ProductSummary({   type,
           />
         )}
       />
+      <Controller
+            name="addressType"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <Select
+                dropdownClassName="!z-0"
+                options={addressTypeOption}
+                value={value}
+                onChange={onChange}
+                label="Address Type"
+                error={errors?.addressType?.message as string}
+                getOptionValue={(option) => option.label}
+              />
+            )}
+          />
+        <Input
+        label="First Street"
+        placeholder="first street"
+        {...register('firstStreet')}
+        error={errors.firstStreet?.message as string}
+      />
+        <Input
+        label="Second Street"
+        placeholder="second street"
+        {...register('secondStreet')}
+        error={errors.secondStreet?.message as string}
+      />
+        <Input
+        label="Province"
+        placeholder="province"
+        {...register('province')}
+        error={errors.province?.message as string}
+      />
+          <Input
+        label="District"
+        placeholder="district"
+        {...register('district')}
+        error={errors.district?.message as string}
+      />
+          <Input
+        label="Jurisdiction"
+        placeholder="jurisdiction"
+        {...register('jurisdiction')}
+        error={errors.jurisdiction?.message as string}
+      />
+          <Input
+        label="Country"
+        placeholder="country"
+        {...register('country')}
+        error={errors.country?.message as string}
+      />
 
+<Controller
+            name="receptorFeType"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <Select
+                dropdownClassName="!z-0"
+                options={receptorFeTypeOption}
+                value={value}
+                onChange={onChange}
+                label="ReceptorFe Type"
+                error={errors?.receptorFeType?.message as string}
+                getOptionValue={(option) => option.label}
+              />
+            )}
+          />
+          <Controller
+            name="contributorType"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <Select
+                dropdownClassName="!z-0"
+                options={contributorTypeOption}
+                value={value}
+                onChange={onChange}
+                label="Contributor Type"
+                error={errors?.contributorType?.message as string}
+                getOptionValue={(option) => option.label}
+              />
+            )}
+          />
+            {/* <UploadZone
+        className="col-span-full"
+        name="clientImages"
+        getValues={getValues}
+        setValue={setValue}
+      /> */}
       {/* <Controller
         control={control}
         name="Address"
@@ -106,3 +195,59 @@ export default function ProductSummary({   type,
     </FormGroup>
   );
 }
+
+const addressTypeOption = [
+  {
+    value: 'primary',
+    label: 'PRIMARY',
+  },
+  {
+    value: 'secondary',
+    label: 'SECONDARY',
+  },
+  {
+    value: 'billing',
+    label: 'BILLING',
+  },
+  {
+    value: 'shipping',
+    label: 'SHIPPING',
+  },
+  {
+    value: 'mailing',
+    label: 'MAILING',
+  },
+
+];
+
+const receptorFeTypeOption = [
+  {
+    value: 'contribuyente',
+    label: 'CONTRIBUYENTE',
+  },
+  {
+    value: 'consumidor_final',
+    label: 'CONSUMIDOR_FINAL',
+  },
+  {
+    value: 'gobierno',
+    label: 'GOBIERNO',
+  },
+  {
+    value: 'extranjero',
+    label: 'EXTRANJERO',
+  },
+
+
+];
+const contributorTypeOption = [
+  {
+    value: 'natural',
+    label: 'NATURAL',
+  },
+  {
+    value: 'juridico',
+    label: 'JURIDICO',
+  },
+
+];
