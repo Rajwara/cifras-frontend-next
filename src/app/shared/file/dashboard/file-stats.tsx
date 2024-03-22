@@ -8,6 +8,7 @@ import MetricCard from '@/components/cards/metric-card';
 import CircleProgressBar from '@/components/charts/circle-progressbar';
 import TrendingUpIcon from '@/components/icons/trending-up';
 import TrendingDownIcon from '@/components/icons/trending-down';
+import { useQuery, gql } from '@apollo/client';
 
 type FileStatsType = {
   className?: string;
@@ -57,6 +58,7 @@ const filesStatData = [
 ];
 
 export function FileStatGrid({ className }: { className?: string }) {
+  
   return (
     <>
       {filesStatData.map((stat: any) => {
@@ -132,7 +134,7 @@ export default function FileStats({ className }: FileStatsType) {
         variant="text"
         ref={sliderPrevBtn}
         onClick={() => scrollToTheLeft()}
-        className="!absolute -left-1 top-0 z-10 !h-full w-20 !justify-start rounded-none bg-gradient-to-r from-gray-0 via-gray-0/70 to-transparent px-0 ps-1 text-gray-500 hover:text-gray-900 3xl:hidden dark:from-gray-50 dark:via-gray-50/70"
+        className="!absolute -left-1 top-0 z-10 !h-full w-20 !justify-start rounded-none bg-gradient-to-r from-gray-0 via-gray-0/70 to-transparent px-0 ps-1 text-gray-500 hover:text-gray-900 dark:from-gray-50 dark:via-gray-50/70 3xl:hidden"
       >
         <PiCaretLeftBold className="h-5 w-5" />
       </Button>
@@ -149,7 +151,7 @@ export default function FileStats({ className }: FileStatsType) {
         variant="text"
         ref={sliderNextBtn}
         onClick={() => scrollToTheRight()}
-        className="!absolute right-0 top-0 z-10 !h-full w-20 !justify-end rounded-none bg-gradient-to-l from-gray-0 via-gray-0/70 to-transparent px-0 text-gray-500 hover:text-gray-900 3xl:hidden dark:from-gray-50 dark:via-gray-50/70"
+        className="!absolute right-0 top-0 z-10 !h-full w-20 !justify-end rounded-none bg-gradient-to-l from-gray-0 via-gray-0/70 to-transparent px-0 text-gray-500 hover:text-gray-900 dark:from-gray-50 dark:via-gray-50/70 3xl:hidden"
       >
         <PiCaretRightBold className="h-5 w-5" />
       </Button>
