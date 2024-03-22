@@ -8,6 +8,8 @@ import { Password, Checkbox, Button, Input, Text } from 'rizzui';
 import { Form } from '@/components/ui/form';
 import { routes } from '@/config/routes';
 import { SignUpSchema, signUpSchema } from '@/utils/validators/signup.schema';
+import { supabase } from '@/utils/supabaseClient';
+import { useRouter } from 'next/navigation';
 
 const initialValues = {
   firstName: '',
@@ -19,11 +21,36 @@ const initialValues = {
 };
 
 export default function SignUpForm() {
+  const router = useRouter();
   const [reset, setReset] = useState({});
+  async function signUp(userData: any) {
+    const {
+      data: { user, session },
+      error,
+    } = await supabase.auth.signUp({
+      email: userData.email, // 'ranaasad559921@gmail.com',
+      password: userData.password, // '12345678',
+    });
 
+    console.log('data: ', user);
+    console.log('data: ', error);
+
+    // await getUser()
+
+    if (error) {
+      // throw error;
+      alert(error.message);
+    } else {
+      setReset({ ...userData, isAgreed: false });
+      router.push(routes.auth.signIn1);
+    }
+    return { user, session };
+  }
   const onSubmit: SubmitHandler<SignUpSchema> = (data) => {
     console.log(data);
-    setReset({ ...initialValues, isAgreed: false });
+    signUp(data);
+    // router.push(routes.auth.signIn1);
+    // setReset({ ...data, isAgreed: false });
   };
 
   return (
