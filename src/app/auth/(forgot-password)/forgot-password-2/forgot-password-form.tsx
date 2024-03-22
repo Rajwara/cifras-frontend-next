@@ -8,29 +8,57 @@ import { routes } from '@/config/routes';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { useMedia } from '@/hooks/use-media';
+import { useRouter } from 'next/navigation';
 import {
   forgetPasswordSchema,
   ForgetPasswordSchema,
 } from '@/utils/validators/forget-password.schema';
+import { supabase } from '@/utils/supabaseClient';
 
 const initialValues = {
   email: '',
 };
 
 export default function ForgetPasswordForm() {
+  const router = useRouter();
   const isMedium = useMedia('(max-width: 1200px)', false);
   const [reset, setReset] = useState({});
-  const onSubmit: SubmitHandler<ForgetPasswordSchema> = (data) => {
-    console.log('Forgot password form data->', data);
+  const handleForgetPassword = async (email: string) => {
+    const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `http://localhost:3000/${routes.auth.forgotPassword1}`,
+    });
+
+    if (error) {
+      alert(error.message);
+      console.error('Error sending password reset email:', error);
+      return;
+    }
     toast.success(
       <Text>
         Reset link sent to this email:{' '}
         <Text as="b" className="font-semibold">
-          {data.email}
+          {email}
         </Text>
       </Text>
     );
     setReset(initialValues);
+    setTimeout(() => {
+      router.push(routes.auth.signIn1);
+    }, 3000);
+    console.log('Password reset email sent', data);
+  };
+  const onSubmit: SubmitHandler<ForgetPasswordSchema> = (data) => {
+    console.log('Forgot password form data->', data);
+    handleForgetPassword(data.email);
+    // toast.success(
+    //   <Text>
+    //     Reset link sent to this email:{' '}
+    //     <Text as="b" className="font-semibold">
+    //       {data.email}
+    //     </Text>
+    //   </Text>
+    // );
+    // setReset(initialValues);
   };
 
   return (
@@ -69,7 +97,7 @@ export default function ForgetPasswordForm() {
       <Text className="mt-5 text-center text-[15px] leading-loose text-gray-500 lg:text-start xl:mt-7 xl:text-base">
         Don’t want to reset?{' '}
         <Link
-          href={routes.auth.signIn2}
+          href={routes.auth.signIn1}
           className="font-semibold text-gray-700 transition-colors hover:text-blue"
         >
           Sign In
