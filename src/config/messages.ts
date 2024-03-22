@@ -100,4 +100,13 @@ export const messages = {
   taxAmountRequired :" Tax Amount is Required",
   stateRequired:"State is Required",
   salesPersonRequired: "Sales Person is Required",
+  contributorType: "ContributorType is Required",
+  receptorFeType:"ReceptorFeType is Required",
+  country:"Country is Required",
+  jurisdiction:"Jurisdiction is Required",
+  district:"District is Required",
+  province:"Province is Required",
+  secondStreet:"Second Street is Required",
+  firstStreet:"First Street is Required",
+  addressType:"Address Type is Required",
 };
