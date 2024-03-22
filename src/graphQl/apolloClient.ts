@@ -1,8 +1,28 @@
 'use client';
-import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+// Create an httpLink
+const httpLink = createHttpLink({
+  uri: 'https://api.cifrasims.com/graphql/',
+});
+
+const authLink = setContext((_, { headers }) => {
+  // Get the authentication token from local storage if it exists
+  const token = 'eyJhbGciOiJIUzI1NiIsImtpZCI6ImxnUUV6REJ1TzI5VGZCb3IiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzExMzk1MjU4LCJpYXQiOjE3MTA5NjMyNTgsImlzcyI6Imh0dHBzOi8vZXpzY2xzd25uYnl0ZXdzamZidnUuc3VwYWJhc2UuY28vYXV0aC92MSIsInN1YiI6IjY1MWJlOWMxLTc1YzMtNGEwZi05N2NmLWZlNmI2MmViZjFhNSIsImVtYWlsIjoianNAY29kZXRlYy5vcmciLCJwaG9uZSI6IiIsImFwcF9tZXRhZGF0YSI6eyJwcm92aWRlciI6ImVtYWlsIiwicHJvdmlkZXJzIjpbImVtYWlsIl0sInJvbGVzIjpbImFkbWluaXN0cmF0b3IiXSwidGVuYW50cyI6WyJkZW1vIiwiYWN3ZWxkZXJzIiwiYWNlaXRlb3hpZ2VubyIsImFjZWlveGkiXSwidXNlcl9pZCI6MX0sInVzZXJfbWV0YWRhdGEiOnt9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzEwOTYzMjU4fV0sInNlc3Npb25faWQiOiIyOGRhMDFhOS05Zjc4LTRjZDktYjFkMS05OThhNDAyNzU3ZDQifQ.AdLpay1wxjlIeNUzd1CZmYmgynQIGCyimqnvyYJRmSw';
+
+  // Return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+      tenant: 'demo',
+      // You can add more headers here if needed
+    },
+  };
+});
 
 const apolloClient = new ApolloClient({
-  uri: 'https://api-dev.viwell.app/graphql',
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
