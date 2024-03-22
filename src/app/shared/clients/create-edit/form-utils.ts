@@ -20,14 +20,16 @@ export const productVariants = [
   },
 ];
 
+
+
 export function defaultValues(client?: CreateClientInput) {
   return {
     name: client?.name ?? '',
     alias: client?.alias ?? '',
     description: client?.description ?? '',
-    phoneNumber: client?.phoneNumber ?? "",
+    phoneNumber: client?.phone?? "",
     email: client?.email ?? "",
-    image: client?.image ?? undefined,
+    image: client?.images ?? undefined,
     ruc: client?.ruc ?? "",
     dv: client?.dv ?? "",
   };

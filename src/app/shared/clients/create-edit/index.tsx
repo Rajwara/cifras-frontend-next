@@ -7,9 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { Text } from 'rizzui';
 import cn from '@/utils/class-names';
-import FormNav, {
-  formParts,
-} from '@/app/shared/clients/create-edit/form-nav';
+import FormNav, { formParts } from '@/app/shared/clients/create-edit/form-nav';
 import ClientSummary from '@/app/shared/clients/create-edit/product-summary';
 import { defaultValues } from '@/app/shared/clients/create-edit/form-utils';
 import ClientMedia from '@/app/shared/clients/create-edit/product-media';
@@ -27,8 +25,8 @@ import {
 } from '@/utils/validators/create-client.schema';
 import { useLayout } from '@/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/config/enums';
-import DetialandHistoryTab from "../../detailsandhistorytabs/detailsandhistorytabs";
-
+import DetialandHistoryTab from '../../detailsandhistorytabs/detailsandhistorytabs';
+import { useMutation, gql } from '@apollo/client';
 
 const MAP_STEP_TO_COMPONENT = {
   [formParts.summary]: ClientSummary,
@@ -60,24 +58,94 @@ export default function CreateEditProduct({
     defaultValues: defaultValues(client),
   });
 
-  const onSubmit: SubmitHandler<CreateClientInput> = (data) => {
-    setLoading(true);
-    setTimeout(() => {
+  const updateClient = gql
+  ` mutation UpdateClient {
+    updateClient(client: null, id: null) {
+        id
+        name
+        emails
+        alias
+        ruc
+        dv
+        phone
+        receptorFeType
+        contributorType
+        imageUrl
+    }
+}
+`
+
+  const CREATE_CLIENT = gql`
+    mutation CreateClient($client: ClientInput!) {
+      createClient(client: $client) {
+        id
+        name
+      }
+    }
+  `;
+
+  const [addClient, { loading }] = useMutation(CREATE_CLIENT);
+
+  const onSubmit: SubmitHandler<CreateClientInput> = async (data) => {
+    console.log(data,"datagg");
+    try {
+      setLoading(true);
+  const res = await addClient({ variables: { client: {  
+      name: data.name,
+      alias: data.alias,
+      ruc: data.ruc,
+      dv: data.dv,
+      emails: data.email,
+      phone: data.phone,
+      addresses: {
+        addressType: data.addressType,
+        firstStreet: data.firstStreet,
+        secondStreet: data.secondStreet,
+        province: data.province,
+        district: data.district,
+        jurisdiction: data.jurisdiction,
+        country: data.country,
+    },
+    receptorFeType: data.receptorFeType,
+    contributorType: data.contributorType,
+    imageUrl: data.images
+    ? data.images
+    : 'https://via.placeholder.com/150', // Default placeholder image
+
+
+  } } });
+
+  toast.success(
+    <Text as="b">Clients successfully {slug ? 'updated' : 'created'}</Text>
+  );
+  methods.reset();
+  setLoading(false);
+    } catch (error) {
+      console.log(error,"error");
       setLoading(false);
-      console.log('Clients', data);
-      toast.success(
-        <Text as="b">Clients successfully {slug ? 'updated' : 'created'}</Text>
+      toast.error(
+        <Text as="b">Clients give the errors  </Text>
       );
-      methods.reset();
-    }, 600);
+    }
+    // console.log('calling');
+    // setLoading(true);
+    // setTimeout(() => {
+    //   setLoading(false);
+    //   console.log('Clients', data);
+    //   toast.success(
+    //     <Text as="b">Clients successfully {slug ? 'updated' : 'created'}</Text>
+    //   );
+    //   methods.reset();
+    // }, 600);
   };
 
   return (
     <div className="@container">
       <FormNav
-        className={cn(
+        className={
+          cn()
           // layout === LAYOUT_OPTIONS.BERYLLIUM && 'z-[999] 2xl:top-[72px]'
-        )}
+        }
       />
       <FormProvider {...methods}>
         <form
@@ -104,8 +172,8 @@ export default function CreateEditProduct({
           />
         </form>
       </FormProvider>
-      <div className='mt-10'>
-          <DetialandHistoryTab />
+      <div className="mt-10">
+        <DetialandHistoryTab />
       </div>
     </div>
   );
