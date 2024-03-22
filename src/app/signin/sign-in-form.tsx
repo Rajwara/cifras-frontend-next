@@ -2,13 +2,15 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { signIn } from 'next-auth/react';
+import { signIn, signOut } from 'next-auth/react';
 import { SubmitHandler } from 'react-hook-form';
 import { PiArrowRightBold } from 'react-icons/pi';
 import { Checkbox, Password, Button, Input, Text } from 'rizzui';
 import { Form } from '@/components/ui/form';
 import { routes } from '@/config/routes';
 import { loginSchema, LoginSchema } from '@/utils/validators/login.schema';
+import { redirect } from 'next/navigation';
+import { supabase } from '@/utils/supabaseClient';
 
 const initialValues: LoginSchema = {
   email: 'admin@admin.com',
@@ -20,11 +22,28 @@ export default function SignInForm() {
   //TODO: why we need to reset it here
   const [reset, setReset] = useState({});
 
-  const onSubmit: SubmitHandler<LoginSchema> = (data) => {
-    console.log(data);
-    signIn('credentials', {
-      ...data,
+  const onSubmit: SubmitHandler<LoginSchema> = async (credentials) => {
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: credentials.email, // 'ranaasad559921@gmail.com',
+      password: credentials.password, //'12345678',
     });
+    console.log('data: ', data);
+    console.log('error: ', error);
+
+    if (error) {
+      // Error Handeling for credentials
+      alert(error.message);
+      // console.error('Error fetching users:', error.message);
+      return [];
+    } else {
+      // For Routing This Fuction will lead user accordinf to the routing selection
+      // from Routes file src/config/routes
+      signIn('credentials', {
+        ...credentials,
+        email: 'admin@admin.com',
+        password: 'admin',
+      });
+    }
   };
 
   return (
@@ -64,8 +83,9 @@ export default function SignInForm() {
                 label="Remember Me"
                 className="[&>label>span]:font-medium"
               />
+
               <Link
-                href={routes.auth.forgotPassword1}
+                href={routes.auth.forgotPassword2}
                 className="h-auto p-0 text-sm font-semibold text-blue underline transition-colors hover:text-gray-900 hover:no-underline"
               >
                 Forget Password?
