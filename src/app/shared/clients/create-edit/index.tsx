@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Element } from 'react-scroll';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -26,7 +26,7 @@ import {
 import { useLayout } from '@/hooks/use-layout';
 import { LAYOUT_OPTIONS } from '@/config/enums';
 import DetialandHistoryTab from '../../detailsandhistorytabs/detailsandhistorytabs';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation, gql, useQuery } from '@apollo/client';
 
 const MAP_STEP_TO_COMPONENT = {
   [formParts.summary]: ClientSummary,
@@ -58,9 +58,27 @@ export default function CreateEditProduct({
     defaultValues: defaultValues(client),
   });
 
-  const updateClient = gql
-  ` mutation UpdateClient {
-    updateClient(client: null, id: null) {
+ 
+  const updateClient = gql`
+  mutation UpdateClient($id: Int!, $client: ClientUpdateInput!) {
+    updateClient(id: $id, client: $client) {
+      id
+      name
+      emails
+      alias
+      ruc
+      dv
+      phone
+      receptorFeType
+      contributorType
+      imageUrl
+    }
+  }
+`;
+
+  const CREATE_CLIENT = gql`
+    mutation CreateClient($client: ClientInput!) {
+      createClient(client: $client) {
         id
         name
         emails
@@ -71,72 +89,99 @@ export default function CreateEditProduct({
         receptorFeType
         contributorType
         imageUrl
-    }
-}
-`
-
-  const CREATE_CLIENT = gql`
-    mutation CreateClient($client: ClientInput!) {
-      createClient(client: $client) {
-        id
-        name
       }
     }
   `;
 
-  const [addClient, { loading }] = useMutation(CREATE_CLIENT);
+  const GET_CLIENT_BY_ID = gql`
+  query GetClientById($id: Int!) {
+    getClientById(id: $id) {
+      client {
+        name
+        emails
+        alias
+        ruc
+        dv
+        phone
+        receptorFeType
+        contributorType
+        imageUrl
+      },
+      addresses {
+        firstStreet
+        secondStreet
+        province
+        district
+        jurisdiction
+        country
+        addressType
+    }
+    }
+  }
+`;
 
+const {  error, data: clientData } = useQuery(GET_CLIENT_BY_ID, {
+  variables: { id: Number(slug) }, 
+  skip: !slug,
+  
+});
+console.log(slug,"Slug");
+
+  const [mutation, { loading }] = useMutation(
+    slug ? updateClient : CREATE_CLIENT
+  );
+
+  useEffect(() => {
+    if (clientData && clientData.getClientById) {
+      methods.reset({...clientData.getClientById.client, email: clientData.getClientById.client.emails[0], ...clientData.getClientById.addresses[0]});
+    }
+  }, [clientData]);
+  
   const onSubmit: SubmitHandler<CreateClientInput> = async (data) => {
-    console.log(data,"datagg");
     try {
       setLoading(true);
-  const res = await addClient({ variables: { client: {  
-      name: data.name,
-      alias: data.alias,
-      ruc: data.ruc,
-      dv: data.dv,
-      emails: data.email,
-      phone: data.phone,
-      addresses: {
-        addressType: data.addressType,
-        firstStreet: data.firstStreet,
-        secondStreet: data.secondStreet,
-        province: data.province,
-        district: data.district,
-        jurisdiction: data.jurisdiction,
-        country: data.country,
-    },
+      const variables:any = {
+        client: {  
+          name: data.name,
+          alias: data.alias,
+          ruc: data.ruc,
+          dv: data.dv,
+          phone: data.phone,
+  
     receptorFeType: data.receptorFeType,
     contributorType: data.contributorType,
-    imageUrl: data.images
-    ? data.images
-    : 'https://via.placeholder.com/150', // Default placeholder image
+    imageUrl: 'https://via.placeholder.com/150',
+  },
+      };
 
+      if (slug) {
+        // If slug is present, it means we are updating an existing client
+        variables['id'] = Number(slug);
+      }else{
+        variables['client']['addresses']= {}
+        variables['client']['addresses']['addressType']= data.addressType
+        variables['client']['addresses']['firstStreet']= data.firstStreet
+        variables['client']['addresses']['secondStreet']= data.secondStreet
+        variables['client']['addresses']['province']= data.province
+        variables['client']['addresses']['district']= data.district
+        variables['client']['addresses']['jurisdiction']= data.jurisdiction
+        variables['client']['addresses']['country']= data.country
+        variables['client']['emails']= data.email
+      }
+      console.log({variables}, "VAri");
 
-  } } });
+      const res = await mutation({ variables });
 
-  toast.success(
-    <Text as="b">Clients successfully {slug ? 'updated' : 'created'}</Text>
-  );
-  methods.reset();
-  setLoading(false);
-    } catch (error) {
-      console.log(error,"error");
-      setLoading(false);
-      toast.error(
-        <Text as="b">Clients give the errors  </Text>
+      toast.success(
+        <Text as="b">Client successfully {slug ? 'updated' : 'created'}</Text>
       );
+      methods.reset();
+      setLoading(false);
+    } catch (error) {
+      console.log(error, 'error');
+      setLoading(false);
+      toast.error(<Text as="b">Error occurred while {slug ? 'updating' : 'creating'} the client</Text>);
     }
-    // console.log('calling');
-    // setLoading(true);
-    // setTimeout(() => {
-    //   setLoading(false);
-    //   console.log('Clients', data);
-    //   toast.success(
-    //     <Text as="b">Clients successfully {slug ? 'updated' : 'created'}</Text>
-    //   );
-    //   methods.reset();
-    // }, 600);
   };
 
   return (
