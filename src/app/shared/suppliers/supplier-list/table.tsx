@@ -1,6 +1,8 @@
 'use client';
 
-import { useCallback, useMemo, useState } from 'react';
+import { useQuery, gql,useMutation } from '@apollo/client';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+
 import dynamic from 'next/dynamic';
 import { useTable } from '@/hooks/use-table';
 import { useColumn } from '@/hooks/use-column';
@@ -15,6 +17,27 @@ const TableFooter = dynamic(() => import('@/app/shared/table-footer'), {
   ssr: false,
 });
 
+
+const SUPPLIER_QUERY = gql`
+query GetSuppliers {
+  getSuppliers {
+      suppliers {
+          id
+          name
+          alias
+          ruc
+          dv
+          phone
+          email
+          supplierType
+      }
+      total
+  }
+}
+`;
+
+
+
 const filterState = {
   price: ['', ''],
   createdAt: [null, null],
@@ -23,6 +46,13 @@ const filterState = {
 
 export default function ProductsTable({ data = [] }: { data: any[] }) {
   const [pageSize, setPageSize] = useState(10);
+  const [result,setResult] = useState([]);
+
+  // passing supplier data 
+  const { data: suppliersData, error, loading } = useQuery(SUPPLIER_QUERY);
+  console.log(suppliersData, 'suppliersData');
+
+
 
   const onHeaderCellClick = (value: string) => ({
     onClick: () => {
@@ -72,14 +102,23 @@ export default function ProductsTable({ data = [] }: { data: any[] }) {
   
   const { visibleColumns, checkedColumns, setCheckedColumns } =
     useColumn(columns);
+//     console.log(tableData,"table");
+// console.log(clientData?.getClients?.clients , 'clinetsData');
+// console.log(result,"Result");
+    useEffect(()=>{
 
+      // if(!isLoading){
+        setResult(suppliersData?.getSuppliers?.suppliers);
+      
+      // }
+    },[suppliersData])
   return (
     <>
       <ControlledTable
         variant="modern"
         isLoading={isLoading}
         showLoadingText={true}
-        data={tableData}
+        data={result}
         // @ts-ignore
         columns={visibleColumns}
         paginatorOptions={{

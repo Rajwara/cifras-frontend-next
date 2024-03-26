@@ -1,8 +1,9 @@
 export type SupplierType = {
   id: string;
+  email:string;
   name: string;
   alias: string;
-  phoneNumber: string;
+  phone: string;
   ruc: string;
   dv: string;
   // status: string;
