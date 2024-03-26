@@ -18,6 +18,7 @@ const TableFooter = dynamic(() => import('@/app/shared/table-footer'), {
   ssr: false,
 });
 
+
 const CLIENT_QUERY = gql`
   query GetClients {
     getClients {
