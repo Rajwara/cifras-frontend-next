@@ -24,9 +24,10 @@ export function defaultValues(supplier?: CreateSupplierInput) {
   return {
     name: supplier?.name ?? '',
     alias: supplier?.alias ?? '',
-    phoneNumber: supplier?.phoneNumber ?? '',
+    phone: supplier?.phone ?? '',
     ruc: supplier?.ruc ?? "",
     dv: supplier?.dv ?? "",
+    email: supplier?.email ?? "",
     // address: supplier?.address ?? "",
    
   };

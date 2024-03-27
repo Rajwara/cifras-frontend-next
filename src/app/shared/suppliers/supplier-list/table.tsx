@@ -48,9 +48,39 @@ export default function ProductsTable({ data = [] }: { data: any[] }) {
   const [pageSize, setPageSize] = useState(10);
   const [result,setResult] = useState([]);
 
+  
   // passing supplier data 
   const { data: suppliersData, error, loading } = useQuery(SUPPLIER_QUERY);
   console.log(suppliersData, 'suppliersData');
+
+
+  const DELETE_SUPPLIER_MUTATION = gql`
+  mutation DeleteSupplier($id: Int!){
+    deleteSupplier(id: $id)
+}
+`;
+
+
+const [deleteSupplier] = useMutation(DELETE_SUPPLIER_MUTATION);
+ 
+const handleDeleteSupplier = async (id: string) => {
+ try {
+   const parsedId = parseInt(id); // Convert id to an integer
+   // handleDelete(id);
+  
+   await deleteSupplier({ variables: { id: parsedId } });
+   const newData = result.filter((el:any) => el.id !== id)
+   setResult(newData)
+   // No need to filter Supplier manually
+   // Apollo cache will update automatically
+
+   console.log('Supplier deleted successfully');
+ } catch (error) {
+   console.error('Error deleting Supplier:', error);
+   // Handle error, display error message, etc.
+ }
+};
+
 
 
 
@@ -96,8 +126,18 @@ export default function ProductsTable({ data = [] }: { data: any[] }) {
         onHeaderCellClick,
         onChecked: handleRowSelect,
         handleSelectAll,
+        handleDeleteSupplier
       }),
-    [selectedRowKeys, onHeaderCellClick, sortConfig.key, sortConfig.direction, onDeleteItem, handleRowSelect, handleSelectAll]
+    [
+      selectedRowKeys,
+      onHeaderCellClick,
+      sortConfig.key,
+      sortConfig.direction,
+      onDeleteItem,
+      handleRowSelect,
+      handleSelectAll,
+      handleDeleteSupplier
+    ]
   );
   
   const { visibleColumns, checkedColumns, setCheckedColumns } =

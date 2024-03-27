@@ -18,7 +18,6 @@ interface AddressInfoProps {
   className?: string;
 }
 
-
 const Select = dynamic(() => import('rizzui').then((mod) => mod.Select), {
   ssr: false,
   loading: () => <SelectLoader />,
@@ -28,7 +27,8 @@ const QuillEditor = dynamic(() => import('@/components/ui/quill-editor'), {
   loading: () => <QuillLoader className="col-span-full h-[143px]" />,
 });
 
-export default function ProductSummary({   type,
+export default function ProductSummary({
+  type,
   title,
   className,
 }: AddressInfoProps) {
@@ -37,7 +37,6 @@ export default function ProductSummary({   type,
     control,
     formState: { errors },
   } = useFormContext();
-
 
   return (
     <FormGroup
@@ -51,15 +50,23 @@ export default function ProductSummary({   type,
         {...register('name')}
         error={errors.name?.message as string}
       />
+
+      <Input
+        label="Email"
+        placeholder="Email"
+        {...register('email')}
+        error={errors.email?.message as string}
+      />
+
       <Input
         label="Alias"
         placeholder="Alias"
         {...register('alias')}
         error={errors.alias?.message as string}
       />
-      
+
       <Controller
-        name={`${type}.phoneNumber`}
+        name="phone"
         control={control}
         render={({ field: { value, onChange } }) => (
           <PhoneNumber
@@ -72,30 +79,126 @@ export default function ProductSummary({   type,
           />
         )}
       />
-        <Input
+      <Input
         label="Ruc"
         placeholder="Ruc"
         {...register('ruc')}
         error={errors.ruc?.message as string}
       />
-     
-         <Input
+
+      <Input
         label="DV"
         placeholder="Dv"
         {...register('dv')}
         error={errors.dv?.message as string}
       />
- 
 
- {/* <Textarea
-        label="Address"
-        placeholder="Enter your address"
-        {...register('address')}
-        error={errors.address?.message as string}
-        textareaClassName="h-20 "
-        className="col-span-full "
+   
+        <Controller
+            name="addressType"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <Select
+                dropdownClassName="!z-0"
+                options={addressTypeOption}
+                value={value}
+                onChange={onChange}
+                label="Address Type"
+                error={errors?.addressType?.message as string}
+                getOptionValue={(option) => option.label}
+              />
+            )}
+          />
+        <Input
+        label="First Street"
+        placeholder="first street"
+        {...register('firstStreet')}
+        error={errors.firstStreet?.message as string}
       />
-     */}
+        <Input
+        label="Second Street"
+        placeholder="second street"
+        {...register('secondStreet')}
+        error={errors.secondStreet?.message as string}
+      />
+        <Input
+        label="Province"
+        placeholder="province"
+        {...register('province')}
+        error={errors.province?.message as string}
+      />
+          <Input
+        label="District"
+        placeholder="district"
+        {...register('district')}
+        error={errors.district?.message as string}
+      />
+          <Input
+        label="Jurisdiction"
+        placeholder="jurisdiction"
+        {...register('jurisdiction')}
+        error={errors.jurisdiction?.message as string}
+      />
+          <Input
+        label="Country"
+        placeholder="country"
+        {...register('country')}
+        error={errors.country?.message as string}
+      />
+   <Controller
+            name="supplierType"
+            control={control}
+            render={({ field: { onChange, value } }) => (
+              <Select
+                dropdownClassName="!z-0"
+                options={supplierTypeOption}
+                value={value}
+                onChange={onChange}
+                label="Contributor Type"
+                error={errors?.supplierType?.message as string}
+                getOptionValue={(option) => option.label}
+              />
+            )}
+          />
     </FormGroup>
   );
 }
+
+const supplierTypeOption = [
+  {
+    value: 'local',
+    label: 'LOCAL',
+  },
+  {
+    value: 'international',
+    label: 'INTERNATIONAL',
+  },
+  {
+    value: 'national',
+    label: 'NATIONAL',
+  },
+];
+
+const addressTypeOption = [
+  {
+    value: 'primary',
+    label: 'PRIMARY',
+  },
+  {
+    value: 'secondary',
+    label: 'SECONDARY',
+  },
+  {
+    value: 'billing',
+    label: 'BILLING',
+  },
+  {
+    value: 'shipping',
+    label: 'SHIPPING',
+  },
+  {
+    value: 'mailing',
+    label: 'MAILING',
+  },
+
+];

@@ -19,7 +19,7 @@ export const messages = {
   invalidEmail: 'Invalid email address',
   roleIsRequired: 'Role is required',
   reportIsRequired: 'Report is required',
-
+  supplierType:"Supplier Type is Required",
   permissionIsRequired: 'Permission is required',
   teamIsRequired: 'New member must be assigned to a team',
   productNameIsRequired: 'Product name is required',

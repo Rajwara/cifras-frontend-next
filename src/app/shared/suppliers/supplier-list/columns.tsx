@@ -22,6 +22,7 @@ import { useEffect, useState } from 'react';
 
 
 
+
 const SUPPLIER_QUERY = gql`
 query GetSuppliers {
   getSuppliers {
@@ -79,6 +80,7 @@ type Columns = {
   onDeleteItem: (id: string) => void;
   onHeaderCellClick: (value: string) => void;
   onChecked?: (id: string) => void;
+  handleDeleteSupplier: (id: string) => void;
 };
 
 export const getColumns = ({
@@ -89,6 +91,7 @@ export const getColumns = ({
   onHeaderCellClick,
   handleSelectAll,
   onChecked,
+  handleDeleteSupplier
 }: Columns) => {
   
   
@@ -129,6 +132,15 @@ export const getColumns = ({
     title: <HeaderCell title="Supplier" />,
     dataIndex: 'name',
     key: 'name',
+    width: 150,
+    render: (value: string) => (
+      <Text className="font-medium text-gray-700">{value}</Text>
+    ),
+  },
+  {
+    title: <HeaderCell title="Email" sortable />,
+    dataIndex: 'email',
+    key: 'email',
     width: 150,
     render: (value: string) => (
       <Text className="font-medium text-gray-700">{value}</Text>
@@ -202,9 +214,10 @@ export const getColumns = ({
           </Link>
         </Tooltip>
         <DeletePopover
-          title={`Delete the suppliers`}
-          description={`Are you sure you want to delete this #${row.id} suppliers?`}
-          onDelete={() => onDeleteItem(row.id)}
+          title={`Delete Suppliers ${row.name}`}
+          description={`Are you sure you want to delete this #${row.name} suppliers?`}
+
+          onDelete={() => handleDeleteSupplier(row.id)}
         />
       </div>
     ),
