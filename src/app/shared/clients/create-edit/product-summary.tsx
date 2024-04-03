@@ -1,3 +1,4 @@
+import {useState} from "react";
 import { Controller, useFormContext } from 'react-hook-form';
 import { Input } from 'rizzui';
 import cn from '@/utils/class-names';
@@ -10,7 +11,36 @@ import dynamic from 'next/dynamic';
 import SelectLoader from '@/components/loader/select-loader';
 import QuillLoader from '@/components/loader/quill-loader';
 import { PhoneNumber } from '@/components/ui/phone-input';
+import { useQuery ,gql} from '@apollo/client';
 // import UploadZone from '@/components/ui/file-upload/upload-zone';
+
+
+const GET_PROVINCES = gql`
+  query GetProvinces {
+    getProvinces {
+      uid
+      name
+    }
+  }
+`;
+
+const GET_DISTRICTS_BY_PROVINCE_ID = gql`
+  query GetDistrictsByProvinceId($provinceId: ID!) {
+    getDistrictsByProvinceId(provinceId: $provinceId) {
+      uid
+      name
+    }
+  }
+`;
+
+const GET_JURISDICTIONS_BY_DISTRICT_ID = gql`
+  query GetJurisdictionsByDistrictId($districtId: ID!) {
+    getJurisdictionsByDistrictId(districtId: $districtId) {
+      uid
+      name
+    }
+  }
+`;
 
 const Select = dynamic(() => import('rizzui').then((mod) => mod.Select), {
   ssr: false,
@@ -25,6 +55,7 @@ interface AddressInfoProps {
   type: string;
   title?: string;
   className?: string;
+  
 }
 
 
@@ -36,9 +67,43 @@ export default function ProductSummary({   type,
     register,
     control,
     formState: { errors },
+    
   } = useFormContext();
 
-  // const { getValues, setValue } = useFormContext();
+  const [selectedProvince, setSelectedProvince] = useState<any>(null);
+  const [selectedDistrict, setSelectedDistrict] = useState<any>('');
+  const [selectedJurisdiction, setSelectedJurisdiction] = useState<any>('');
+
+  const { data: provinceData, loading: provinceLoading, error: provinceError } = useQuery(GET_PROVINCES);
+  
+  const { data: districtData, loading: districtLoading, error: districtError } = useQuery(GET_DISTRICTS_BY_PROVINCE_ID, {
+    variables: { provinceId: selectedProvince?.value }, // Use optional chaining to avoid error if selectedProvince is null
+    skip: !selectedProvince?.value, // Use optional chaining to avoid error if selectedProvince is null
+  });
+  
+  const { data: jurisdictionData, loading: jurisdictionLoading, error: jurisdictionError } = useQuery(GET_JURISDICTIONS_BY_DISTRICT_ID, {
+    variables: { districtId: selectedDistrict?.value },
+    skip: !selectedDistrict?.value,
+  });
+
+  const handleProvinceChange = (value: any) => {
+    
+    setSelectedProvince(value);
+    setSelectedDistrict('');
+    setSelectedJurisdiction('');
+  };
+
+  const handleDistrictChange = (value: any) => {
+    setSelectedDistrict(value);
+    setSelectedJurisdiction('');
+  };
+
+  const handleJurisdictionChange = (value: any) => {
+    setSelectedJurisdiction(value);
+  };
+
+  if (provinceLoading || districtLoading || jurisdictionLoading) return <p>Loading...</p>;
+  if (provinceError || districtError || jurisdictionError) return <p>Error fetching data.</p>;
 
   return (
     <FormGroup
@@ -118,32 +183,69 @@ export default function ProductSummary({   type,
         {...register('secondStreet')}
         error={errors.secondStreet?.message as string}
       />
-        <Input
+
+        {/* <Select
         label="Province"
-        placeholder="province"
         {...register('province')}
-        error={errors.province?.message as string}
+        options={provinceData?.getProvinces.map((province: any) => ({ label: province.name, value: province.uid }))}
+        value={selectedProvince.value}
+        onChange={handleProvinceChange}
+        placeholder="Select province"
+        
+      /> */}
+      <Controller
+        name="province"
+        control={control}
+        render={({ field: { onChange, value } }) => (
+        <Select
+          dropdownClassName="!z-0"
+          options={provinceData?.getProvinces?.map((province: any) => ({ label: province.name, value: province.uid }))}
+          value={value}
+          onChange={(value)=> {handleProvinceChange(value); onChange(value)}}    
+          label="Province"
+          // error={errors?.receptorFeType?.message as string}
+          getOptionValue={(option) => option.label}
+              />
+        )}
       />
-          <Input
-        label="District"
-        placeholder="district"
-        {...register('district')}
-        error={errors.district?.message as string}
+      <Controller
+        name="district"
+        control={control}
+        render={({ field: { onChange, value } }) => (
+          <Select
+            dropdownClassName="!z-0"
+            options={districtData?.getDistrictsByProvinceId?.map((district: any) => ({ label: district.name, value: district.uid })) || []}
+            value={value}
+            onChange={(value) => { handleDistrictChange(value); onChange(value) }}
+            label="District"
+            // error={errors?.receptorFeType?.message as string}
+            getOptionValue={(option) => option.label}
+          />
+        )}
       />
-          <Input
-        label="Jurisdiction"
-        placeholder="jurisdiction"
-        {...register('jurisdiction')}
-        error={errors.jurisdiction?.message as string}
+      <Controller
+        name="jurisdiction"
+        control={control}
+        render={({ field: { onChange, value } }) => (
+          <Select
+            dropdownClassName="!z-0"
+            options={jurisdictionData?.getJurisdictionsByDistrictId?.map((jurisdiction: any) => ({ label: jurisdiction.name, value: jurisdiction.uid })) || []}
+            value={value}
+            onChange={(value) => { handleJurisdictionChange(value); onChange(value) }}
+            label="Jurisdiction"
+            // error={errors?.receptorFeType?.message as string}
+            getOptionValue={(option) => option.label}
+          />
+        )}
       />
-          <Input
+      <Input
         label="Country"
         placeholder="country"
         {...register('country')}
         error={errors.country?.message as string}
       />
 
-<Controller
+          <Controller
             name="receptorFeType"
             control={control}
             render={({ field: { onChange, value } }) => (
